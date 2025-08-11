@@ -26,8 +26,8 @@ A modern, responsive personal portfolio website built with React, Vite, and Tail
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/maria-demy/maria-demy.github.io.git
-   cd maria-demy.github.io
+   git clone https://github.com/maria-demy/bashdemy.github.io.git
+   cd bashdemy.github.io
    ```
 
 2. **Install dependencies**
@@ -86,7 +86,7 @@ This project is configured for GitHub Pages deployment:
 
 1. Build the project: `npm run build`
 2. Deploy to GitHub Pages using GitHub Actions or manual deployment
-3. The site will be available at `https://maria-demy.github.io`
+3. The site will be available at `https://bashdemy.github.io`
 
 ## 📄 License
 

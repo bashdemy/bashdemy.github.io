@@ -17,7 +17,7 @@ function ensureSitemapAccessible() {
     const basicSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://maria-demy.github.io/</loc>
+    <loc>https://bashdemy.github.io/</loc>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
@@ -36,7 +36,7 @@ function ensureRobotsAccessible() {
 Allow: /
 
 # Sitemap location
-Sitemap: https://maria-demy.github.io/sitemap.xml
+Sitemap: https://bashdemy.github.io/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1`;

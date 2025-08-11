@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import Card from './ui/Card';
 
 const HumanTouch = ({ id }) => {
   return (
     <section id={id} className="section-padding">
       <div className="container-custom">
-        <div className="card">
+        <Card>
           <h4 className="text-lg font-semibold text-theme-primary mb-3 font-heading">
             The Human Touch
           </h4>
@@ -34,7 +35,7 @@ const HumanTouch = ({ id }) => {
               />
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );

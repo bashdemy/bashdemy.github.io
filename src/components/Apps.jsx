@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import Card from './ui/Card';
+import Tag from './ui/Tag';
 
 const APPS_DATA = [];
 
@@ -32,7 +34,7 @@ StatusBadge.propTypes = {
 };
 
 const AppCard = ({ app }) => (
-  <div className="card group">
+  <Card className="group">
     <div className="flex items-center justify-between mb-4">
       <h3 className="text-xl font-semibold text-theme-primary group-hover:text-theme-accent transition-colors font-heading">
         {app.title}
@@ -50,16 +52,11 @@ const AppCard = ({ app }) => (
       </h4>
       <div className="flex flex-wrap gap-2">
         {app.stack.map(tech => (
-          <span
-            key={tech}
-            className="px-2 py-1 bg-theme-accent/20 text-theme-accent rounded text-xs font-medium font-mono tech-label"
-          >
-            {tech}
-          </span>
+          <Tag key={tech}>{tech}</Tag>
         ))}
       </div>
     </div>
-  </div>
+  </Card>
 );
 
 AppCard.propTypes = {
@@ -87,7 +84,7 @@ const Apps = ({ id }) => {
         </div>
 
         <div className="text-center">
-          <div className="card inline-block max-w-2xl">
+          <Card className="inline-block max-w-2xl">
             <p className="text-theme-secondary mb-4 font-body">
               Experience content coming soon...
             </p>
@@ -95,7 +92,7 @@ const Apps = ({ id }) => {
               I'm working on showcasing my projects and experience in software
               engineering, AI integration, and cloud infrastructure.
             </p>
-          </div>
+          </Card>
         </div>
       </div>
     </section>

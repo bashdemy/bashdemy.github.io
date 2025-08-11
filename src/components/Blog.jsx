@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import Card from './ui/Card';
+import Tag from './ui/Tag';
 
 const BLOG_POSTS_DATA = [];
 
@@ -12,7 +14,7 @@ const formatDate = dateString => {
 };
 
 const BlogPostCard = ({ post }) => (
-  <article className="card group hover:shadow-lg transition-shadow">
+  <Card as="article" className="group hover:shadow-lg transition-shadow">
     <div className="flex items-center justify-between mb-3">
       <time className="text-sm text-theme-muted font-body" dateTime={post.date}>
         {formatDate(post.date)}
@@ -33,12 +35,7 @@ const BlogPostCard = ({ post }) => (
     <div className="flex items-center justify-between">
       <div className="flex flex-wrap gap-2">
         {post.tags.map(tag => (
-          <span
-            key={tag}
-            className="px-2 py-1 bg-theme-accent/20 text-theme-accent rounded text-xs font-medium font-mono tech-label"
-          >
-            {tag}
-          </span>
+          <Tag key={tag}>{tag}</Tag>
         ))}
       </div>
 
@@ -57,7 +54,7 @@ const BlogPostCard = ({ post }) => (
         </button>
       )}
     </div>
-  </article>
+  </Card>
 );
 
 BlogPostCard.propTypes = {
@@ -75,7 +72,7 @@ BlogPostCard.propTypes = {
 
 const Blog = ({ id }) => {
   return (
-    <section id={id} className="section-padding bg-theme-background-alt/50">
+    <section id={id} className="section-padding bg-theme-background-alt">
       <div className="container-custom">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-theme-primary mb-4 font-heading">
@@ -88,7 +85,7 @@ const Blog = ({ id }) => {
         </div>
 
         <div className="text-center">
-          <div className="card inline-block max-w-2xl">
+          <Card className="inline-block max-w-2xl">
             <p className="text-theme-secondary mb-4 font-body">
               Writing content coming soon...
             </p>
@@ -96,7 +93,7 @@ const Blog = ({ id }) => {
               I'm working on sharing thoughts about software engineering, AI
               integration, and women in tech.
             </p>
-          </div>
+          </Card>
         </div>
       </div>
     </section>

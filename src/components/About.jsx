@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import Card from './ui/Card';
+import Tag from './ui/Tag';
 
 const SKILLS_DATA = {
   Frontend: ['React', 'NextJS', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS'],
@@ -18,15 +20,35 @@ const SKILLS_DATA = {
 };
 
 const STRENGTHS_DATA = [
-  'Full-Stack Generalist: End-to-end development, balancing broad vision with technical depth',
-  'Automation & AI: Integrating <strong>AI</strong> (<strong>OpenAI</strong>, <strong>Anthropic</strong>, <strong>Cognition</strong>, <strong>Perplexity</strong>, <strong>Google AI</strong>) and automation to streamline workflows',
-  'Robust Delivery: Building reliable <strong>React</strong> UIs, <strong>Spring Boot</strong> backends, and seamless APIs',
-  'No-Code & Low-Code: Experience developing no-code/low-code software platforms to accelerate delivery and empower teams',
-  'Startup Agility: Startup experience—adaptable, resourceful, and comfortable moving fast with changing priorities',
-  'DevOps & Microservices: <strong>CI/CD</strong> pipelines, cloud-native services, and resilient deployments',
-  'Data & Visualization: Real-time dashboards and database optimization for clear insights',
-  'Mentorship & Inclusion: Supporting diverse teams and effective technical communication',
-  'Community Engagement: Advocate for women in tech and more welcoming engineering spaces',
+  <>
+    Full-Stack Generalist: End-to-end development, balancing broad vision with
+    technical depth
+  </>,
+  <>
+    Automation & AI: Integrating <strong>AI</strong> (<strong>OpenAI</strong>,{' '}
+    <strong>Anthropic</strong>, <strong>Cognition</strong>,{' '}
+    <strong>Perplexity</strong>, <strong>Google AI</strong>) and automation to
+    streamline workflows
+  </>,
+  <>
+    Robust Delivery: Building reliable <strong>React</strong> UIs,{' '}
+    <strong>Spring Boot</strong> backends, and seamless APIs
+  </>,
+  <>
+    No-Code & Low-Code: Experience developing no-code/low-code software
+    platforms to accelerate delivery and empower teams
+  </>,
+  <>
+    Startup Agility: Startup experience—adaptable, resourceful, and comfortable
+    moving fast with changing priorities
+  </>,
+  <>
+    DevOps & Microservices: <strong>CI/CD</strong> pipelines, cloud-native
+    services, and resilient deployments
+  </>,
+  <>Data & Visualization: Real-time dashboards and database optimization for clear insights</>,
+  <>Mentorship & Inclusion: Supporting diverse teams and effective technical communication</>,
+  <>Community Engagement: Advocate for women in tech and more welcoming engineering spaces</>,
 ];
 
 const ProfileImage = () => {
@@ -59,7 +81,7 @@ const ProfileImage = () => {
 };
 
 const SkillsSection = () => (
-  <div className="card">
+  <Card>
     <h3 className="text-2xl font-semibold text-theme-primary mb-6 font-heading">
       Skills & Technologies
     </h3>
@@ -71,18 +93,15 @@ const SkillsSection = () => (
           </h4>
           <div className="flex flex-wrap gap-2">
             {skillList.map(skill => (
-              <span
-                key={skill}
-                className="px-3 py-1 bg-theme-accent text-white rounded-full text-sm font-medium font-mono tech-label shadow-sm"
-              >
+              <Tag key={skill} tone="accent" className="px-3 py-1 text-white rounded-full text-sm shadow-sm">
                 {skill}
-              </span>
+              </Tag>
             ))}
           </div>
         </div>
       ))}
     </div>
-  </div>
+  </Card>
 );
 
 const About = ({ id }) => {
@@ -119,7 +138,7 @@ const About = ({ id }) => {
         <div className="space-y-12">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div className="space-y-6">
-              <div className="card">
+              <Card>
                 <h3 className="text-2xl font-semibold text-theme-primary mb-6 font-heading">
                   About
                 </h3>
@@ -154,13 +173,13 @@ const About = ({ id }) => {
                       >
                         •
                       </span>
-                      <span dangerouslySetInnerHTML={{ __html: strength }} />
+                      <span>{strength}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </Card>
 
-              <div className="card">
+              <Card>
                 <h4 className="text-lg font-semibold text-theme-primary mb-4 font-heading">
                   Professional Identity
                 </h4>
@@ -170,7 +189,7 @@ const About = ({ id }) => {
                   {' '}or <strong>Maria Demy</strong>. Online, I'm
                   {' '}<strong>bashdemy</strong>.
                 </p>
-              </div>
+              </Card>
             </div>
             <SkillsSection />
           </div>

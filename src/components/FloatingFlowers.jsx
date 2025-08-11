@@ -41,7 +41,7 @@ const FloatingFlowers = () => {
             animationDuration: `${flower.duration}s`,
             animationDelay: `${flower.delay}s`,
             opacity: 0.4,
-            color: '#D9A6B3',
+            color: 'var(--color-accent)',
             transform: 'translate(-50%, -50%)',
             filter: 'blur(0.5px)',
           }}

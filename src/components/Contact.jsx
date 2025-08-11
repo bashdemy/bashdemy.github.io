@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Home, Code, Menu, Instagram, Star } from 'lucide-react';
+import Card from './ui/Card';
 
 const Contact = ({ id }) => {
   return (
@@ -19,7 +20,7 @@ const Contact = ({ id }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="group h-full">
-              <div className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300 h-full">
+              <Card className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300 h-full">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 bg-theme-accent/10 rounded-lg flex items-center justify-center group-hover:bg-theme-accent/20 transition-colors">
                     <Home className="w-6 h-6 text-theme-accent" />
@@ -42,11 +43,11 @@ const Contact = ({ id }) => {
                     linkedin.com/in/bazhena-dementyeva-0b7b17159
                   </a>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <div className="group h-full">
-              <div className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300 h-full">
+              <Card className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300 h-full">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 bg-theme-accent/10 rounded-lg flex items-center justify-center group-hover:bg-theme-accent/20 transition-colors">
                     <Code className="w-6 h-6 text-theme-accent" />
@@ -69,11 +70,11 @@ const Contact = ({ id }) => {
                     github.com/maria-demy
                   </a>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <div className="group h-full">
-              <div className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300 h-full">
+              <Card className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300 h-full">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 bg-theme-accent/10 rounded-lg flex items-center justify-center group-hover:bg-theme-accent/20 transition-colors">
                     <Menu className="w-6 h-6 text-theme-accent" />
@@ -96,11 +97,11 @@ const Contact = ({ id }) => {
                     bashdemy.substack.com
                   </a>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <div className="group h-full">
-              <div className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300 h-full">
+              <Card className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300 h-full">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 bg-theme-accent/10 rounded-lg flex items-center justify-center group-hover:bg-theme-accent/20 transition-colors">
                     <Instagram className="w-6 h-6 text-theme-accent" />
@@ -123,13 +124,13 @@ const Contact = ({ id }) => {
                     @bashdemy
                   </a>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
 
           <div className="mt-8">
             <div className="group">
-              <div className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300">
+              <Card className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 bg-theme-accent/10 rounded-lg flex items-center justify-center group-hover:bg-theme-accent/20 transition-colors">
                     <Star className="w-6 h-6 text-theme-accent" />
@@ -152,7 +153,7 @@ const Contact = ({ id }) => {
                     hertechcircle.org
                   </a>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
         </div>

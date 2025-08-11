@@ -1,93 +1,9 @@
 import PropTypes from 'prop-types';
 import Card from './ui/Card';
 import Tag from './ui/Tag';
-
-const SKILLS_DATA = {
-  Frontend: ['React', 'NextJS', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS'],
-  Backend: ['Java Spring Boot', 'Node.js', 'Go', 'Python', 'RESTful APIs'],
-  'Cloud & DevOps': ['AWS', 'Docker', 'GitHub Actions', 'CI/CD'],
-  Database: ['MySQL', 'PostgreSQL', 'MongoDB', 'Database Design'],
-  'AI & Automation': [
-    'OpenAI APIs',
-    'Anthropic',
-    'Cognition',
-    'Perplexity',
-    'Google AI',
-    'AI Integration',
-  ],
-  'No-Code/Low-Code': ['Platform Development', 'Workflow Automation'],
-  Other: ['Linux', 'Bash', 'Performance Optimization', 'Troubleshooting'],
-};
-
-const STRENGTHS_DATA = [
-  <>
-    Full-Stack Generalist: End-to-end development, balancing broad vision with
-    technical depth
-  </>,
-  <>
-    Automation & AI: Integrating <strong>AI</strong> (<strong>OpenAI</strong>,{' '}
-    <strong>Anthropic</strong>, <strong>Cognition</strong>,{' '}
-    <strong>Perplexity</strong>, <strong>Google AI</strong>) and automation to
-    streamline workflows
-  </>,
-  <>
-    Robust Delivery: Building reliable <strong>React</strong> UIs,{' '}
-    <strong>Spring Boot</strong> backends, and seamless APIs
-  </>,
-  <>
-    No-Code & Low-Code: Experience developing no-code/low-code software
-    platforms to accelerate delivery and empower teams
-  </>,
-  <>
-    Startup Agility: Startup experience—adaptable, resourceful, and comfortable
-    moving fast with changing priorities
-  </>,
-  <>
-    DevOps & Microservices: <strong>CI/CD</strong> pipelines, cloud-native
-    services, and resilient deployments
-  </>,
-  <>
-    Data & Visualization: Real-time dashboards and database optimization for
-    clear insights
-  </>,
-  <>
-    Mentorship & Inclusion: Supporting diverse teams and effective technical
-    communication
-  </>,
-  <>
-    Community Engagement: Advocate for women in tech and more welcoming
-    engineering spaces
-  </>,
-];
-
-const ProfileImage = () => {
-  const handleImageError = e => {
-    e.target.style.display = 'none';
-    const fallback = e.target.nextElementSibling;
-    if (fallback) {
-      fallback.style.display = 'flex';
-    }
-  };
-
-  return (
-    <div className="relative mb-8">
-      <img
-        src="/profile-picture.JPG"
-        alt="Maria (Bazhena) Dementyeva"
-        className="profile-picture"
-        loading="eager"
-        decoding="sync"
-        onError={handleImageError}
-      />
-      <div
-        className="profile-picture bg-gradient-to-br from-theme-accent to-theme-primary flex items-center justify-center text-theme-accent text-4xl font-bold font-heading"
-        style={{ display: 'none' }}
-      >
-        MD
-      </div>
-    </div>
-  );
-};
+import ProfileImage from './ui/ProfileImage';
+import SectionIntro from './ui/SectionIntro';
+import { SKILLS_DATA, STRENGTHS_DATA } from '../constants/about.jsx';
 
 const SkillsSection = () => (
   <Card>
@@ -125,15 +41,12 @@ const About = ({ id }) => {
         <div className="mb-16">
           <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-8">
             <div className="flex-1 text-center lg:text-left">
-              <div className="mb-6">
-                <h3 className="text-4xl font-bold text-theme-primary mb-3 font-heading">
-                  Bazhena Dementyeva
-                </h3>
-                <p className="text-sm text-theme-secondary font-body opacity-80">
-                  (think zh="g" as in "genre," for advanced users. Otherwise,
-                  "Maria" is perfectly acceptable.)
-                </p>
-              </div>
+              <SectionIntro
+                title="Bazhena Dementyeva"
+                subtitle='(think zh="g" as in "genre," for advanced users. Otherwise, "Maria" is perfectly acceptable.)'
+                align="left"
+                className="mb-6"
+              />
               <div className="space-y-2">
                 <p className="text-theme-accent font-semibold text-xl font-heading">
                   Software Engineer

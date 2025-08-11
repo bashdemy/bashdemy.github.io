@@ -1,37 +1,10 @@
 import PropTypes from 'prop-types';
 import Card from './ui/Card';
+import StatusBadge from './ui/StatusBadge';
 import Tag from './ui/Tag';
+import SectionIntro from './ui/SectionIntro';
 
 const APPS_DATA = [];
-
-const StatusBadge = ({ status }) => {
-  const getStatusStyles = status => {
-    switch (status) {
-      case 'Production':
-        return 'bg-green-500/20 text-green-600';
-      case 'Completed':
-        return 'bg-blue-500/20 text-blue-600';
-      case 'In Development':
-        return 'bg-theme-accent/20 text-theme-accent';
-      case 'Planning':
-        return 'bg-theme-secondary/20 text-theme-secondary';
-      default:
-        return 'bg-theme-muted/20 text-theme-muted';
-    }
-  };
-
-  return (
-    <span
-      className={`px-2 py-1 rounded-full text-xs font-medium font-heading ${getStatusStyles(status)}`}
-    >
-      {status}
-    </span>
-  );
-};
-
-StatusBadge.propTypes = {
-  status: PropTypes.string.isRequired,
-};
 
 const AppCard = ({ app }) => (
   <Card className="group">
@@ -75,15 +48,10 @@ const Apps = ({ id }) => {
   return (
     <section id={id} className="section-padding bg-theme-background-alt">
       <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-theme-primary mb-4 font-heading">
-            Experience & Projects
-          </h2>
-          <p className="text-lg text-theme-secondary max-w-3xl mx-auto font-body description">
-            A collection of my work experience, technical projects, and
-            contributions to building scalable systems.
-          </p>
-        </div>
+        <SectionIntro
+          title="Experience & Projects"
+          subtitle="A collection of my work experience, technical projects, and contributions to building scalable systems."
+        />
 
         <div className="text-center">
           <Card className="inline-block max-w-2xl">

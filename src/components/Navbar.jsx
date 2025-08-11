@@ -1,6 +1,7 @@
-import { useEffect, useCallback, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Menu } from 'lucide-react';
+import { useScrollSpy } from '../hooks/useScrollSpy';
 
 const SCROLL_OFFSET = 100;
 
@@ -15,29 +16,15 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     []
   );
 
-  const handleScroll = useCallback(() => {
-    const sections = navItems.map(item => document.getElementById(item.id));
-    const scrollPosition = window.scrollY + SCROLL_OFFSET;
-
-    sections.forEach((section, index) => {
-      if (section) {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-
-        if (
-          scrollPosition >= sectionTop &&
-          scrollPosition < sectionTop + sectionHeight
-        ) {
-          setActiveSection(navItems[index].id);
-        }
-      }
-    });
-  }, [navItems, setActiveSection]);
-
+  const observedActive = useScrollSpy(
+    navItems.map(i => i.id),
+    SCROLL_OFFSET
+  );
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+    if (observedActive && observedActive !== activeSection) {
+      setActiveSection(observedActive);
+    }
+  }, [observedActive, activeSection, setActiveSection]);
 
   const scrollToSection = sectionId => {
     const element = document.getElementById(sectionId);

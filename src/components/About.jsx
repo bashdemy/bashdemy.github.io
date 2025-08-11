@@ -165,15 +165,10 @@ const About = ({ id }) => {
                   Professional Identity
                 </h4>
                 <p className="text-theme-secondary text-sm leading-relaxed font-body opacity-90">
-                  I'm known professionally as{' '}
-                  <strong>Bazhena Dementyeva</strong>, but I also go by{' '}
-                  <strong>Maria Dementyeva</strong> and{' '}
-                  <strong>Maria Demy</strong> in various professional contexts.
-                  My GitHub handle is <strong>bashdemy</strong>, which reflects
-                  my background in bash scripting and automation. Whether you
-                  know me as Bazhena, Maria, or bashdemy, I'm the same software
-                  engineer passionate about building scalable, user-focused
-                  solutions.
+                  I use <strong>Bazhena Dementyeva</strong> in most professional
+                  settings, and I also answer to <strong>Maria Dementyeva</strong>
+                  {' '}or <strong>Maria Demy</strong>. Online, I'm
+                  {' '}<strong>bashdemy</strong>.
                 </p>
               </div>
             </div>

@@ -35,7 +35,9 @@ const BlogPostCard = ({ post }) => (
     <div className="flex items-center justify-between">
       <div className="flex flex-wrap gap-2">
         {post.tags.map(tag => (
-          <Tag key={tag}>{tag}</Tag>
+          <Tag key={tag} variant="soft">
+            {tag}
+          </Tag>
         ))}
       </div>
 

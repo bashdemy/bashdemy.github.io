@@ -46,9 +46,18 @@ const STRENGTHS_DATA = [
     DevOps & Microservices: <strong>CI/CD</strong> pipelines, cloud-native
     services, and resilient deployments
   </>,
-  <>Data & Visualization: Real-time dashboards and database optimization for clear insights</>,
-  <>Mentorship & Inclusion: Supporting diverse teams and effective technical communication</>,
-  <>Community Engagement: Advocate for women in tech and more welcoming engineering spaces</>,
+  <>
+    Data & Visualization: Real-time dashboards and database optimization for
+    clear insights
+  </>,
+  <>
+    Mentorship & Inclusion: Supporting diverse teams and effective technical
+    communication
+  </>,
+  <>
+    Community Engagement: Advocate for women in tech and more welcoming
+    engineering spaces
+  </>,
 ];
 
 const ProfileImage = () => {
@@ -93,7 +102,12 @@ const SkillsSection = () => (
           </h4>
           <div className="flex flex-wrap gap-2">
             {skillList.map(skill => (
-              <Tag key={skill} tone="accent" className="px-3 py-1 text-white rounded-full text-sm shadow-sm">
+              <Tag
+                key={skill}
+                tone="accent"
+                variant="solid"
+                className="px-3 py-1 rounded-full text-sm shadow-sm"
+              >
                 {skill}
               </Tag>
             ))}
@@ -185,9 +199,10 @@ const About = ({ id }) => {
                 </h4>
                 <p className="text-theme-secondary text-sm leading-relaxed font-body opacity-90">
                   I use <strong>Bazhena Dementyeva</strong> in most professional
-                  settings, and I also answer to <strong>Maria Dementyeva</strong>
-                  {' '}or <strong>Maria Demy</strong>. Online, I'm
-                  {' '}<strong>bashdemy</strong>.
+                  settings, and I also answer to{' '}
+                  <strong>Maria Dementyeva</strong> or{' '}
+                  <strong>Maria Demy</strong>. Online, I'm{' '}
+                  <strong>bashdemy</strong>.
                 </p>
               </Card>
             </div>

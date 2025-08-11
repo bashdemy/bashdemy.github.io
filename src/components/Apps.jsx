@@ -52,7 +52,9 @@ const AppCard = ({ app }) => (
       </h4>
       <div className="flex flex-wrap gap-2">
         {app.stack.map(tech => (
-          <Tag key={tech}>{tech}</Tag>
+          <Tag key={tech} variant="soft">
+            {tech}
+          </Tag>
         ))}
       </div>
     </div>

@@ -22,8 +22,8 @@ const SEO = ({
     keywords ||
     'Bazhena Dementyeva, Maria Dementyeva, Maria Demy, bashdemy, software engineer, backend developer, cloud architect, AI engineer, Java developer, Python developer, React developer, privacy-first engineering, scalable systems';
 
-  const fullUrl = url || 'https://bashdemy.github.io/';
-  const fullImage = image || 'https://bashdemy.github.io/profile-picture.JPG';
+  const fullUrl = url || 'https://bashdemy.com/';
+  const fullImage = image || 'https://bashdemy.com/profile-picture.JPG';
 
   useEffect(() => {
     document.title = fullTitle;

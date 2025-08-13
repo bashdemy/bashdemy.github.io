@@ -44,7 +44,7 @@ const Contact = ({ id }) => {
             <ContactCard
               icon={<Instagram className="w-6 h-6 text-theme-accent" />}
               title="Instagram"
-              subtitle="for more pictures of my face and all things jits"
+              subtitle="for more pictures of my face, bread, and all things jits"
               href="https://instagram.com/bashdemy"
               label="@bashdemy"
               ariaLabel="Visit Instagram profile (opens in new tab)"

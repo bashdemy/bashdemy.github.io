@@ -6,7 +6,28 @@ import StatusBadge from './ui/StatusBadge';
 import Tag from './ui/Tag';
 import SectionIntro from './ui/SectionIntro';
 
+const AUTO_ROTATE_INTERVAL_MS = 8000;
+
 const APPS_DATA = [
+  {
+    id: 1,
+    title: 'Yes Help Network',
+    description:
+      'A youth-led platform focused on early intervention for Domestic & Family Violence (DFV). Yes Help Network creates safe spaces and programs that equip young people with mentorship, skills, and community, so they can speak up, heal, and lead.',
+    stack: [
+      'Next.js (App Router)',
+      'TypeScript',
+      'MUI',
+      'Tailwind CSS',
+      'GitHub Actions',
+      'GitHub Pages',
+    ],
+    status: 'Production',
+    isSubheading: true,
+    href: 'https://yeshelpnetwork.github.io/',
+    imageSrc: '/yeshelp-brand-lockup.png',
+    imageAlt: 'Yes Help Network brand lockup',
+  },
   {
     id: 2,
     title: 'Workflow86 (YC W22)',
@@ -34,32 +55,70 @@ const APPS_DATA = [
       { label: 'Learn more', href: 'https://www.workflow86.com' },
       { label: 'Sign up 😉', href: 'https://app.workflow86.com' },
     ],
+    extraLinksStyle: 'or',
   },
   {
-    id: 1,
-    title: 'Yes Help Network',
+    id: 3,
+    title: 'Sydney Trains',
     description:
-      'A youth-led platform focused on early intervention for Domestic & Family Violence (DFV). Yes Help Network creates safe spaces and programs that equip young people with mentorship, skills, and community, so they can speak up, heal, and lead.',
+      'Data visualisation software built as a university capstone: processed live GTFS feeds and presented insights across maps, charts, and dashboards. Recognised as runner-up for Best Project at the EIS Projects Trade Show.',
     stack: [
-      'Next.js (App Router)',
-      'TypeScript',
-      'MUI',
-      'Tailwind CSS',
-      'GitHub Actions',
-      'GitHub Pages',
+      'Node.js',
+      'JavaScript',
+      'MySQL',
+      'HTML',
+      'CSS',
+      'GTFS',
+      'Data Viz',
     ],
-    status: 'Production',
+    status: 'Completed',
+    href: 'https://transportnsw.info/',
+    imageSrcs: ['/group.JPG', '/runner-up-project.jpg'],
+    imageAlt: 'Sydney Trains data visualisation project',
     isSubheading: true,
-    href: 'https://yeshelpnetwork.github.io/',
-    imageSrc: '/yeshelp-brand-lockup.png',
-    imageAlt: 'Yes Help Network brand lockup',
+    linkImage: false,
+    extraLinks: [
+      {
+        label: 'Sydney Trains',
+        href: 'https://transportnsw.info/',
+      },
+      {
+        label: 'UOW',
+        href: 'https://www.uow.edu.au/',
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: 'Education',
+    description:
+      'Bachelor of Computer Science (Software Engineering) at the University of Wollongong, and Certificate IV in Business (BSB40215) at Navitas Professional.',
+    stack: [
+      'B.CompSci (Software Engineering)',
+      'Cert IV in Business (BSB40215)',
+    ],
+    chipsLabel: 'Credentials',
+    status: 'Completed',
+    isSubheading: true,
+    imageSrc: '/grad.jpg',
+    imageAlt: 'Graduation photo',
+    imageClassName: 'w-full h-auto max-h-56 md:max-h-72 object-contain p-0',
+    extraLinks: [
+      { label: 'UOW', href: 'https://www.uow.edu.au/' },
+      { label: 'Navitas', href: 'https://www.navitas.com/' },
+    ],
   },
 ];
 
 const AppCard = ({ app }) => (
   <Card className="group">
-    {app.imageSrc ? (
-      app.href ? (
+    {Array.isArray(app.imageSrcs) && app.imageSrcs.length > 0 ? (
+      <SwitchableImages
+        sources={app.imageSrcs}
+        alt={app.imageAlt || `${app.title} image`}
+      />
+    ) : app.imageSrc ? (
+      app.href && app.linkImage !== false ? (
         <a
           href={app.href}
           target="_blank"
@@ -165,7 +224,7 @@ const AppCard = ({ app }) => (
 
     {Array.isArray(app.extraLinks) && app.extraLinks.length > 0 ? (
       <div className="mb-4 flex flex-wrap items-center gap-2">
-        {app.extraLinks.length === 2 ? (
+        {app.extraLinksStyle === 'or' && app.extraLinks.length >= 2 ? (
           <>
             <a
               href={app.extraLinks[0].href}
@@ -243,11 +302,7 @@ const Apps = ({ id }) => {
   const [isHovered, setIsHovered] = useState(false);
   const gapPx = 24; // Tailwind gap-6
 
-  const carouselItems = hasApps
-    ? APPS_DATA.length >= 3
-      ? APPS_DATA.slice(0, 3)
-      : Array.from({ length: 3 }, (_, i) => APPS_DATA[i % APPS_DATA.length])
-    : [];
+  const carouselItems = hasApps ? APPS_DATA : [];
 
   useEffect(() => {
     const measure = () => {
@@ -278,7 +333,7 @@ const Apps = ({ id }) => {
     if (isHovered || carouselItems.length === 0) return;
     const id = setInterval(() => {
       setActiveIndex(current => (current + 1) % carouselItems.length);
-    }, 4000);
+    }, AUTO_ROTATE_INTERVAL_MS);
     return () => clearInterval(id);
   }, [carouselItems.length, isHovered]);
 
@@ -373,3 +428,44 @@ Apps.propTypes = {
 };
 
 export default Apps;
+
+function SwitchableImages({ sources, alt }) {
+  const [active, setActive] = useState(0);
+  const safeSources = Array.isArray(sources) ? sources.slice(0, 5) : [];
+  return (
+    <div className="mb-4">
+      <div className="w-full h-40 md:h-48 rounded border border-theme-border overflow-hidden">
+        <img
+          src={safeSources[active]}
+          alt={alt}
+          className="w-full h-full object-cover bg-white"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div className="mt-2 flex gap-2">
+        {safeSources.map((src, index) => (
+          <button
+            key={src}
+            type="button"
+            onClick={() => setActive(index)}
+            className={[
+              'h-10 w-14 md:w-16 rounded border transition-colors',
+              index === active
+                ? 'border-theme-accent ring-1 ring-theme-accent'
+                : 'border-theme-border hover:border-theme-accent/60',
+            ].join(' ')}
+          >
+            <img
+              src={src}
+              alt={`${alt} thumbnail ${index + 1}`}
+              className="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}

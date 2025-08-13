@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import Card from './ui/Card';
 
+const IMAGE_ROTATE_INTERVAL_MS = 7000;
+
 const HumanTouch = ({ id }) => {
   const images = useMemo(
     () => [
@@ -29,7 +31,7 @@ const HumanTouch = ({ id }) => {
 
   useEffect(() => {
     if (isPaused) return undefined;
-    const idInterval = setInterval(goNext, 3500);
+    const idInterval = setInterval(goNext, IMAGE_ROTATE_INTERVAL_MS);
     return () => clearInterval(idInterval);
   }, [goNext, isPaused]);
 

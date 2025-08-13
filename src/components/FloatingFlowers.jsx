@@ -16,34 +16,17 @@ const FloatingFlowers = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        top: '80px',
-        left: 0,
-        width: '100%',
-        height: 'calc(100vh - 80px)',
-        zIndex: -1,
-        pointerEvents: 'none',
-        overflow: 'hidden',
-      }}
-      aria-hidden="true"
-    >
+    <div className="floating-flowers-container" aria-hidden="true">
       {flowers.map(flower => (
         <div
           key={flower.id}
-          className="floating-flower"
+          className="floating-flower absolute"
           style={{
-            position: 'absolute',
             left: `${flower.x}%`,
             top: `${flower.y}%`,
             fontSize: `${flower.size}px`,
             animationDuration: `${flower.duration}s`,
             animationDelay: `${flower.delay}s`,
-            opacity: 0.4,
-            color: 'var(--color-accent)',
-            transform: 'translate(-50%, -50%)',
-            filter: 'blur(0.5px)',
           }}
         >
           🌸

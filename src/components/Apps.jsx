@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Card from './ui/Card';
 import StatusBadge from './ui/StatusBadge';
@@ -303,6 +303,15 @@ const Apps = ({ id }) => {
   const gapPx = 24; // Tailwind gap-6
 
   const carouselItems = hasApps ? APPS_DATA : [];
+  const itemsWithClones = useMemo(() => {
+    if (carouselItems.length > 1) {
+      const first = carouselItems[0];
+      const last = carouselItems[carouselItems.length - 1];
+      return [last, ...carouselItems, first];
+    }
+    return carouselItems;
+  }, [carouselItems]);
+  const [enableTransition, setEnableTransition] = useState(true);
 
   useEffect(() => {
     const measure = () => {
@@ -310,7 +319,7 @@ const Apps = ({ id }) => {
       if (!container) return;
       const firstSlide = container.querySelector('[data-slide="true"]');
       if (firstSlide) {
-        const { width } = firstSlide.getBoundingClientRect();
+        const width = firstSlide.offsetWidth;
         setSlideWidth(width);
       }
     };
@@ -320,6 +329,15 @@ const Apps = ({ id }) => {
   }, []);
 
   useEffect(() => {
+    // Initialize to first real item when using clones
+    if (itemsWithClones.length > 1) {
+      setActiveIndex(1);
+    } else {
+      setActiveIndex(0);
+    }
+  }, [itemsWithClones.length]);
+
+  useEffect(() => {
     const container = containerRef.current;
     const track = trackRef.current;
     if (!container || !track || !slideWidth) return;
@@ -327,23 +345,50 @@ const Apps = ({ id }) => {
     const offset =
       activeIndex * (slideWidth + gapPx) - (containerWidth - slideWidth) / 2;
     track.style.transform = `translateX(${-offset}px)`;
-  }, [activeIndex, slideWidth]);
+  }, [activeIndex, slideWidth, gapPx]);
+
+  const goPrev = useCallback(() => {
+    setActiveIndex(current => {
+      const next = current - 1;
+      return next < 0 ? 0 : next; // allow hitting leading clone (0) but not beyond
+    });
+  }, []);
+  const goNext = useCallback(() => {
+    setActiveIndex(current => {
+      const lastIndex = Math.max(0, itemsWithClones.length - 1);
+      const next = current + 1;
+      return next > lastIndex ? lastIndex : next; // allow hitting trailing clone but not beyond
+    });
+  }, [itemsWithClones.length]);
 
   useEffect(() => {
-    if (isHovered || carouselItems.length === 0) return;
+    if (isHovered || itemsWithClones.length <= 1) return;
     const id = setInterval(() => {
-      setActiveIndex(current => (current + 1) % carouselItems.length);
+      goNext();
     }, AUTO_ROTATE_INTERVAL_MS);
     return () => clearInterval(id);
-  }, [carouselItems.length, isHovered]);
+  }, [goNext, isHovered, itemsWithClones.length]);
 
-  const goPrev = () => {
-    setActiveIndex(
-      current => (current - 1 + carouselItems.length) % carouselItems.length
-    );
-  };
-  const goNext = () => {
-    setActiveIndex(current => (current + 1) % carouselItems.length);
+  const handleTransitionEnd = () => {
+    if (itemsWithClones.length <= 1) return;
+    // If we moved to the leading clone (index 0), jump to last real item
+    if (activeIndex === 0) {
+      setEnableTransition(false);
+      const target = itemsWithClones.length - 2; // last real
+      // next frame: jump without transition, then re-enable
+      requestAnimationFrame(() => {
+        setActiveIndex(target);
+        requestAnimationFrame(() => setEnableTransition(true));
+      });
+    }
+    // If we moved to the trailing clone (last index), jump to first real item
+    if (activeIndex === itemsWithClones.length - 1) {
+      setEnableTransition(false);
+      requestAnimationFrame(() => {
+        setActiveIndex(1);
+        requestAnimationFrame(() => setEnableTransition(true));
+      });
+    }
   };
 
   return (
@@ -364,13 +409,25 @@ const Apps = ({ id }) => {
             >
               <div
                 ref={trackRef}
-                className="flex items-stretch gap-6 transition-transform duration-500 ease-out will-change-transform"
+                onTransitionEnd={handleTransitionEnd}
+                className={[
+                  'flex items-stretch gap-6 will-change-transform',
+                  enableTransition
+                    ? 'transition-transform duration-500 ease-out'
+                    : 'transition-none',
+                ].join(' ')}
               >
-                {carouselItems.map((app, index) => {
+                {itemsWithClones.map((app, index) => {
+                  const keySuffix =
+                    index === 0
+                      ? 'clone-start'
+                      : index === itemsWithClones.length - 1
+                        ? 'clone-end'
+                        : 'real';
                   const isActive = index === activeIndex;
                   return (
                     <div
-                      key={`${app.id}-${index}`}
+                      key={`${app.id}-${keySuffix}-${index}`}
                       data-slide="true"
                       className={[
                         'shrink-0 w-72 md:w-96 lg:w-[28rem] transition-all duration-500',

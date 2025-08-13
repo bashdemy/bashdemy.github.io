@@ -150,6 +150,10 @@
   /* Floating Flowers Animation */
   .floating-flower {
     animation: float linear infinite;
+    opacity: 0.4;
+    color: var(--color-accent);
+    transform: translate(-50%, -50%);
+    filter: blur(0.5px);
   }
 
   @keyframes float {
@@ -167,5 +171,16 @@
       transform: translate(-50%, -50%) translateY(-100vh) rotate(360deg);
       opacity: 0;
     }
+  }
+
+  .floating-flowers-container {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
   }
 }

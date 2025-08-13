@@ -26,10 +26,8 @@ const SEO = ({
   const fullImage = image || 'https://bashdemy.github.io/profile-picture.JPG';
 
   useEffect(() => {
-    // Update document title
     document.title = fullTitle;
 
-    // Update meta tags
     const updateMetaTag = (name, content) => {
       let meta = document.querySelector(`meta[name="${name}"]`);
       if (!meta) {
@@ -50,23 +48,19 @@ const SEO = ({
       meta.setAttribute('content', content);
     };
 
-    // Update meta tags
     updateMetaTag('description', fullDescription);
     updateMetaTag('keywords', fullKeywords);
 
-    // Update Open Graph tags
     updatePropertyTag('og:title', fullTitle);
     updatePropertyTag('og:description', fullDescription);
     updatePropertyTag('og:url', fullUrl);
     updatePropertyTag('og:image', fullImage);
     updatePropertyTag('og:type', type);
 
-    // Update Twitter tags
     updatePropertyTag('twitter:title', fullTitle);
     updatePropertyTag('twitter:description', fullDescription);
     updatePropertyTag('twitter:image', fullImage);
 
-    // Update canonical link
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
@@ -75,7 +69,6 @@ const SEO = ({
     }
     canonical.setAttribute('href', fullUrl);
 
-    // Add structured data if provided
     if (structuredData) {
       let script = document.querySelector('script[type="application/ld+json"]');
       if (!script) {
@@ -95,7 +88,7 @@ const SEO = ({
     structuredData,
   ]);
 
-  return null; // This component doesn't render anything
+  return null;
 };
 
 SEO.propTypes = {

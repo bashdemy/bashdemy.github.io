@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Menu } from 'lucide-react';
 import { useScrollSpy } from '../hooks/useScrollSpy';
@@ -6,6 +6,8 @@ import { useScrollSpy } from '../hooks/useScrollSpy';
 const SCROLL_OFFSET = 100;
 
 const Navbar = ({ activeSection, setActiveSection }) => {
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const menuRef = useRef(null);
   const navItems = useMemo(
     () => [
       { id: 'about', label: 'About' },
@@ -31,6 +33,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setIsMobileOpen(false);
   };
 
   const getNavItemClassName = itemId => {
@@ -71,11 +74,38 @@ const Navbar = ({ activeSection, setActiveSection }) => {
           <div className="md:hidden">
             <button
               className="text-theme-secondary hover:text-theme-accent"
-              aria-label="Open mobile menu"
-              aria-expanded="false"
+              aria-label={
+                isMobileOpen ? 'Close mobile menu' : 'Open mobile menu'
+              }
+              aria-expanded={isMobileOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setIsMobileOpen(open => !open)}
             >
               <Menu className="w-6 h-6" />
             </button>
+          </div>
+        </div>
+        {/* Mobile menu */}
+        <div
+          id="mobile-menu"
+          ref={menuRef}
+          className={`${
+            isMobileOpen ? 'block' : 'hidden'
+          } md:hidden py-2 border-t border-theme-border`}
+          role="menubar"
+        >
+          <div className="flex flex-col space-y-1">
+            {navItems.map(item => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={getNavItemClassName(item.id)}
+                aria-current={activeSection === item.id ? 'page' : undefined}
+                role="menuitem"
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ const Contact = ({ id }) => {
         <div className="max-w-4xl mx-auto">
           <SectionIntro
             title="Let's Connect"
-            subtitle="I'm always interested in discussing interesting technical challenges, AI integration, women in tech initiatives, and opportunities to build something amazing."
+            subtitle="I'm always interested in discussing technical challenges, AI integration, women in tech initiatives, and opportunities to build something amazing."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

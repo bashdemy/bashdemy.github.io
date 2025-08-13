@@ -97,9 +97,8 @@ const HumanTouch = ({ id }) => {
               <div className="md:text-right">
                 <p className="text-theme-secondary italic font-body">
                   When I'm not writing code, you'll find me on the mats doing
-                  jits🥋, baking bread🍞, or organizing women-led communities
-                  like female open mats and easy-going tech catchups. Shoot me a
-                  text about any of those and we’ll go on for hours.
+                  jits🥋, baking bread🍞, or organizing women-led communities.
+                  Shoot me a text about any of those and we’ll go on for hours.
                 </p>
                 <p className="text-theme-secondary italic font-body mt-3">
                   And I have a cat named Sushi 🐱, the unofficial supervisor of

@@ -105,21 +105,21 @@ const About = ({ id }) => {
                   ))}
                 </ul>
               </Card>
-
+            </div>
+            <div className="space-y-6">
+              <SkillsSection />
               <Card>
                 <h4 className="text-lg font-semibold text-theme-primary mb-4 font-heading">
                   Professional Identity
                 </h4>
                 <p className="text-theme-secondary text-sm leading-relaxed font-body opacity-90">
-                  I use <strong>Bazhena Dementyeva</strong> in most professional
-                  settings, and I also answer to{' '}
-                  <strong>Maria Dementyeva</strong> or{' '}
-                  <strong>Maria Demy</strong>. Online, I'm{' '}
-                  <strong>bashdemy</strong>.
+                  Professionally, I go by <strong>Bazhena Dementyeva</strong>. I
+                  also respond to <strong>Maria Dementyeva</strong> or
+                  <strong> Maria Demy</strong>, and online I’m
+                  <strong> bashdemy</strong>.
                 </p>
               </Card>
             </div>
-            <SkillsSection />
           </div>
         </div>
       </div>

@@ -27,8 +27,8 @@ const Contact = ({ id }) => {
               icon={<Code className="w-6 h-6 text-theme-accent" />}
               title="GitHub"
               subtitle="for all the vibe code"
-              href="https://github.com/maria-demy"
-              label="github.com/maria-demy"
+              href="https://github.com/bashdemy"
+              label="github.com/bashdemy"
               ariaLabel="Visit GitHub profile (opens in new tab)"
             />
 

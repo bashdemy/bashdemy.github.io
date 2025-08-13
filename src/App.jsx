@@ -26,8 +26,8 @@ function App() {
         <About id="about" />
         <Apps id="apps" />
         <Blog id="blog" />
-        <HumanTouch id="human-touch" />
         <Contact id="contact" />
+        <HumanTouch id="human-touch" />
       </main>
 
       <Footer />

@@ -46,6 +46,7 @@ const About = ({ id }) => {
                 subtitle='(think zh="g" as in "genre," for advanced users. Otherwise, "Maria" is perfectly acceptable.)'
                 align="left"
                 className="mb-6"
+                subtitleClassName="text-sm opacity-80"
               />
               <div className="space-y-2">
                 <p className="text-theme-accent font-semibold text-xl font-heading">
@@ -86,6 +87,12 @@ const About = ({ id }) => {
                   <strong>AI</strong> and automation—including nocode and
                   lowcode solutions. I'm committed to making tech more
                   inclusive, with a focus on supporting women in the industry.
+                </p>
+
+                <p className="text-theme-secondary mb-6 leading-relaxed font-body description">
+                  I also believe building software should be fun. The process
+                  should feel collaborative and creative, and the result should
+                  bring people joy while staying reliable and thoughtful.
                 </p>
 
                 <h4 className="text-lg font-semibold text-theme-primary mb-4 font-heading">

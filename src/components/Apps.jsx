@@ -8,10 +8,38 @@ import SectionIntro from './ui/SectionIntro';
 
 const APPS_DATA = [
   {
+    id: 2,
+    title: 'Workflow86 (YC W22)',
+    description:
+      'Workflow86 helps teams automate and streamline complex business operations with AI-powered workflow automation, turning manual processes into reliable, scalable workflows.',
+    stack: [
+      'React',
+      'Java (Spring Boot)',
+      'AWS',
+      'OpenAI',
+      'LangChain',
+      'Microservices',
+    ],
+    status: 'Current Role',
+    statuses: ['Current Role', 'Production'],
+    yc: {
+      label: 'YC W22',
+      href: 'https://www.ycombinator.com/companies/workflow86',
+    },
+    href: 'https://www.workflow86.com',
+    imageSrc: '/workflow86-icon.png',
+    imageAlt: 'Workflow86 logo',
+    imageClassName: 'w-24 h-24 mx-auto',
+    extraLinks: [
+      { label: 'Learn more', href: 'https://www.workflow86.com' },
+      { label: 'Sign up 😉', href: 'https://app.workflow86.com' },
+    ],
+  },
+  {
     id: 1,
     title: 'Yes Help Network',
     description:
-      'A youth-led platform focused on early intervention for Domestic & Family Violence (DFV). Yes Help Network creates safe spaces and programs that equip young people with mentorship, skills, and community—so they can speak up, heal, and lead.',
+      'A youth-led platform focused on early intervention for Domestic & Family Violence (DFV). Yes Help Network creates safe spaces and programs that equip young people with mentorship, skills, and community, so they can speak up, heal, and lead.',
     stack: [
       'Next.js (App Router)',
       'TypeScript',
@@ -21,6 +49,7 @@ const APPS_DATA = [
       'GitHub Pages',
     ],
     status: 'Production',
+    isSubheading: true,
     href: 'https://yeshelpnetwork.github.io/',
     imageSrc: '/yeshelp-brand-lockup.png',
     imageAlt: 'Yes Help Network brand lockup',
@@ -40,42 +69,141 @@ const AppCard = ({ app }) => (
           <img
             src={app.imageSrc}
             alt={app.imageAlt || `${app.title} logo`}
-            className="mb-4 w-full rounded border border-theme-border bg-white object-contain p-3"
+            className={[
+              'mb-4 rounded border border-theme-border bg-white object-contain p-3',
+              app.imageClassName || 'w-full',
+            ].join(' ')}
+            loading="lazy"
+            decoding="async"
           />
         </a>
       ) : (
         <img
           src={app.imageSrc}
           alt={app.imageAlt || `${app.title} logo`}
-          className="mb-4 w-full rounded border border-theme-border bg-white object-contain p-3"
+          className={[
+            'mb-4 rounded border border-theme-border bg-white object-contain p-3',
+            app.imageClassName || 'w-full',
+          ].join(' ')}
+          loading="lazy"
+          decoding="async"
         />
       )
     ) : null}
     <div className="flex items-center justify-between mb-4">
-      <h3 className="text-xl font-semibold text-theme-primary group-hover:text-theme-accent transition-colors font-heading">
-        {app.href ? (
-          <a
-            href={app.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline"
-          >
-            {app.title}
-          </a>
+      <div className="flex-1 min-w-0">
+        {app.isSubheading ? (
+          <h4 className="text-lg font-semibold text-theme-primary group-hover:text-theme-accent transition-colors font-heading">
+            {app.href ? (
+              <a
+                href={app.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                {app.title.replace('(YC W22)', '').trim()}
+              </a>
+            ) : (
+              app.title.replace('(YC W22)', '').trim()
+            )}
+          </h4>
         ) : (
-          app.title
+          <h3 className="text-xl font-semibold text-theme-primary group-hover:text-theme-accent transition-colors font-heading">
+            {app.href ? (
+              <a
+                href={app.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                {app.title.replace('(YC W22)', '').trim()}
+              </a>
+            ) : (
+              app.title.replace('(YC W22)', '').trim()
+            )}
+          </h3>
         )}
-      </h3>
-      <StatusBadge status={app.status} />
+        {app.yc ||
+        (Array.isArray(app.statuses) &&
+          app.statuses.some(s => s !== 'Production')) ||
+        (app.status && app.status !== 'Production') ? (
+          <div className="mt-1 flex flex-wrap items-center gap-2">
+            {Array.isArray(app.statuses) ? (
+              app.statuses
+                .filter(s => s !== 'Production')
+                .map(s => <StatusBadge key={s} status={s} />)
+            ) : app.status && app.status !== 'Production' ? (
+              <StatusBadge status={app.status} />
+            ) : null}
+            {app.yc ? (
+              <a
+                href={app.yc.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2 py-1 rounded text-xs font-mono bg-[#f0652f] text-white hover:opacity-90"
+              >
+                {app.yc.label}
+              </a>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
+      <div className="flex items-center gap-2">
+        {Array.isArray(app.statuses) && app.statuses.length > 0 ? (
+          app.statuses
+            .filter(s => s === 'Production')
+            .map(s => <StatusBadge key={s} status={s} />)
+        ) : app.status === 'Production' ? (
+          <StatusBadge status={app.status} />
+        ) : null}
+      </div>
     </div>
 
     <p className="text-theme-secondary mb-4 font-body description">
       {app.description}
     </p>
 
+    {Array.isArray(app.extraLinks) && app.extraLinks.length > 0 ? (
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        {app.extraLinks.length === 2 ? (
+          <>
+            <a
+              href={app.extraLinks[0].href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-theme-accent hover:text-theme-accent-hover font-mono text-sm underline"
+            >
+              {app.extraLinks[0].label}
+            </a>
+            <span className="text-theme-muted font-mono text-sm">or</span>
+            <a
+              href={app.extraLinks[1].href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-theme-accent hover:text-theme-accent-hover font-mono text-sm underline"
+            >
+              {app.extraLinks[1].label}
+            </a>
+          </>
+        ) : (
+          app.extraLinks.map(link => (
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-theme-accent hover:text-theme-accent-hover font-mono text-sm underline"
+            >
+              {link.label}
+            </a>
+          ))
+        )}
+      </div>
+    ) : null}
+
     <div className="space-y-2">
       <h4 className="text-sm font-medium text-theme-primary font-heading">
-        Tech Stack
+        {app.chipsLabel || 'Tech Stack'}
       </h4>
       <div className="flex flex-wrap gap-2">
         {app.stack.map(tech => (
@@ -168,7 +296,7 @@ const Apps = ({ id }) => {
       <div className="container-custom">
         <SectionIntro
           title="Experience & Projects"
-          subtitle="A collection of my work experience, technical projects, and contributions to building scalable systems."
+          subtitle="A collection of my work experience, technical projects, and contributions."
         />
 
         {hasApps ? (

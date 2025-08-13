@@ -35,7 +35,7 @@ export const STRENGTHS_DATA = [
     platforms to accelerate delivery and empower teams
   </>,
   <>
-    Startup Agility: Startup experience—adaptable, resourceful, and comfortable
+    Startup Agility: Startup experience, adaptable, resourceful, and comfortable
     moving fast with changing priorities
   </>,
   <>

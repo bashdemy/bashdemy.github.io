@@ -5,6 +5,7 @@ const STATUS_TO_CLASSES = {
   Completed: 'bg-blue-500/20 text-blue-600',
   'In Development': 'bg-theme-accent/20 text-theme-accent',
   Planning: 'bg-theme-secondary/20 text-theme-secondary',
+  'Current Role': 'bg-blue-500/20 text-blue-600',
 };
 
 function StatusBadge({ status }) {

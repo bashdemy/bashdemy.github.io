@@ -84,7 +84,7 @@ const About = ({ id }) => {
                   build resilient, user-focused applications, optimize{' '}
                   <strong>cloud infrastructure</strong> (mostly{' '}
                   <strong>AWS</strong>), and have a strong interest in practical{' '}
-                  <strong>AI</strong> and automation—including nocode and
+                  <strong>AI</strong> and automation, including nocode and
                   lowcode solutions. I'm committed to making tech more
                   inclusive, with a focus on supporting women in the industry.
                 </p>

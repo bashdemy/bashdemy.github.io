@@ -23,6 +23,7 @@ const APPS_DATA = [
       'GitHub Pages',
     ],
     status: 'Production',
+    statuses: ['Production', 'Completed'],
     isSubheading: true,
     href: 'https://yeshelpnetwork.github.io/',
     imageSrc: '/yeshelp-brand-lockup.png',

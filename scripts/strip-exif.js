@@ -28,8 +28,12 @@ function isImageNeedingStrip(filePath) {
 
 async function stripExifInPlace(filePath) {
   const inputBuffer = await fs.readFile(filePath);
-  // By default, sharp does not copy metadata unless withMetadata() is called
-  const output = await sharp(inputBuffer).toBuffer();
+  // Auto-orient using EXIF Orientation, then write without metadata (default)
+  // This bakes the correct orientation into pixel data so removing EXIF
+  // won't cause sideways images in browsers.
+  const output = await sharp(inputBuffer)
+    .rotate() // auto-orient based on EXIF if present
+    .toBuffer();
   await fs.writeFile(filePath, output);
 }
 

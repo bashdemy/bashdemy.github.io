@@ -1,9 +1,12 @@
-import PropTypes from 'prop-types';
 import { Home, Code, Menu, Instagram, Star } from 'lucide-react';
 import ContactCard from './ui/ContactCard';
 import SectionIntro from './ui/SectionIntro';
 
-const Contact = ({ id }) => {
+interface ContactProps {
+  id: string;
+}
+
+const Contact = ({ id }: ContactProps) => {
   return (
     <section id={id} className="section-padding bg-theme-background">
       <div className="container-custom">
@@ -65,10 +68,6 @@ const Contact = ({ id }) => {
       </div>
     </section>
   );
-};
-
-Contact.propTypes = {
-  id: PropTypes.string.isRequired,
 };
 
 export default Contact;

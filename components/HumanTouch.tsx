@@ -1,10 +1,13 @@
-import PropTypes from 'prop-types';
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import Card from './ui/Card';
 
 const IMAGE_ROTATE_INTERVAL_MS = 7000;
 
-const HumanTouch = ({ id }) => {
+interface HumanTouchProps {
+  id: string;
+}
+
+const HumanTouch = ({ id }: HumanTouchProps) => {
   const images = useMemo(
     () => [
       { src: '/bread.jpg', alt: 'Freshly baked bread' },
@@ -111,10 +114,6 @@ const HumanTouch = ({ id }) => {
       </div>
     </section>
   );
-};
-
-HumanTouch.propTypes = {
-  id: PropTypes.string.isRequired,
 };
 
 export default HumanTouch;

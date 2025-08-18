@@ -1,4 +1,10 @@
-import PropTypes from 'prop-types';
+interface SectionIntroProps {
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center' | 'right';
+  className?: string;
+  subtitleClassName?: string;
+}
 
 function SectionIntro({
   title,
@@ -6,7 +12,7 @@ function SectionIntro({
   align = 'center',
   className = '',
   subtitleClassName = '',
-}) {
+}: SectionIntroProps) {
   const alignment =
     align === 'center'
       ? 'text-center'
@@ -32,13 +38,5 @@ function SectionIntro({
     </div>
   );
 }
-
-SectionIntro.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-  align: PropTypes.oneOf(['left', 'center', 'right']),
-  className: PropTypes.string,
-  subtitleClassName: PropTypes.string,
-};
 
 export default SectionIntro;

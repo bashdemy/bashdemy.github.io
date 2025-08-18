@@ -1,4 +1,6 @@
-import PropTypes from 'prop-types';
+interface StatusBadgeProps {
+  status: string;
+}
 
 const STATUS_TO_CLASSES = {
   Production: 'bg-green-500/20 text-green-600',
@@ -8,7 +10,7 @@ const STATUS_TO_CLASSES = {
   'Current Role': 'bg-blue-500/20 text-blue-600',
 };
 
-function StatusBadge({ status }) {
+function StatusBadge({ status }: StatusBadgeProps) {
   const classNameForStatus =
     STATUS_TO_CLASSES[status] || 'bg-theme-muted/20 text-theme-muted';
 
@@ -20,9 +22,5 @@ function StatusBadge({ status }) {
     </span>
   );
 }
-
-StatusBadge.propTypes = {
-  status: PropTypes.string.isRequired,
-};
 
 export default StatusBadge;

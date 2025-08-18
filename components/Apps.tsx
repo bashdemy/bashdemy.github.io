@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Card from './ui/Card';
@@ -8,7 +7,33 @@ import SectionIntro from './ui/SectionIntro';
 
 const AUTO_ROTATE_INTERVAL_MS = 8000;
 
-const APPS_DATA = [
+interface AppData {
+  id: number;
+  title: string;
+  description: string;
+  stack: string[];
+  status: string;
+  statuses?: string[];
+  isSubheading?: boolean;
+  href?: string;
+  imageSrc?: string;
+  imageSrcs?: string[];
+  imageAlt?: string;
+  imageClassName?: string;
+  linkImage?: boolean;
+  chipsLabel?: string;
+  yc?: {
+    label: string;
+    href: string;
+  };
+  extraLinks?: Array<{
+    label: string;
+    href: string;
+  }>;
+  extraLinksStyle?: string;
+}
+
+const APPS_DATA: AppData[] = [
   {
     id: 1,
     title: 'Yes Help Network',
@@ -111,7 +136,11 @@ const APPS_DATA = [
   },
 ];
 
-const AppCard = ({ app }) => (
+interface AppCardProps {
+  app: AppData;
+}
+
+const AppCard = ({ app }: AppCardProps) => (
   <Card className="group">
     {Array.isArray(app.imageSrcs) && app.imageSrcs.length > 0 ? (
       <SwitchableImages
@@ -281,20 +310,13 @@ const AppCard = ({ app }) => (
   </Card>
 );
 
-AppCard.propTypes = {
-  app: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    stack: PropTypes.arrayOf(PropTypes.string).isRequired,
-    status: PropTypes.string.isRequired,
-    imageSrc: PropTypes.string,
-    imageAlt: PropTypes.string,
-    href: PropTypes.string,
-  }).isRequired,
-};
 
-const Apps = ({ id }) => {
+
+interface AppsProps {
+  id: string;
+}
+
+const Apps = ({ id }: AppsProps) => {
   const hasApps = Array.isArray(APPS_DATA) && APPS_DATA.length > 0;
   const containerRef = useRef(null);
   const trackRef = useRef(null);
@@ -481,13 +503,16 @@ const Apps = ({ id }) => {
   );
 };
 
-Apps.propTypes = {
-  id: PropTypes.string.isRequired,
-};
+
 
 export default Apps;
 
-function SwitchableImages({ sources, alt }) {
+interface SwitchableImagesProps {
+  sources: string[];
+  alt: string;
+}
+
+function SwitchableImages({ sources, alt }: SwitchableImagesProps) {
   const [active, setActive] = useState(0);
   const safeSources = Array.isArray(sources) ? sources.slice(0, 5) : [];
   return (

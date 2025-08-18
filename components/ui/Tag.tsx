@@ -1,6 +1,13 @@
-import PropTypes from 'prop-types';
+import { ReactNode } from 'react';
 
-function Tag({ children, tone = 'accent', variant = 'soft', className = '' }) {
+interface TagProps {
+  children: ReactNode;
+  tone?: 'accent' | 'primary' | 'muted' | 'success' | 'info';
+  variant?: 'soft' | 'solid';
+  className?: string;
+}
+
+function Tag({ children, tone = 'accent', variant = 'soft', className = '' }: TagProps) {
   const softToneClasses = {
     accent: 'bg-theme-accent/20 text-theme-accent',
     primary: 'bg-theme-primary/10 text-theme-primary',
@@ -27,12 +34,5 @@ function Tag({ children, tone = 'accent', variant = 'soft', className = '' }) {
 
   return <span className={classes}>{children}</span>;
 }
-
-Tag.propTypes = {
-  children: PropTypes.node.isRequired,
-  tone: PropTypes.oneOf(['accent', 'primary', 'muted', 'success', 'info']),
-  variant: PropTypes.oneOf(['soft', 'solid']),
-  className: PropTypes.string,
-};
 
 export default Tag;

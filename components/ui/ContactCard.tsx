@@ -1,7 +1,16 @@
-import PropTypes from 'prop-types';
+import { ReactNode } from 'react';
 import Card from './Card';
 
-function ContactCard({ icon, title, subtitle, href, label, ariaLabel }) {
+interface ContactCardProps {
+  icon: ReactNode;
+  title: string;
+  subtitle: string;
+  href: string;
+  label: string;
+  ariaLabel: string;
+}
+
+function ContactCard({ icon, title, subtitle, href, label, ariaLabel }: ContactCardProps) {
   return (
     <div className="group h-full">
       <Card
@@ -30,14 +39,5 @@ function ContactCard({ icon, title, subtitle, href, label, ariaLabel }) {
     </div>
   );
 }
-
-ContactCard.propTypes = {
-  icon: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  href: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  ariaLabel: PropTypes.string.isRequired,
-};
 
 export default ContactCard;

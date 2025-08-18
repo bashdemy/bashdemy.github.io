@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useState, useRef } from 'react';
-import PropTypes from 'prop-types';
 import { Menu } from 'lucide-react';
 import { useScrollSpy } from '../hooks/useScrollSpy';
 
 const SCROLL_OFFSET = 100;
 
-const Navbar = ({ activeSection, setActiveSection }) => {
+interface NavbarProps {
+  activeSection: string;
+  setActiveSection: (section: string) => void;
+}
+
+const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const menuRef = useRef(null);
   const navItems = useMemo(
@@ -111,11 +115,6 @@ const Navbar = ({ activeSection, setActiveSection }) => {
       </div>
     </nav>
   );
-};
-
-Navbar.propTypes = {
-  activeSection: PropTypes.string.isRequired,
-  setActiveSection: PropTypes.func.isRequired,
 };
 
 export default Navbar;

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Card from './ui/Card';
 import Tag from './ui/Tag';
 import ProfileImage from './ui/ProfileImage';
@@ -34,7 +33,11 @@ const SkillsSection = () => (
   </Card>
 );
 
-const About = ({ id }: { id: string }) => {
+interface AboutProps {
+  id: string;
+}
+
+const About = ({ id }: AboutProps) => {
   return (
     <section id={id} className="section-padding">
       <div className="container-custom">
@@ -132,10 +135,6 @@ const About = ({ id }: { id: string }) => {
       </div>
     </section>
   );
-};
-
-About.propTypes = {
-  id: PropTypes.string.isRequired,
 };
 
 export default About;

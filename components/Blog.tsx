@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
 import Card from './ui/Card';
-import BlogPostCard from './ui/BlogPostCard';
 import SectionIntro from './ui/SectionIntro';
 
-const BLOG_POSTS_DATA = [];
+interface BlogProps {
+  id: string;
+}
 
-const Blog = ({ id }) => {
+const Blog = ({ id }: BlogProps) => {
   return (
     <section id={id} className="section-padding bg-theme-background-alt">
       <div className="container-custom">
@@ -29,10 +29,6 @@ const Blog = ({ id }) => {
       </div>
     </section>
   );
-};
-
-Blog.propTypes = {
-  id: PropTypes.string.isRequired,
 };
 
 export default Blog;

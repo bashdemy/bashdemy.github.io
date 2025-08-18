@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react';
 
+interface Flower {
+  id: number;
+  x: number;
+  y: number;
+  delay: number;
+  duration: number;
+  size: number;
+}
+
 const FloatingFlowers = () => {
-  const [flowers, setFlowers] = useState([]);
+  const [flowers, setFlowers] = useState<Flower[]>([]);
 
   useEffect(() => {
     const newFlowers = Array.from({ length: 20 }, (_, index) => ({

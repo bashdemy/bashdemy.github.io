@@ -96,9 +96,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'google-site-verification-placeholder',
-  },
+  // verification: {
+  //   google: 'add-google-site-verification-when-ready',
+  // },
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },

@@ -22,7 +22,7 @@ const HumanTouch = ({ id }: HumanTouchProps) => {
   const [isPaused, setIsPaused] = useState(false);
 
   const goTo = useCallback(
-    index => {
+    (index: number) => {
       const total = images.length;
       const nextIndex = ((index % total) + total) % total;
       setActiveIndex(nextIndex);

@@ -1,4 +1,6 @@
-export const SKILLS_DATA = {
+import type { ReactElement } from 'react';
+
+export const SKILLS_DATA: Record<string, string[]> = {
   Frontend: ['React', 'NextJS', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS'],
   Backend: ['Java Spring Boot', 'Node.js', 'Go', 'Python', 'RESTful APIs'],
   'Cloud & DevOps': ['AWS', 'Docker', 'GitHub Actions', 'CI/CD'],
@@ -15,7 +17,7 @@ export const SKILLS_DATA = {
   Other: ['Linux', 'Bash', 'Performance Optimization', 'Troubleshooting'],
 };
 
-export const STRENGTHS_DATA = [
+export const STRENGTHS_DATA: ReactElement[] = [
   <>
     Full-Stack Generalist: End-to-end development, balancing broad vision with
     technical depth

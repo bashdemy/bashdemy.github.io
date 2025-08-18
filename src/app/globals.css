@@ -1,26 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Deeper Dusty Pink Theme */
+    --color-background: #f5ebe9;
+    --color-background-alt: #f5ebe9;
+    --color-primary: #b57281;
+    --color-primary-hover: #a34d6d;
+    --color-secondary: #94596b;
+    --color-text-primary: #232020;
+    --color-text-secondary: #704a51;
+    --color-text-muted: #704a51;
+    --color-accent: #d9a6b3;
+    --color-border: #c9b7b4;
+    --color-card-bg: rgba(255, 255, 255, 0.9);
+    --color-card-border: #c9b7b4;
+    --color-status-development: #d9a6b3;
+    --color-status-planning: #94596b;
+    --color-status-concept: #704a51;
+
+    /* Typography Scale */
+    --fs-xl: 2.25rem; /* h1 */
+    --fs-lg: 1.5rem; /* h2 */
+    --fs-md: 1.25rem; /* h3 */
+    --fs-base: 1rem; /* body */
+    --fs-sm: 0.875rem; /* caption */
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', 'Work Sans', 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    background-color: var(--color-background);
+  }
+
+  /* Primary Typeface Stack (Headings & Accents) */
+  h1,
+  h2,
+  h3,
+  nav,
+  .tech-label {
+    font-family: 'JetBrains Mono', 'Fira Code', 'IBM Plex Mono', monospace;
+    font-weight: 600;
+  }
+
+  /* Secondary Typeface Stack (Body Text & Paragraphs) */
+  p,
+  .description {
+    font-family: 'Inter', 'Work Sans', 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-custom {
+    @apply max-w-6xl mx-auto;
+  }
+
+  .card {
+    background-color: var(--color-card-bg);
+    backdrop-filter: blur(8px);
+    @apply rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300;
+    border: 1px solid var(--color-card-border);
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    @apply font-medium py-2 px-4 rounded-md transition-colors duration-200;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .btn-secondary {
+    background-color: var(--color-accent);
+    color: var(--color-text-primary);
+    @apply font-medium py-2 px-4 rounded-md transition-colors duration-200;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .profile-picture {
+    @apply w-[28rem] h-[28rem] rounded-full object-cover border-4 border-white shadow-lg;
+    object-position: 70% 50%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: high-quality;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+
+  /* Theme utility classes */
+  .text-theme-primary {
+    color: var(--color-text-primary);
+  }
+  .text-theme-secondary {
+    color: var(--color-text-secondary);
+  }
+  .text-theme-muted {
+    color: var(--color-text-muted);
+  }
+  .text-theme-accent {
+    color: var(--color-primary);
+  }
+  .text-theme-accent-hover {
+    color: var(--color-primary-hover);
+  }
+
+  .bg-theme-background {
+    background-color: var(--color-background);
+  }
+  .bg-theme-background-alt {
+    background-color: var(--color-background-alt);
+  }
+  .bg-theme-accent {
+    background-color: var(--color-accent);
+  }
+  .bg-theme-primary {
+    background-color: var(--color-primary);
+  }
+
+  .border-theme-border {
+    border-color: var(--color-border);
+  }
+  .border-theme-primary {
+    border-color: var(--color-primary);
+  }
+
+  /* Floating Flowers Animation */
+  .floating-flower {
+    animation: float linear infinite;
+    opacity: 0.4;
+    color: var(--color-accent);
+    transform: translate(-50%, -50%);
+    filter: blur(0.5px);
+  }
+
+  @keyframes float {
+    0% {
+      transform: translate(-50%, -50%) translateY(0vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.4;
+    }
+    90% {
+      opacity: 0.4;
+    }
+    100% {
+      transform: translate(-50%, -50%) translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .floating-flowers-container {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
 }

@@ -62,3 +62,13 @@ pnpm-lock.yaml
 # Cache directories
 .cache/
 .parcel-cache/
+
+# Build artifacts
+*.tsbuildinfo
+
+# Husky
+.husky/_
+
+# Test files (temporary)
+test-*.ts
+test-*.js

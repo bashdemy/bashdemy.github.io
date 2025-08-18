@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Card from './ui/Card';
 import StatusBadge from './ui/StatusBadge';
@@ -155,27 +156,27 @@ const AppCard = ({ app }: AppCardProps) => (
           rel="noopener noreferrer"
           aria-label={`Open ${app.title}`}
         >
-          <img
+          <Image
             src={app.imageSrc}
             alt={app.imageAlt || `${app.title} logo`}
+            width={300}
+            height={200}
             className={[
               'mb-4 rounded border border-theme-border bg-white object-contain p-3',
               app.imageClassName || 'w-full',
             ].join(' ')}
-            loading="lazy"
-            decoding="async"
           />
         </a>
       ) : (
-        <img
+        <Image
           src={app.imageSrc}
           alt={app.imageAlt || `${app.title} logo`}
+          width={300}
+          height={200}
           className={[
             'mb-4 rounded border border-theme-border bg-white object-contain p-3',
             app.imageClassName || 'w-full',
           ].join(' ')}
-          loading="lazy"
-          decoding="async"
         />
       )
     ) : null}
@@ -325,15 +326,15 @@ const Apps = ({ id }: AppsProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const gapPx = 24; // Tailwind gap-6
 
-  const carouselItems = hasApps ? APPS_DATA : [];
   const itemsWithClones = useMemo(() => {
+    const carouselItems = hasApps ? APPS_DATA : [];
     if (carouselItems.length > 1) {
       const first = carouselItems[0];
       const last = carouselItems[carouselItems.length - 1];
       return [last, ...carouselItems, first];
     }
     return carouselItems;
-  }, [carouselItems]);
+  }, [hasApps]);
   const [enableTransition, setEnableTransition] = useState(true);
 
   useEffect(() => {
@@ -518,12 +519,12 @@ function SwitchableImages({ sources, alt }: SwitchableImagesProps) {
   return (
     <div className="mb-4">
       <div className="w-full h-40 md:h-48 rounded border border-theme-border overflow-hidden">
-        <img
+        <Image
           src={safeSources[active]}
           alt={alt}
+          width={400}
+          height={200}
           className="w-full h-full object-cover bg-white"
-          loading="lazy"
-          decoding="async"
         />
       </div>
       <div className="mt-2 flex gap-2">
@@ -539,12 +540,12 @@ function SwitchableImages({ sources, alt }: SwitchableImagesProps) {
                 : 'border-theme-border hover:border-theme-accent/60',
             ].join(' ')}
           >
-            <img
+            <Image
               src={src}
               alt={`${alt} thumbnail ${index + 1}`}
+              width={60}
+              height={40}
               className="h-full w-full object-cover"
-              loading="lazy"
-              decoding="async"
             />
           </button>
         ))}

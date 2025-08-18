@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
+import Image from 'next/image';
 import Card from './ui/Card';
 
 const IMAGE_ROTATE_INTERVAL_MS = 7000;
@@ -52,18 +53,17 @@ const HumanTouch = ({ id }: HumanTouchProps) => {
               onMouseLeave={() => setIsPaused(false)}
             >
               {images.map((image, index) => (
-                <img
+                <Image
                   key={image.src}
                   src={image.src}
                   alt={image.alt}
-                  referrerPolicy="no-referrer"
-                  decoding="async"
+                  width={320}
+                  height={320}
                   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${index === activeIndex ? 'opacity-100' : 'opacity-0'}`}
                   onError={e => {
                     e.currentTarget.onerror = null;
                     e.currentTarget.src = '/profile-picture.JPG';
                   }}
-                  loading="lazy"
                   draggable="false"
                 />
               ))}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Image from 'next/image';
 
 function ProfileImage() {
   const [hasError, setHasError] = useState(false);
@@ -6,12 +7,13 @@ function ProfileImage() {
   return (
     <div className="relative mb-8">
       {!hasError ? (
-        <img
+        <Image
           src="/profile-picture.JPG"
           alt="Maria (Bazhena) Dementyeva"
+          width={400}
+          height={400}
           className="profile-picture"
-          loading="eager"
-          decoding="sync"
+          priority
           onError={() => setHasError(true)}
         />
       ) : null}

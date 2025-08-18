@@ -100,9 +100,16 @@ export const metadata: Metadata = {
     google: 'google-site-verification-placeholder',
   },
   icons: {
-    icon: '/flower-icon.svg',
-    shortcut: '/flower-icon.svg',
-    apple: '/profile-picture.JPG',
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+    other: [
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
   },
   manifest: '/manifest.json',
 };
@@ -182,13 +189,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const structuredDataScript = `application/ld+json`;
+  
   return (
     <html lang="en">
       <head>
         <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+          type={structuredDataScript}
+          suppressHydrationWarning={true}
+        >
+          {JSON.stringify(structuredData)}
+        </script>
       </head>
       <body className="bg-theme-background">{children}</body>
     </html>

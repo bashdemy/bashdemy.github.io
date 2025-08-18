@@ -1,36 +1,150 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bazhena Dementyeva - Personal Portfolio
 
-## Getting Started
+A modern, high-performance personal portfolio website built with Next.js 15 and TypeScript. This project showcases professional experience, projects, and technical expertise with a focus on performance, accessibility, and security.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 15**: Latest features with static site generation
+- **TypeScript**: Full type safety and developer experience
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Performance Optimized**: Next.js Image optimization, lazy loading, and minimal bundle size
+- **Security Hardened**: No XSS vulnerabilities, proper external link handling
+- **Accessibility**: Built with WCAG guidelines and semantic HTML
+- **SEO Optimized**: Comprehensive meta tags, structured data, and sitemap
+- **CI/CD**: Automated deployment to GitHub Pages
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 15.4.6
+- **Language**: TypeScript 5.x
+- **Styling**: Tailwind CSS 4.x
+- **Icons**: Lucide React
+- **Image Optimization**: Next.js Image component with Sharp
+- **Linting**: ESLint with Next.js config
+- **Package Manager**: npm
+- **Deployment**: GitHub Actions + GitHub Pages
+
+## 📦 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/bashdemy/bashdemy.github.io.git
+   cd bashdemy.github.io
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:3000` to view the application
+
+## 🛠️ Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production (includes SEO optimization and EXIF stripping)
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run export` - Build static export
+- `npm run seo` - Run SEO optimization
+- `npm run test-seo` - Test SEO implementation
+- `npm run format` - Format code with Prettier
+- `npm run format:check` - Check code formatting
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── globals.css         # Global styles with CSS variables
+│   ├── layout.tsx          # Root layout with metadata
+│   └── page.tsx           # Home page
+components/
+├── ui/                    # Reusable UI components
+│   ├── BlogPostCard.tsx
+│   ├── Card.tsx
+│   ├── ContactCard.tsx
+│   ├── ProfileImage.tsx
+│   ├── SectionIntro.tsx
+│   ├── StatusBadge.tsx
+│   └── Tag.tsx
+├── About.tsx              # About section
+├── Apps.tsx               # Projects showcase with carousel
+├── Blog.tsx               # Blog section
+├── Contact.tsx            # Contact information
+├── FloatingFlowers.tsx    # Animated background elements
+├── Footer.tsx             # Footer component
+├── HumanTouch.tsx         # Personal interests carousel
+└── Navbar.tsx             # Navigation bar
+public/                    # Static assets
+├── favicon files          # Complete favicon hierarchy
+├── manifest.json          # PWA manifest
+├── robots.txt             # SEO robots file
+└── sitemap.xml            # SEO sitemap
+scripts/                   # Build automation
+├── optimize-seo.js        # SEO optimization
+├── strip-exif.js          # Image metadata removal
+└── test-seo.js            # SEO testing
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Design System
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Custom Theme**: Dusty pink color palette with CSS variables
+- **Typography**: Inter + JetBrains Mono font combination
+- **Responsive**: Mobile-first design with Tailwind breakpoints
+- **Accessibility**: High contrast ratios and semantic markup
+- **Performance**: Optimized images and minimal JavaScript
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔒 Security Features
 
-## Learn More
+- ✅ No XSS vulnerabilities
+- ✅ External links with `rel="noopener noreferrer"`
+- ✅ Safe structured data implementation
+- ✅ Proper favicon configuration
+- ✅ Clean dependency audit
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Automated deployment to GitHub Pages via GitHub Actions:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Automatic**: Push to `main` branch triggers deployment
+2. **Manual**: Run `npm run build` and deploy the `out/` directory
+3. **SEO**: Includes automatic sitemap generation and image optimization
 
-## Deploy on Vercel
+The site is available at: https://bashdemy.com
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📈 Performance
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Static Generation**: Pre-built pages for optimal loading
+- **Image Optimization**: Next.js Image component with WebP conversion
+- **Bundle Analysis**: Optimized JavaScript chunks
+- **SEO Score**: 100/100 with comprehensive metadata
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👤 Author
+
+**Bazhena Dementyeva (Maria Demy)**
+
+- Senior Software Engineer specializing in backend, cloud, and AI solutions
+- Expert in Java, Python, React, and modern web technologies
+- Passionate about privacy-first engineering and scalable systems
+- Based in Sydney, Australia
+
+## 🔗 Links
+
+- **Portfolio**: https://bashdemy.com
+- **GitHub**: https://github.com/bashdemy
+- **LinkedIn**: https://linkedin.com/in/bashdemy
+
+---
+
+Built with ❤️ using Next.js, TypeScript, and Tailwind CSS

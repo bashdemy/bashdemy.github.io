@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
-import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Card from './ui/Card';
-import StatusBadge from './ui/StatusBadge';
-import Tag from './ui/Tag';
-import SectionIntro from './ui/SectionIntro';
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Card from "./ui/Card";
+import StatusBadge from "./ui/StatusBadge";
+import Tag from "./ui/Tag";
+import SectionIntro from "./ui/SectionIntro";
 
 const AUTO_ROTATE_INTERVAL_MS = 8000;
 
@@ -37,102 +37,102 @@ interface AppData {
 const APPS_DATA: AppData[] = [
   {
     id: 1,
-    title: 'Yes Help Network',
+    title: "Yes Help Network",
     description:
-      'A youth-led platform focused on early intervention for Domestic & Family Violence (DFV). Yes Help Network creates safe spaces and programs that equip young people with mentorship, skills, and community, so they can speak up, heal, and lead.',
+      "A youth-led platform focused on early intervention for Domestic & Family Violence (DFV). Yes Help Network creates safe spaces and programs that equip young people with mentorship, skills, and community, so they can speak up, heal, and lead.",
     stack: [
-      'Next.js (App Router)',
-      'TypeScript',
-      'MUI',
-      'Tailwind CSS',
-      'GitHub Actions',
-      'GitHub Pages',
+      "Next.js (App Router)",
+      "TypeScript",
+      "MUI",
+      "Tailwind CSS",
+      "GitHub Actions",
+      "GitHub Pages",
     ],
-    status: 'Production',
-    statuses: ['Production', 'Completed'],
+    status: "Production",
+    statuses: ["Production", "Completed"],
     isSubheading: true,
-    href: 'https://yeshelpnetwork.github.io/',
-    imageSrc: '/yeshelp-brand-lockup.png',
-    imageAlt: 'Yes Help Network brand lockup',
+    href: "https://yeshelpnetwork.github.io/",
+    imageSrc: "/yeshelp-brand-lockup.png",
+    imageAlt: "Yes Help Network brand lockup",
   },
   {
     id: 2,
-    title: 'Workflow86 (YC W22)',
+    title: "Workflow86 (YC W22)",
     description:
-      'Workflow86 helps teams automate and streamline complex business operations with AI-powered workflow automation, turning manual processes into reliable, scalable workflows.',
+      "Workflow86 helps teams automate and streamline complex business operations with AI-powered workflow automation, turning manual processes into reliable, scalable workflows.",
     stack: [
-      'React',
-      'Java (Spring Boot)',
-      'AWS',
-      'OpenAI',
-      'LangChain',
-      'Microservices',
+      "React",
+      "Java (Spring Boot)",
+      "AWS",
+      "OpenAI",
+      "LangChain",
+      "Microservices",
     ],
-    status: 'Current Role',
-    statuses: ['Current Role', 'Production'],
+    status: "Current Role",
+    statuses: ["Current Role", "Production"],
     yc: {
-      label: 'YC W22',
-      href: 'https://www.ycombinator.com/companies/workflow86',
+      label: "YC W22",
+      href: "https://www.ycombinator.com/companies/workflow86",
     },
-    href: 'https://www.workflow86.com',
-    imageSrc: '/workflow86-icon.png',
-    imageAlt: 'Workflow86 logo',
-    imageClassName: 'w-24 h-24 mx-auto',
+    href: "https://www.workflow86.com",
+    imageSrc: "/workflow86-icon.png",
+    imageAlt: "Workflow86 logo",
+    imageClassName: "w-24 h-24 mx-auto",
     extraLinks: [
-      { label: 'Learn more', href: 'https://www.workflow86.com' },
-      { label: 'Sign up 😉', href: 'https://app.workflow86.com' },
+      { label: "Learn more", href: "https://www.workflow86.com" },
+      { label: "Sign up 😉", href: "https://app.workflow86.com" },
     ],
-    extraLinksStyle: 'or',
+    extraLinksStyle: "or",
   },
   {
     id: 3,
-    title: 'Sydney Trains',
+    title: "Sydney Trains",
     description:
-      'Data visualisation software built as a university capstone: processed live GTFS feeds and presented insights across maps, charts, and dashboards. Recognised as runner-up for Best Project at the EIS Projects Trade Show.',
+      "Data visualisation software built as a university capstone: processed live GTFS feeds and presented insights across maps, charts, and dashboards. Recognised as runner-up for Best Project at the EIS Projects Trade Show.",
     stack: [
-      'Node.js',
-      'JavaScript',
-      'MySQL',
-      'HTML',
-      'CSS',
-      'GTFS',
-      'Data Viz',
+      "Node.js",
+      "JavaScript",
+      "MySQL",
+      "HTML",
+      "CSS",
+      "GTFS",
+      "Data Viz",
     ],
-    status: 'Completed',
-    href: 'https://transportnsw.info/',
-    imageSrcs: ['/group.JPG', '/runner-up-project.jpg'],
-    imageAlt: 'Sydney Trains data visualisation project',
+    status: "Completed",
+    href: "https://transportnsw.info/",
+    imageSrcs: ["/group.JPG", "/runner-up-project.jpg"],
+    imageAlt: "Sydney Trains data visualisation project",
     isSubheading: true,
     linkImage: false,
     extraLinks: [
       {
-        label: 'Sydney Trains',
-        href: 'https://transportnsw.info/',
+        label: "Sydney Trains",
+        href: "https://transportnsw.info/",
       },
       {
-        label: 'UOW',
-        href: 'https://www.uow.edu.au/',
+        label: "UOW",
+        href: "https://www.uow.edu.au/",
       },
     ],
   },
   {
     id: 4,
-    title: 'Education',
+    title: "Education",
     description:
-      'Bachelor of Computer Science (Software Engineering) at the University of Wollongong, and Certificate IV in Business (BSB40215) at Navitas Professional.',
+      "Bachelor of Computer Science (Software Engineering) at the University of Wollongong, and Certificate IV in Business (BSB40215) at Navitas Professional.",
     stack: [
-      'B.CompSci (Software Engineering)',
-      'Cert IV in Business (BSB40215)',
+      "B.CompSci (Software Engineering)",
+      "Cert IV in Business (BSB40215)",
     ],
-    chipsLabel: 'Credentials',
-    status: 'Completed',
+    chipsLabel: "Credentials",
+    status: "Completed",
     isSubheading: true,
-    imageSrc: '/grad.jpg',
-    imageAlt: 'Graduation photo',
-    imageClassName: 'w-full h-auto max-h-56 md:max-h-72 object-contain p-0',
+    imageSrc: "/grad.jpg",
+    imageAlt: "Graduation photo",
+    imageClassName: "w-full h-auto max-h-56 md:max-h-72 object-contain p-0",
     extraLinks: [
-      { label: 'UOW', href: 'https://www.uow.edu.au/' },
-      { label: 'Navitas', href: 'https://www.navitas.com/' },
+      { label: "UOW", href: "https://www.uow.edu.au/" },
+      { label: "Navitas", href: "https://www.navitas.com/" },
     ],
   },
 ];
@@ -162,9 +162,9 @@ const AppCard = ({ app }: AppCardProps) => (
             width={300}
             height={200}
             className={[
-              'mb-4 rounded border border-theme-border bg-white object-contain p-3',
-              app.imageClassName || 'w-full',
-            ].join(' ')}
+              "mb-4 rounded border border-theme-border bg-white object-contain p-3",
+              app.imageClassName || "w-full",
+            ].join(" ")}
           />
         </a>
       ) : (
@@ -174,9 +174,9 @@ const AppCard = ({ app }: AppCardProps) => (
           width={300}
           height={200}
           className={[
-            'mb-4 rounded border border-theme-border bg-white object-contain p-3',
-            app.imageClassName || 'w-full',
-          ].join(' ')}
+            "mb-4 rounded border border-theme-border bg-white object-contain p-3",
+            app.imageClassName || "w-full",
+          ].join(" ")}
         />
       )
     ) : null}
@@ -191,10 +191,10 @@ const AppCard = ({ app }: AppCardProps) => (
                 rel="noopener noreferrer"
                 className="hover:underline"
               >
-                {app.title.replace('(YC W22)', '').trim()}
+                {app.title.replace("(YC W22)", "").trim()}
               </a>
             ) : (
-              app.title.replace('(YC W22)', '').trim()
+              app.title.replace("(YC W22)", "").trim()
             )}
           </h4>
         ) : (
@@ -206,23 +206,23 @@ const AppCard = ({ app }: AppCardProps) => (
                 rel="noopener noreferrer"
                 className="hover:underline"
               >
-                {app.title.replace('(YC W22)', '').trim()}
+                {app.title.replace("(YC W22)", "").trim()}
               </a>
             ) : (
-              app.title.replace('(YC W22)', '').trim()
+              app.title.replace("(YC W22)", "").trim()
             )}
           </h3>
         )}
         {app.yc ||
         (Array.isArray(app.statuses) &&
-          app.statuses.some(s => s !== 'Production')) ||
-        (app.status && app.status !== 'Production') ? (
+          app.statuses.some(s => s !== "Production")) ||
+        (app.status && app.status !== "Production") ? (
           <div className="mt-1 flex flex-wrap items-center gap-2">
             {Array.isArray(app.statuses) ? (
               app.statuses
-                .filter(s => s !== 'Production')
+                .filter(s => s !== "Production")
                 .map(s => <StatusBadge key={s} status={s} />)
-            ) : app.status && app.status !== 'Production' ? (
+            ) : app.status && app.status !== "Production" ? (
               <StatusBadge status={app.status} />
             ) : null}
             {app.yc ? (
@@ -230,7 +230,7 @@ const AppCard = ({ app }: AppCardProps) => (
                 href={app.yc.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-2 py-1 rounded text-xs font-mono bg-[#f0652f] text-white hover:opacity-90"
+                className="px-2 py-1 rounded text-xs bg-[#f0652f] text-white hover:opacity-90"
               >
                 {app.yc.label}
               </a>
@@ -241,9 +241,9 @@ const AppCard = ({ app }: AppCardProps) => (
       <div className="flex items-center gap-2">
         {Array.isArray(app.statuses) && app.statuses.length > 0 ? (
           app.statuses
-            .filter(s => s === 'Production')
+            .filter(s => s === "Production")
             .map(s => <StatusBadge key={s} status={s} />)
-        ) : app.status === 'Production' ? (
+        ) : app.status === "Production" ? (
           <StatusBadge status={app.status} />
         ) : null}
       </div>
@@ -255,22 +255,22 @@ const AppCard = ({ app }: AppCardProps) => (
 
     {Array.isArray(app.extraLinks) && app.extraLinks.length > 0 ? (
       <div className="mb-4 flex flex-wrap items-center gap-2">
-        {app.extraLinksStyle === 'or' && app.extraLinks.length >= 2 ? (
+        {app.extraLinksStyle === "or" && app.extraLinks.length >= 2 ? (
           <>
             <a
               href={app.extraLinks[0].href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-theme-accent hover:text-theme-accent-hover font-mono text-sm underline"
+              className="text-theme-accent hover:text-theme-accent-hover text-sm underline"
             >
               {app.extraLinks[0].label}
             </a>
-            <span className="text-theme-muted font-mono text-sm">or</span>
+            <span className="text-theme-muted text-sm">or</span>
             <a
               href={app.extraLinks[1].href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-theme-accent hover:text-theme-accent-hover font-mono text-sm underline"
+              className="text-theme-accent hover:text-theme-accent-hover text-sm underline"
             >
               {app.extraLinks[1].label}
             </a>
@@ -282,7 +282,7 @@ const AppCard = ({ app }: AppCardProps) => (
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-theme-accent hover:text-theme-accent-hover font-mono text-sm underline"
+              className="text-theme-accent hover:text-theme-accent-hover text-sm underline"
             >
               {link.label}
             </a>
@@ -293,7 +293,7 @@ const AppCard = ({ app }: AppCardProps) => (
 
     <div className="space-y-2">
       <h4 className="text-sm font-medium text-theme-primary font-heading">
-        {app.chipsLabel || 'Tech Stack'}
+        {app.chipsLabel || "Tech Stack"}
       </h4>
       <div className="flex flex-wrap gap-2">
         {app.stack.map(tech => (
@@ -310,8 +310,6 @@ const AppCard = ({ app }: AppCardProps) => (
     </div>
   </Card>
 );
-
-
 
 interface AppsProps {
   id: string;
@@ -348,8 +346,8 @@ const Apps = ({ id }: AppsProps) => {
       }
     };
     measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, []);
 
   useEffect(() => {
@@ -435,30 +433,30 @@ const Apps = ({ id }: AppsProps) => {
                 ref={trackRef}
                 onTransitionEnd={handleTransitionEnd}
                 className={[
-                  'flex items-stretch gap-6 will-change-transform',
+                  "flex items-stretch gap-6 will-change-transform",
                   enableTransition
-                    ? 'transition-transform duration-500 ease-out'
-                    : 'transition-none',
-                ].join(' ')}
+                    ? "transition-transform duration-500 ease-out"
+                    : "transition-none",
+                ].join(" ")}
               >
                 {itemsWithClones.map((app, index) => {
                   const keySuffix =
                     index === 0
-                      ? 'clone-start'
+                      ? "clone-start"
                       : index === itemsWithClones.length - 1
-                        ? 'clone-end'
-                        : 'real';
+                        ? "clone-end"
+                        : "real";
                   const isActive = index === activeIndex;
                   return (
                     <div
                       key={`${app.id}-${keySuffix}-${index}`}
                       data-slide="true"
                       className={[
-                        'shrink-0 w-72 md:w-96 lg:w-[28rem] transition-all duration-500',
+                        "shrink-0 w-72 md:w-96 lg:w-[28rem] transition-all duration-500",
                         isActive
-                          ? 'scale-100 opacity-100 z-10'
-                          : 'scale-90 opacity-60 z-0',
-                      ].join(' ')}
+                          ? "scale-100 opacity-100 z-10"
+                          : "scale-90 opacity-60 z-0",
+                      ].join(" ")}
                     >
                       <AppCard app={app} />
                     </div>
@@ -493,8 +491,8 @@ const Apps = ({ id }: AppsProps) => {
                 Experience content coming soon...
               </p>
               <p className="text-sm text-theme-muted font-body">
-                I&apos;m working on showcasing my projects and experience in software
-                engineering, AI integration, and cloud infrastructure.
+                I&apos;m working on showcasing my projects and experience in
+                software engineering, AI integration, and cloud infrastructure.
               </p>
             </Card>
           </div>
@@ -503,8 +501,6 @@ const Apps = ({ id }: AppsProps) => {
     </section>
   );
 };
-
-
 
 export default Apps;
 
@@ -534,11 +530,11 @@ function SwitchableImages({ sources, alt }: SwitchableImagesProps) {
             type="button"
             onClick={() => setActive(index)}
             className={[
-              'h-10 w-14 md:w-16 rounded border transition-colors',
+              "h-10 w-14 md:w-16 rounded border transition-colors",
               index === active
-                ? 'border-theme-accent ring-1 ring-theme-accent'
-                : 'border-theme-border hover:border-theme-accent/60',
-            ].join(' ')}
+                ? "border-theme-accent ring-1 ring-theme-accent"
+                : "border-theme-border hover:border-theme-accent/60",
+            ].join(" ")}
           >
             <Image
               src={src}

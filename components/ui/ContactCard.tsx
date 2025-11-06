@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import Card from './Card';
+import { ReactNode } from "react";
+import Card from "./Card";
 
 interface ContactCardProps {
   icon: ReactNode;
@@ -10,7 +10,14 @@ interface ContactCardProps {
   ariaLabel: string;
 }
 
-function ContactCard({ icon, title, subtitle, href, label, ariaLabel }: ContactCardProps) {
+function ContactCard({
+  icon,
+  title,
+  subtitle,
+  href,
+  label,
+  ariaLabel,
+}: ContactCardProps) {
   return (
     <div className="group h-full">
       <Card
@@ -31,7 +38,7 @@ function ContactCard({ icon, title, subtitle, href, label, ariaLabel }: ContactC
             {title}
           </h3>
           <p className="text-sm text-theme-muted mb-2 font-body">{subtitle}</p>
-          <span className="text-theme-accent group-hover:text-theme-accent-hover font-medium transition-colors font-mono text-sm">
+          <span className="text-theme-accent group-hover:text-theme-accent-hover font-medium transition-colors text-sm">
             {label}
           </span>
         </div>

@@ -19,6 +19,9 @@ const Footer = () => {
               <p className="text-sm text-theme-muted font-body">
                 Software Engineer • Sydney, Australia
               </p>
+              <p className="text-sm text-theme-muted font-body mt-2">
+                Built by bashdemy ❤️
+              </p>
             </div>
           </div>
         </div>

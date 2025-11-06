@@ -2,87 +2,102 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bashdemy.com'),
+  metadataBase: new URL("https://bashdemy.com"),
   title: {
     default:
-      'Bazhena Dementyeva (Maria Demy) - Senior Software Engineer | Backend, Cloud & AI Solutions',
-    template:
-      '%s | Bazhena Dementyeva (Maria Demy) - Software Engineer',
+      "Bazhena Dementyeva (Maria Demy) - Senior Software Engineer Sydney | AWS, React, Next.js, Java, TypeScript, Spring Boot",
+    template: "%s | Bazhena Dementyeva (Maria Demy) - Senior Software Engineer",
   },
   description:
-    'Bazhena Dementyeva (Maria Dementyeva, Maria Demy, bashdemy) - Senior Software Engineer specializing in backend development, cloud architecture, and AI-powered solutions. Expert in Java, Python, React with focus on privacy-first engineering and scalable systems.',
+    "Bazhena Dementyeva (Maria Dementyeva, Maria Demy, bashdemy) - Senior Software Engineer in Sydney, Australia. Expert in AWS, React, Next.js, Java, TypeScript, and Spring Boot. Specializing in backend development, cloud architecture, and AI-powered solutions with focus on privacy-first engineering and scalable systems.",
   keywords: [
-    'Bazhena Dementyeva',
-    'Maria Dementyeva', 
-    'Maria Demy',
-    'bashdemy',
-    'software engineer',
-    'senior software engineer',
-    'backend developer',
-    'cloud architect',
-    'AI engineer',
-    'machine learning engineer',
-    'Java developer',
-    'Python developer',
-    'React developer',
-    'NextJS developer',
-    'Spring Boot',
-    'AWS',
-    'microservices',
-    'privacy-first engineering',
-    'scalable systems',
-    'workflow automation',
-    'AI integration',
-    'cloud infrastructure',
-    'women in tech',
-    'full-stack developer',
-    'software architecture',
-    'agile development',
-    'DevOps',
-    'CI/CD',
-    'API development',
-    'database design',
-    'system optimization',
+    "Bazhena Dementyeva",
+    "Maria Dementyeva",
+    "Maria Demy",
+    "bashdemy",
+    "senior software engineer",
+    "senior software engineer Sydney",
+    "senior software engineer Australia",
+    "software engineer",
+    "backend developer",
+    "cloud architect",
+    "AI engineer",
+    "machine learning engineer",
+    "Java developer",
+    "Java",
+    "TypeScript",
+    "TypeScript developer",
+    "Python developer",
+    "React developer",
+    "React",
+    "Next.js",
+    "NextJS",
+    "NextJS developer",
+    "Spring Boot",
+    "Spring Boot developer",
+    "AWS",
+    "AWS developer",
+    "AWS engineer",
+    "Sydney software engineer",
+    "microservices",
+    "privacy-first engineering",
+    "scalable systems",
+    "workflow automation",
+    "AI integration",
+    "cloud infrastructure",
+    "women in tech",
+    "full-stack developer",
+    "software architecture",
+    "agile development",
+    "DevOps",
+    "CI/CD",
+    "API development",
+    "database design",
+    "system optimization",
   ],
-  authors: [{ name: 'Bazhena Dementyeva', url: 'https://bashdemy.com' }],
-  creator: 'Bazhena Dementyeva',
-  publisher: 'Bazhena Dementyeva',
-  applicationName: 'Bazhena Dementyeva Portfolio',
-  category: 'Technology',
-  classification: 'Portfolio Website',
+  authors: [{ name: "Bazhena Dementyeva", url: "https://bashdemy.com" }],
+  creator: "Bazhena Dementyeva",
+  publisher: "Bazhena Dementyeva",
+  applicationName: "Bazhena Dementyeva Portfolio",
+  category: "Technology",
+  classification: "Portfolio Website",
   openGraph: {
-    type: 'website',
-    title: 'Bazhena Dementyeva - Senior Software Engineer',
-    description: 'Senior Software Engineer specializing in backend development, cloud architecture, and AI-powered solutions.',
-    url: '/',
-    siteName: 'Bazhena Dementyeva Portfolio',
-    locale: 'en_US',
+    type: "website",
+    title:
+      "Bazhena Dementyeva - Senior Software Engineer Sydney | AWS, React, Next.js, Java, TypeScript, Spring Boot",
+    description:
+      "Senior Software Engineer in Sydney, Australia. Expert in AWS, React, Next.js, Java, TypeScript, and Spring Boot. Specializing in backend development, cloud architecture, and AI-powered solutions.",
+    url: "/",
+    siteName: "Bazhena Dementyeva Portfolio",
+    locale: "en_US",
     images: [
       {
-        url: '/profile-picture.JPG',
+        url: "/profile-picture.JPG",
         width: 1200,
         height: 1200,
-        alt: 'Bazhena Dementyeva - Senior Software Engineer',
-        type: 'image/jpeg',
-      }
+        alt: "Bazhena Dementyeva - Senior Software Engineer",
+        type: "image/jpeg",
+      },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Bazhena Dementyeva - Senior Software Engineer',
-    description: 'Senior Software Engineer specializing in backend development, cloud architecture, and AI-powered solutions.',
-    creator: '@bashdemy',
+    card: "summary_large_image",
+    title:
+      "Bazhena Dementyeva - Senior Software Engineer Sydney | AWS, React, Next.js, Java, TypeScript, Spring Boot",
+    description:
+      "Senior Software Engineer in Sydney, Australia. Expert in AWS, React, Next.js, Java, TypeScript, and Spring Boot. Specializing in backend development, cloud architecture, and AI-powered solutions.",
+    creator: "@bashdemy",
     images: [
       {
-        url: '/profile-picture.JPG',
-        alt: 'Bazhena Dementyeva - Senior Software Engineer',
-      }
+        url: "/profile-picture.JPG",
+        alt: "Bazhena Dementyeva - Senior Software Engineer",
+      },
     ],
   },
-  alternates: { 
-    canonical: '/',
+  alternates: {
+    canonical: "/",
     languages: {
-      'en-US': '/',
+      "en-US": "/",
     },
   },
   robots: {
@@ -91,9 +106,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   // verification: {
@@ -101,86 +116,119 @@ export const metadata: Metadata = {
   // },
   icons: {
     icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: "/apple-touch-icon.png",
     other: [
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+      {
+        url: "/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
     ],
   },
-  manifest: '/manifest.json',
+  manifest: "/manifest.json",
 };
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Bazhena Dementyeva",
-  "alternateName": ["Maria Dementyeva", "Maria Demy", "bashdemy"],
-  "jobTitle": "Senior Software Engineer",
-  "description": "Senior Software Engineer specializing in backend development, cloud architecture, and AI-powered solutions.",
-  "url": "https://bashdemy.com",
-  "image": {
+  name: "Bazhena Dementyeva",
+  alternateName: ["Maria Dementyeva", "Maria Demy", "bashdemy"],
+  jobTitle: "Senior Software Engineer",
+  description:
+    "Senior Software Engineer specializing in backend development, cloud architecture, and AI-powered solutions.",
+  url: "https://bashdemy.com",
+  image: {
     "@type": "ImageObject",
-    "url": "https://bashdemy.com/profile-picture.JPG",
-    "width": 1200,
-    "height": 1200
+    url: "https://bashdemy.com/profile-picture.JPG",
+    width: 1200,
+    height: 1200,
   },
-  "knowsAbout": [
+  knowsAbout: [
     "Software Engineering",
+    "Senior Software Engineering",
     "Backend Development",
-    "Cloud Architecture", 
+    "Cloud Architecture",
     "AI Integration",
     "Java Programming",
+    "Java",
+    "TypeScript",
+    "TypeScript Programming",
     "Python Programming",
     "React Development",
+    "React",
+    "Next.js",
+    "NextJS",
     "Spring Boot",
     "AWS",
+    "Amazon Web Services",
     "Microservices",
     "DevOps",
     "API Development",
     "Database Design",
-    "System Architecture"
+    "System Architecture",
   ],
-  "hasOccupation": {
+  hasOccupation: {
     "@type": "Occupation",
-    "name": "Senior Software Engineer",
-    "occupationLocation": {
+    name: "Senior Software Engineer",
+    occupationLocation: {
       "@type": "Place",
-      "name": "Remote"
+      name: "Sydney, Australia",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Sydney",
+        addressCountry: "Australia",
+      },
     },
-    "skills": [
-      "Java", "Python", "React", "NextJS", "Spring Boot", "AWS", 
-      "Docker", "Microservices", "API Development", "Cloud Architecture",
-      "AI Integration", "Database Design", "DevOps", "CI/CD"
-    ]
+    skills: [
+      "Java",
+      "TypeScript",
+      "Python",
+      "React",
+      "Next.js",
+      "NextJS",
+      "Spring Boot",
+      "AWS",
+      "Docker",
+      "Microservices",
+      "API Development",
+      "Cloud Architecture",
+      "AI Integration",
+      "Database Design",
+      "DevOps",
+      "CI/CD",
+    ],
   },
-  "alumniOf": {
+  alumniOf: {
     "@type": "EducationalOrganization",
-    "name": "Educational Institution"
+    name: "Educational Institution",
   },
-  "gender": "Female",
-  "workExample": [
+  gender: "Female",
+  workExample: [
     {
       "@type": "SoftwareApplication",
-      "name": "Workflow86",
-      "description": "AI-powered workflow automation platform",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web"
+      name: "Workflow86",
+      description: "AI-powered workflow automation platform",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
     },
     {
-      "@type": "SoftwareApplication", 
-      "name": "Yes Help Network",
-      "description": "Youth-led platform for early intervention in Domestic & Family Violence",
-      "applicationCategory": "SocialNetworkingApplication",
-      "operatingSystem": "Web"
-    }
+      "@type": "SoftwareApplication",
+      name: "Yes Help Network",
+      description:
+        "Youth-led platform for early intervention in Domestic & Family Violence",
+      applicationCategory: "SocialNetworkingApplication",
+      operatingSystem: "Web",
+    },
   ],
-  "sameAs": [
-    "https://github.com/bashdemy",
-    "https://linkedin.com/in/bashdemy"
-  ]
+  sameAs: ["https://github.com/bashdemy", "https://linkedin.com/in/bashdemy"],
 };
 
 export default function RootLayout({
@@ -189,14 +237,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const structuredDataScript = `application/ld+json`;
-  
+
   return (
     <html lang="en">
       <head>
-        <script
-          type={structuredDataScript}
-          suppressHydrationWarning={true}
-        >
+        <script type={structuredDataScript} suppressHydrationWarning={true}>
           {JSON.stringify(structuredData)}
         </script>
       </head>

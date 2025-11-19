@@ -60,7 +60,7 @@ const PersonalProjects = ({ id }: PersonalProjectsProps) => (
     <div className="container-custom">
       <SectionIntro
         title="Personal Projects"
-        subtitle="Just for fun experiments that somehow made it to production."
+        subtitle="Just for fun."
         subtitleClassName="text-base md:text-lg"
       />
 

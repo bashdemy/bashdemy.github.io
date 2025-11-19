@@ -4,7 +4,6 @@ import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import About from "../../components/About";
 import Apps from "../../components/Apps";
-import Blog from "../../components/Blog";
 import Contact from "../../components/Contact";
 import Footer from "../../components/Footer";
 import FloatingFlowers from "../../components/FloatingFlowers";

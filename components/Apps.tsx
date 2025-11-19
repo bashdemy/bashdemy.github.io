@@ -68,8 +68,8 @@ const APPS_DATA: AppData[] = [
       "LangChain",
       "Microservices",
     ],
-    status: "Current Role",
-    statuses: ["Current Role", "Production"],
+    status: "Production",
+    statuses: ["Completed", "Production"],
     yc: {
       label: "YC W22",
       href: "https://www.ycombinator.com/companies/workflow86",
@@ -83,6 +83,19 @@ const APPS_DATA: AppData[] = [
       { label: "Sign up 😉", href: "https://app.workflow86.com" },
     ],
     extraLinksStyle: "or",
+  },
+  {
+    id: 5,
+    title: "Eucalyptus",
+    description:
+      "Eucalyptus builds full-stack digital clinics like Juniper, Pilot, Kin, and Software so patients can get world-class care without waiting rooms.",
+    stack: ["TypeScript", "Node.js", "PostgreSQL", "Go"],
+    status: "Production",
+    statuses: ["Current Role", "Production"],
+    href: "https://www.eucalyptus.vc/",
+    extraLinks: [
+      { label: "Meet Eucalyptus", href: "https://www.eucalyptus.vc/" },
+    ],
   },
   {
     id: 3,
@@ -414,7 +427,7 @@ const Apps = ({ id }: AppsProps) => {
   };
 
   return (
-    <section id={id} className="section-padding bg-theme-background-alt">
+    <section id={id} className="section-padding">
       <div className="container-custom">
         <SectionIntro
           title="Experience & Projects"

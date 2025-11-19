@@ -14,22 +14,25 @@ function Tag({
   className = "",
 }: TagProps) {
   const softToneClasses = {
-    accent: "bg-theme-accent/20 text-theme-accent",
-    primary: "bg-theme-primary/10 text-theme-primary",
-    muted: "bg-theme-secondary/10 text-theme-secondary",
-    success: "bg-green-500/20 text-green-600",
-    info: "bg-blue-500/20 text-blue-600",
-  };
-
-  const solidToneClasses = {
-    accent: "bg-theme-accent text-white",
-    primary: "bg-theme-primary text-white",
-    muted: "bg-theme-secondary text-white",
+    accent: "bg-theme-accent text-theme-background",
+    primary: "bg-theme-primary text-theme-background",
+    muted: "bg-theme-secondary text-theme-background",
     success: "bg-green-600 text-white",
     info: "bg-blue-600 text-white",
   };
 
-  const base = "px-2 py-1 rounded text-xs font-medium tech-label";
+  const solidToneClasses = {
+    accent: "bg-theme-background text-theme-accent border border-theme-accent",
+    primary:
+      "bg-theme-background text-theme-primary border border-theme-primary",
+    muted:
+      "bg-theme-background text-theme-secondary border border-theme-secondary",
+    success: "bg-white text-green-700 border border-green-600",
+    info: "bg-white text-blue-700 border border-blue-600",
+  };
+
+  const base =
+    "inline-flex items-center justify-center px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wide font-heading transition-colors duration-200";
   const toneClass =
     variant === "solid"
       ? solidToneClasses[tone] || solidToneClasses.accent

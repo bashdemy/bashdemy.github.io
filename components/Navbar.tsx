@@ -1,8 +1,13 @@
-import { useEffect, useMemo, useState, useRef } from 'react';
-import { Menu } from 'lucide-react';
-import { useScrollSpy } from '../hooks/useScrollSpy';
+import { useEffect, useMemo, useState, useRef } from "react";
+import { Menu } from "lucide-react";
+import { useScrollSpy } from "../hooks/useScrollSpy";
 
 const SCROLL_OFFSET = 100;
+
+interface NavItem {
+  id: string;
+  label: string;
+}
 
 interface NavbarProps {
   activeSection: string;
@@ -12,12 +17,12 @@ interface NavbarProps {
 const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const menuRef = useRef(null);
-  const navItems = useMemo(
+  const navItems: NavItem[] = useMemo(
     () => [
-      { id: 'about', label: 'About' },
-      { id: 'apps', label: 'Apps' },
-      { id: 'blog', label: 'Blog' },
-      { id: 'contact', label: 'Contact' },
+      { id: "about", label: "About" },
+      { id: "apps", label: "Apps" },
+      { id: "personal-projects", label: "Personal Projects" },
+      { id: "contact", label: "Contact" },
     ],
     []
   );
@@ -35,14 +40,14 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
   const scrollToSection = sectionId => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
     setIsMobileOpen(false);
   };
 
   const getNavItemClassName = itemId => {
     const baseClasses =
-      'px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 font-heading';
+      "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 font-heading";
     return activeSection === itemId
       ? `${baseClasses} text-theme-accent bg-theme-accent/20`
       : `${baseClasses} text-theme-secondary hover:text-theme-accent hover:bg-theme-accent/10`;
@@ -66,7 +71,7 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={getNavItemClassName(item.id)}
-                  aria-current={activeSection === item.id ? 'page' : undefined}
+                  aria-current={activeSection === item.id ? "page" : undefined}
                   role="menuitem"
                 >
                   {item.label}
@@ -79,7 +84,7 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
             <button
               className="text-theme-secondary hover:text-theme-accent"
               aria-label={
-                isMobileOpen ? 'Close mobile menu' : 'Open mobile menu'
+                isMobileOpen ? "Close mobile menu" : "Open mobile menu"
               }
               aria-expanded={isMobileOpen}
               aria-controls="mobile-menu"
@@ -94,7 +99,7 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
           id="mobile-menu"
           ref={menuRef}
           className={`${
-            isMobileOpen ? 'block' : 'hidden'
+            isMobileOpen ? "block" : "hidden"
           } md:hidden py-2 border-t border-theme-border`}
           role="menubar"
         >
@@ -104,7 +109,7 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={getNavItemClassName(item.id)}
-                aria-current={activeSection === item.id ? 'page' : undefined}
+                aria-current={activeSection === item.id ? "page" : undefined}
                 role="menuitem"
               >
                 {item.label}

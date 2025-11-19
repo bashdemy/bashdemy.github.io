@@ -1,17 +1,18 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Navbar from '../../components/Navbar';
-import About from '../../components/About';
-import Apps from '../../components/Apps';
-import Blog from '../../components/Blog';
-import Contact from '../../components/Contact';
-import Footer from '../../components/Footer';
-import FloatingFlowers from '../../components/FloatingFlowers';
-import HumanTouch from '../../components/HumanTouch';
+import { useState } from "react";
+import Navbar from "../../components/Navbar";
+import About from "../../components/About";
+import Apps from "../../components/Apps";
+import Blog from "../../components/Blog";
+import Contact from "../../components/Contact";
+import Footer from "../../components/Footer";
+import FloatingFlowers from "../../components/FloatingFlowers";
+import HumanTouch from "../../components/HumanTouch";
+import PersonalProjects from "../../components/PersonalProjects";
 
 export default function HomePage() {
-  const [activeSection, setActiveSection] = useState('about');
+  const [activeSection, setActiveSection] = useState("about");
 
   return (
     <div className="min-h-screen">
@@ -24,7 +25,7 @@ export default function HomePage() {
       <main className="pt-16">
         <About id="about" />
         <Apps id="apps" />
-        <Blog id="blog" />
+        <PersonalProjects id="personal-projects" />
         <Contact id="contact" />
         <HumanTouch id="human-touch" />
       </main>

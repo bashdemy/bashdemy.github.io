@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface Flower {
   id: number;
@@ -13,12 +13,12 @@ const FloatingFlowers = () => {
   const [flowers, setFlowers] = useState<Flower[]>([]);
 
   useEffect(() => {
-    const newFlowers = Array.from({ length: 20 }, (_, index) => ({
+    const newFlowers = Array.from({ length: 25 }, (_, index) => ({
       id: index,
       x: Math.random() * 100,
-      y: Math.random() * 80,
-      delay: Math.random() * 15,
-      duration: 20 + Math.random() * 15,
+      y: -10 + Math.random() * 110,
+      delay: Math.random() * 20,
+      duration: 25 + Math.random() * 20,
       size: 40 + Math.random() * 30,
     }));
     setFlowers(newFlowers);

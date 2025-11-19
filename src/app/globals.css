@@ -205,12 +205,12 @@
 
   .floating-flowers-container {
     position: fixed;
-    top: 80px;
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - 80px);
+    height: 100vh;
     z-index: -1;
     pointer-events: none;
-    overflow: hidden;
+    overflow: visible;
   }
 }

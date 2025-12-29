@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, useRef } from "react";
 import { Menu } from "lucide-react";
 import { useScrollSpy } from "../hooks/useScrollSpy";
+import { LOCALE_COPY, LOCALE_OPTIONS, Locale } from "../constants/locale";
 
 const SCROLL_OFFSET = 100;
 
@@ -12,19 +13,29 @@ interface NavItem {
 interface NavbarProps {
   activeSection: string;
   setActiveSection: (section: string) => void;
+  locale: Locale;
+  onLocaleChange: (locale: Locale) => void;
 }
 
-const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
+const Navbar = ({
+  activeSection,
+  setActiveSection,
+  locale,
+  onLocaleChange,
+}: NavbarProps) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const menuRef = useRef(null);
   const navItems: NavItem[] = useMemo(
     () => [
-      { id: "about", label: "About" },
-      { id: "apps", label: "Apps" },
-      { id: "personal-projects", label: "Personal Projects" },
-      { id: "contact", label: "Contact" },
+      { id: "about", label: LOCALE_COPY[locale].nav.about },
+      { id: "apps", label: LOCALE_COPY[locale].nav.apps },
+      {
+        id: "personal-projects",
+        label: LOCALE_COPY[locale].nav.personalProjects,
+      },
+      { id: "contact", label: LOCALE_COPY[locale].nav.contact },
     ],
-    []
+    [locale]
   );
 
   const observedActive = useScrollSpy(
@@ -80,6 +91,26 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
             </div>
           </div>
 
+          <div className="hidden md:flex items-center gap-2">
+            <div className="inline-flex rounded-full border border-theme-border bg-white/70 shadow-sm">
+              {LOCALE_OPTIONS.map(option => (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => onLocaleChange(option.value)}
+                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
+                    option.value === locale
+                      ? "bg-theme-primary text-white"
+                      : "text-theme-primary hover:bg-theme-accent/60"
+                  }`}
+                  aria-pressed={option.value === locale}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="md:hidden">
             <button
               className="text-theme-secondary hover:text-theme-accent"
@@ -103,6 +134,25 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
           } md:hidden py-2 border-t border-theme-border`}
           role="menubar"
         >
+          <div className="flex justify-end pb-2">
+            <div className="inline-flex rounded-full border border-theme-border bg-white/70 shadow-sm">
+              {LOCALE_OPTIONS.map(option => (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => onLocaleChange(option.value)}
+                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
+                    option.value === locale
+                      ? "bg-theme-primary text-white"
+                      : "text-theme-primary hover:bg-theme-accent/60"
+                  }`}
+                  aria-pressed={option.value === locale}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="flex flex-col space-y-1">
             {navItems.map(item => (
               <button

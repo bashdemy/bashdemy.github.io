@@ -4,6 +4,19 @@ import Card from "./ui/Card";
 import StatusBadge from "./ui/StatusBadge";
 import Tag from "./ui/Tag";
 import SectionIntro from "./ui/SectionIntro";
+import { LOCALE_COPY, Locale } from "../constants/locale";
+
+interface LocalizedFields {
+  title?: string;
+  description?: string;
+  stack?: string[];
+  chipsLabel?: string;
+  extraLinks?: Array<{
+    label: string;
+    href: string;
+  }>;
+  imageAlt?: string;
+}
 
 interface AppData {
   id: number;
@@ -28,6 +41,7 @@ interface AppData {
     href: string;
   }>;
   extraLinksStyle?: string;
+  translations?: Partial<Record<Locale, LocalizedFields>>;
 }
 
 const APPS_DATA: AppData[] = [
@@ -45,6 +59,26 @@ const APPS_DATA: AppData[] = [
     extraLinks: [
       { label: "Meet Eucalyptus", href: "https://www.eucalyptus.vc/" },
     ],
+    translations: {
+      ru: {
+        description:
+          "Eucalyptus строит полнофункциональные цифровые клиники — Juniper, Pilot, Kin и Software — чтобы пациенты получали качественную помощь без ожидания.",
+        stack: [
+          "TypeScript",
+          "Node.js",
+          "PostgreSQL",
+          "Go",
+          "Мобильная разработка",
+        ],
+        extraLinks: [
+          {
+            label: "О компании Eucalyptus",
+            href: "https://www.eucalyptus.vc/",
+          },
+        ],
+        imageAlt: "Логотип Eucalyptus",
+      },
+    },
   },
   {
     id: 6,
@@ -60,6 +94,15 @@ const APPS_DATA: AppData[] = [
     imageSrc: "/unsw_0.png",
     imageAlt: "UNSW logo",
     extraLinks: [{ label: "UNSW", href: "https://www.unsw.edu.au/" }],
+    translations: {
+      ru: {
+        description:
+          "Учусь на программе Master of Information Technology (Artificial Intelligence) в UNSW — двухлетняя магистратура со специализацией в области ИИ.",
+        stack: ["Магистр ИТ (Искусственный интеллект)"],
+        extraLinks: [{ label: "UNSW", href: "https://www.unsw.edu.au/" }],
+        imageAlt: "Логотип UNSW",
+      },
+    },
   },
   {
     id: 2,
@@ -89,6 +132,28 @@ const APPS_DATA: AppData[] = [
       { label: "Sign up 😉", href: "https://app.workflow86.com" },
     ],
     extraLinksStyle: "or",
+    translations: {
+      ru: {
+        description:
+          "Workflow86 помогает командам автоматизировать и масштабировать сложные бизнес-процессы с помощью AI — превращая ручные операции в надежные рабочие процессы.",
+        stack: [
+          "React",
+          "Java (Spring Boot)",
+          "AWS",
+          "OpenAI",
+          "LangChain",
+          "Микросервисы",
+        ],
+        extraLinks: [
+          { label: "Подробнее", href: "https://www.workflow86.com" },
+          {
+            label: "Зарегистрироваться 😉",
+            href: "https://app.workflow86.com",
+          },
+        ],
+        imageAlt: "Логотип Workflow86",
+      },
+    },
   },
   {
     id: 1,
@@ -109,6 +174,21 @@ const APPS_DATA: AppData[] = [
     href: "https://yeshelpnetwork.github.io/",
     imageSrc: "/yeshelp-brand-lockup.png",
     imageAlt: "Yes Help Network brand lockup",
+    translations: {
+      ru: {
+        description:
+          "Молодежная платформа раннего реагирования на домашнее и семейное насилие. Yes Help Network создаёт безопасные пространства и программы наставничества, развития навыков и поддержки сообщества.",
+        stack: [
+          "Next.js (App Router)",
+          "TypeScript",
+          "MUI",
+          "Tailwind CSS",
+          "GitHub Actions",
+          "GitHub Pages",
+        ],
+        imageAlt: "Бренд Yes Help Network",
+      },
+    },
   },
   {
     id: 3,
@@ -139,6 +219,23 @@ const APPS_DATA: AppData[] = [
         href: "https://www.uow.edu.au/",
       },
     ],
+    translations: {
+      ru: {
+        description:
+          "Софт для визуализации данных (капстон-проект): обрабатывал live GTFS-потоки и показывал инсайты на картах, графиках и дашбордах. Проект занял второе место на ярмарке EIS Projects.",
+        extraLinks: [
+          {
+            label: "Sydney Trains",
+            href: "https://transportnsw.info/",
+          },
+          {
+            label: "UOW",
+            href: "https://www.uow.edu.au/",
+          },
+        ],
+        imageAlt: "Проект визуализации данных Sydney Trains",
+      },
+    },
   },
   {
     id: 4,
@@ -160,15 +257,47 @@ const APPS_DATA: AppData[] = [
       { label: "UOW", href: "https://www.uow.edu.au/" },
       { label: "Navitas", href: "https://www.navitas.com/" },
     ],
+    translations: {
+      ru: {
+        description:
+          "Бакалавр компьютерных наук (Software Engineering) в University of Wollongong и Certificate IV in Business (BSB40215) в Navitas Professional.",
+        chipsLabel: "Образование",
+        extraLinks: [
+          { label: "UOW", href: "https://www.uow.edu.au/" },
+          { label: "Navitas", href: "https://www.navitas.com/" },
+        ],
+        imageAlt: "Фото с выпуска",
+      },
+    },
   },
 ];
 
-interface AppCardProps {
-  app: AppData;
+function localizeApp(app: AppData, locale: Locale): AppData {
+  const translation = app.translations?.[locale];
+
+  if (!translation) return app;
+
+  return {
+    ...app,
+    title: translation.title ?? app.title,
+    description: translation.description ?? app.description,
+    stack: translation.stack ?? app.stack,
+    chipsLabel: translation.chipsLabel ?? app.chipsLabel,
+    extraLinks: translation.extraLinks ?? app.extraLinks,
+    imageAlt: translation.imageAlt ?? app.imageAlt,
+  };
 }
 
-const AppCard = ({ app }: AppCardProps) => {
+interface AppCardProps {
+  app: AppData;
+  locale: Locale;
+}
+
+const AppCard = ({ app, locale }: AppCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const copy = LOCALE_COPY[locale];
+  const appCopy = copy.apps;
+  const commonCopy = copy.common;
   const titleText = app.title.replace("(YC W22)", "").trim();
   const linkTarget = app.href || app.extraLinks?.[0]?.href;
   const titleContent = linkTarget ? (
@@ -192,6 +321,7 @@ const AppCard = ({ app }: AppCardProps) => {
 
   const nonProductionStatuses = statuses.filter(s => s !== "Production");
   const productionStatuses = statuses.filter(s => s === "Production");
+  const statusLabel = (status: string) => appCopy.statuses[status] || status;
 
   const imageClassName = [
     "mb-4 rounded border border-theme-border bg-white object-contain p-3",
@@ -264,10 +394,10 @@ const AppCard = ({ app }: AppCardProps) => {
                     variant="solid"
                     className="px-3 py-1 rounded-full text-sm shadow-sm"
                   >
-                    {s}
+                    {statusLabel(s)}
                   </Tag>
                 ) : (
-                  <StatusBadge key={s} status={s} />
+                  <StatusBadge key={s} status={s} label={statusLabel(s)} />
                 )
               )}
               {app.yc && (
@@ -286,7 +416,7 @@ const AppCard = ({ app }: AppCardProps) => {
         {productionStatuses.length > 0 && (
           <div className="flex items-center gap-2">
             {productionStatuses.map(s => (
-              <StatusBadge key={s} status={s} />
+              <StatusBadge key={s} status={s} label={statusLabel(s)} />
             ))}
           </div>
         )}
@@ -316,7 +446,9 @@ const AppCard = ({ app }: AppCardProps) => {
                   >
                     {app.extraLinks[0].label}
                   </a>
-                  <span className="text-theme-muted text-sm">or</span>
+                  <span className="text-theme-muted text-sm">
+                    {commonCopy.or}
+                  </span>
                   <a
                     href={app.extraLinks[1].href}
                     target="_blank"
@@ -344,7 +476,7 @@ const AppCard = ({ app }: AppCardProps) => {
 
           <div className="space-y-2 mb-4">
             <h4 className="text-sm font-medium text-theme-primary font-heading">
-              {app.chipsLabel || "Tech Stack"}
+              {app.chipsLabel || commonCopy.techStack}
             </h4>
             <div className="flex flex-wrap gap-2">
               {app.stack.map(tech => (
@@ -366,10 +498,10 @@ const AppCard = ({ app }: AppCardProps) => {
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="cursor-pointer"
-          aria-label={isExpanded ? "Collapse" : "Expand"}
+          aria-label={isExpanded ? commonCopy.collapse : commonCopy.expand}
         >
           <Tag tone="accent" variant="solid">
-            {isExpanded ? "Collapse" : "Expand"}
+            {isExpanded ? commonCopy.collapse : commonCopy.expand}
           </Tag>
         </button>
       </div>
@@ -379,23 +511,27 @@ const AppCard = ({ app }: AppCardProps) => {
 
 interface AppsProps {
   id: string;
+  locale: Locale;
 }
 
-const Apps = ({ id }: AppsProps) => {
+const Apps = ({ id, locale }: AppsProps) => {
+  const copy = LOCALE_COPY[locale];
+  const appCopy = copy.apps;
   const hasApps = Array.isArray(APPS_DATA) && APPS_DATA.length > 0;
+  const localizedApps = APPS_DATA.map(app => localizeApp(app, locale));
 
   return (
     <section id={id} className="section-padding">
       <div className="container-custom">
         <SectionIntro
-          title="Experience & Projects"
-          subtitle="A collection of my work experience, technical projects, and contributions."
+          title={appCopy.section.title}
+          subtitle={appCopy.section.subtitle}
         />
 
         {hasApps ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-            {APPS_DATA.map(app => (
-              <AppCard key={app.id} app={app} />
+            {localizedApps.map(app => (
+              <AppCard key={app.id} app={app} locale={locale} />
             ))}
           </div>
         ) : (

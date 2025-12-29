@@ -1,5 +1,12 @@
-const Footer = () => {
+import { LOCALE_COPY, Locale } from "../constants/locale";
+
+interface FooterProps {
+  locale: Locale;
+}
+
+const Footer = ({ locale }: FooterProps) => {
   const currentYear = new Date().getFullYear();
+  const copy = LOCALE_COPY[locale].footer;
 
   return (
     <footer
@@ -16,11 +23,9 @@ const Footer = () => {
             </div>
 
             <div className="text-center md:text-right">
-              <p className="text-sm text-theme-muted font-body">
-                Software Engineer • Sydney, Australia
-              </p>
+              <p className="text-sm text-theme-muted font-body">{copy.role}</p>
               <p className="text-sm text-theme-muted font-body mt-2">
-                Built by bashdemy ❤️
+                {copy.builtBy}
               </p>
             </div>
           </div>

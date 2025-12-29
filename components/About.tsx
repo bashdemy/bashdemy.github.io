@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Card from "./ui/Card";
 import Tag from "./ui/Tag";
 import ProfileImage from "./ui/ProfileImage";
 import SectionIntro from "./ui/SectionIntro";
 import { SKILLS_DATA, STRENGTHS_DATA } from "../constants/about";
+import { LOCALE_COPY, Locale } from "../constants/locale";
 
 const COLLAPSED_MAX_HEIGHT = "max-h-[400px]";
 const EXPANDED_MAX_HEIGHT = "max-h-none";
@@ -17,26 +18,40 @@ const TAG_BUTTON_CLASSES =
 interface ToggleButtonProps {
   isExpanded: boolean;
   onToggle: () => void;
+  labelExpand: string;
+  labelCollapse: string;
 }
 
-const ToggleButton = ({ isExpanded, onToggle }: ToggleButtonProps) => {
+const ToggleButton = ({
+  isExpanded,
+  onToggle,
+  labelExpand,
+  labelCollapse,
+}: ToggleButtonProps) => {
   return (
     <div className="mt-6 flex justify-center">
       <button
         onClick={onToggle}
         className="cursor-pointer"
-        aria-label={isExpanded ? "Collapse" : "Expand"}
+        aria-label={isExpanded ? labelCollapse : labelExpand}
       >
         <Tag tone="accent" variant="solid" className={TAG_BUTTON_CLASSES}>
-          {isExpanded ? "Collapse" : "Expand"}
+          {isExpanded ? labelCollapse : labelExpand}
         </Tag>
       </button>
     </div>
   );
 };
 
-const SkillsSection = () => {
+const SkillsSection = ({
+  locale,
+  professionalIdentity,
+}: {
+  locale: Locale;
+  professionalIdentity: string;
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const copy = LOCALE_COPY[locale];
   const contentClassName = `${TRANSITION_CLASSES} ${
     isExpanded ? EXPANDED_MAX_HEIGHT : COLLAPSED_MAX_HEIGHT
   } opacity-100`;
@@ -44,7 +59,7 @@ const SkillsSection = () => {
   return (
     <Card className="h-full flex flex-col">
       <h3 className="text-2xl font-semibold text-theme-primary mb-6 font-heading">
-        Skills & Technologies
+        {copy.about.skillsTitle}
       </h3>
       <div className={contentClassName}>
         <div className="space-y-6">
@@ -70,13 +85,10 @@ const SkillsSection = () => {
 
           <div className="pt-4 border-t border-theme-border">
             <h4 className="text-lg font-semibold text-theme-primary mb-4 font-heading">
-              Professional Identity
+              {copy.about.professionalIdentityLabel}
             </h4>
             <p className="text-theme-secondary text-sm leading-relaxed font-body opacity-90">
-              Professionally, I go by <strong>Bazhena Dementyeva</strong>. I
-              also respond to <strong>Maria Dementyeva</strong> or
-              <strong> Maria Demy</strong>, and online I&apos;m
-              <strong> bashdemy</strong>.
+              {professionalIdentity}
             </p>
           </div>
         </div>
@@ -84,6 +96,8 @@ const SkillsSection = () => {
       <ToggleButton
         isExpanded={isExpanded}
         onToggle={() => setIsExpanded(!isExpanded)}
+        labelExpand={copy.common.expand}
+        labelCollapse={copy.common.collapse}
       />
     </Card>
   );
@@ -91,10 +105,17 @@ const SkillsSection = () => {
 
 interface AboutProps {
   id: string;
+  locale: Locale;
 }
 
-const AboutContent = () => {
+const AboutContent = ({ locale }: { locale: Locale }) => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
+  const copy = LOCALE_COPY[locale];
+  const paragraphs = copy.about.intro;
+  const strengths = useMemo(
+    () => copy.about.strengths || STRENGTHS_DATA,
+    [copy.about.strengths]
+  );
   const contentClassName = `${TRANSITION_CLASSES} ${
     isAboutExpanded ? EXPANDED_MAX_HEIGHT : COLLAPSED_MAX_HEIGHT
   } opacity-100`;
@@ -102,40 +123,24 @@ const AboutContent = () => {
   return (
     <Card className="h-full flex flex-col">
       <h3 className="text-2xl font-semibold text-theme-primary mb-6 font-heading">
-        About
+        {copy.about.cardTitle}
       </h3>
       <div className={contentClassName}>
         <div className="space-y-6">
-          <p className="text-theme-secondary leading-relaxed font-body description">
-            Engineer focused on automating routine tasks, building reliable
-            software, and scaling systems that matter. I take a{" "}
-            <strong>full-stack</strong>, generalist approach but am always ready
-            to dive deep into problems when needed.
-          </p>
-
-          <p className="text-theme-secondary leading-relaxed font-body description">
-            My experience includes <strong>Java</strong> (with{" "}
-            <strong>Spring Boot</strong>) and <strong>JavaScript</strong> (with{" "}
-            <strong>React</strong> and <strong>NextJS</strong>). I build
-            resilient, user-focused applications, optimize{" "}
-            <strong>cloud infrastructure</strong> (mostly <strong>AWS</strong>),
-            and have a strong interest in practical <strong>AI</strong> and
-            automation, including nocode and lowcode solutions. I&apos;m
-            committed to making tech more inclusive, with a focus on supporting
-            women in the industry.
-          </p>
-
-          <p className="text-theme-secondary leading-relaxed font-body description">
-            I also believe building software should be fun. The process should
-            feel collaborative and creative, and the result should bring people
-            joy while staying reliable and thoughtful.
-          </p>
+          {paragraphs.map(paragraph => (
+            <p
+              key={paragraph}
+              className="text-theme-secondary leading-relaxed font-body description"
+            >
+              {paragraph}
+            </p>
+          ))}
 
           <h4 className="text-lg font-semibold text-theme-primary mb-4 font-heading">
-            Key Strengths
+            {copy.about.strengthsTitle}
           </h4>
           <ul className="space-y-3 text-theme-secondary font-body">
-            {STRENGTHS_DATA.map((strength, index) => (
+            {strengths.map((strength, index) => (
               <li key={index} className="flex items-start">
                 <span
                   className="text-theme-accent mr-3 mt-1"
@@ -152,12 +157,15 @@ const AboutContent = () => {
       <ToggleButton
         isExpanded={isAboutExpanded}
         onToggle={() => setIsAboutExpanded(!isAboutExpanded)}
+        labelExpand={copy.common.expand}
+        labelCollapse={copy.common.collapse}
       />
     </Card>
   );
 };
 
-const About = ({ id }: AboutProps) => {
+const About = ({ id, locale }: AboutProps) => {
+  const copy = LOCALE_COPY[locale];
   return (
     <section id={id} className="section-padding">
       <div className="container-custom">
@@ -165,18 +173,18 @@ const About = ({ id }: AboutProps) => {
           <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-8">
             <div className="flex-1 text-center lg:text-left">
               <SectionIntro
-                title="Bazhena Dementyeva"
-                subtitle='(think zh="g" as in "genre," for advanced users. Otherwise, "Maria" is perfectly acceptable.)'
+                title={copy.about.title}
+                subtitle={copy.about.subtitle}
                 align="left"
                 className="mb-6"
                 subtitleClassName="text-sm opacity-80"
               />
               <div className="space-y-2">
                 <p className="text-theme-accent font-semibold text-xl font-heading">
-                  Software Engineer
+                  {copy.about.role}
                 </p>
                 <p className="text-sm text-theme-secondary font-body opacity-80">
-                  Sydney, Australia • She/Her
+                  {copy.about.location}
                 </p>
               </div>
             </div>
@@ -189,10 +197,13 @@ const About = ({ id }: AboutProps) => {
         <div className="space-y-12">
           <div className="grid lg:grid-cols-2 gap-12 items-stretch">
             <div>
-              <AboutContent />
+              <AboutContent locale={locale} />
             </div>
             <div>
-              <SkillsSection />
+              <SkillsSection
+                locale={locale}
+                professionalIdentity={copy.about.professionalIdentity}
+              />
             </div>
           </div>
         </div>

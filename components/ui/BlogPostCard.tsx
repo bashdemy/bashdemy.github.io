@@ -1,5 +1,6 @@
-import Card from './Card';
-import Tag from './Tag';
+import Card from "./Card";
+import Tag from "./Tag";
+import { LOCALE_COPY, Locale } from "../../constants/locale";
 
 interface BlogPost {
   id: number;
@@ -14,18 +15,20 @@ interface BlogPost {
 
 interface BlogPostCardProps {
   post: BlogPost;
+  locale?: Locale;
 }
 
-function formatDate(dateString: string) {
+function formatDate(dateString: string, locale: string) {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return date.toLocaleDateString(locale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 
-function BlogPostCard({ post }: BlogPostCardProps) {
+function BlogPostCard({ post, locale = "en" }: BlogPostCardProps) {
+  const copy = LOCALE_COPY[locale].blog;
   return (
     <Card as="article" className="group hover:shadow-lg transition-shadow">
       <div className="flex items-center justify-between mb-3">
@@ -33,7 +36,7 @@ function BlogPostCard({ post }: BlogPostCardProps) {
           className="text-sm text-theme-muted font-body"
           dateTime={post.date}
         >
-          {formatDate(post.date)}
+          {formatDate(post.date, copy.dateLocale)}
         </time>
         <span className="text-sm text-theme-muted font-body">
           {post.readTime}
@@ -64,11 +67,11 @@ function BlogPostCard({ post }: BlogPostCardProps) {
             rel="noopener noreferrer"
             className="text-theme-accent hover:text-theme-accent-hover font-medium text-sm transition-colors font-heading"
           >
-            Read on Substack →
+            {copy.readExternal}
           </a>
         ) : (
           <button className="text-theme-accent hover:text-theme-accent-hover font-medium text-sm transition-colors font-heading">
-            Read more →
+            {copy.readMore}
           </button>
         )}
       </div>

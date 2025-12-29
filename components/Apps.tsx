@@ -18,7 +18,6 @@ interface AppData {
   imageSrcs?: string[];
   imageAlt?: string;
   imageClassName?: string;
-  linkImage?: boolean;
   chipsLabel?: string;
   yc?: {
     label: string;
@@ -51,15 +50,15 @@ const APPS_DATA: AppData[] = [
     id: 6,
     title: "UNSW",
     description:
-      "Currently pursuing Master of Information Technology (Artificial Intelligence) at UNSW. The Master of Information Technology is a 2-year program with a specialisation in Artificial Intelligence.",
+      "Currently pursuing Master of Information Technology (Artificial Intelligence) at UNSW. The Master of Information Technology program with a specialisation in Artificial Intelligence.",
     stack: ["M.IT (Artificial Intelligence)"],
     chipsLabel: "Credentials",
     status: "Currently in Progress",
     statuses: ["Currently in Progress"],
     isSubheading: true,
+    href: "https://www.unsw.edu.au/",
     imageSrc: "/unsw_0.png",
     imageAlt: "UNSW logo",
-    linkImage: false,
     extraLinks: [{ label: "UNSW", href: "https://www.unsw.edu.au/" }],
   },
   {
@@ -130,7 +129,6 @@ const APPS_DATA: AppData[] = [
     imageSrcs: ["/group.JPG", "/runner-up-project.jpg"],
     imageAlt: "Sydney Trains data visualisation project",
     isSubheading: true,
-    linkImage: false,
     extraLinks: [
       {
         label: "Sydney Trains",
@@ -154,10 +152,10 @@ const APPS_DATA: AppData[] = [
     chipsLabel: "Credentials",
     status: "Completed",
     isSubheading: true,
+    href: "https://www.uow.edu.au/",
     imageSrc: "/grad.jpg",
     imageAlt: "Graduation photo",
     imageClassName: "w-full h-auto max-h-56 md:max-h-72 object-contain p-0",
-    linkImage: false,
     extraLinks: [
       { label: "UOW", href: "https://www.uow.edu.au/" },
       { label: "Navitas", href: "https://www.navitas.com/" },
@@ -172,9 +170,10 @@ interface AppCardProps {
 const AppCard = ({ app }: AppCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const titleText = app.title.replace("(YC W22)", "").trim();
-  const titleContent = app.href ? (
+  const linkTarget = app.href || app.extraLinks?.[0]?.href;
+  const titleContent = linkTarget ? (
     <a
-      href={app.href}
+      href={linkTarget}
       target="_blank"
       rel="noopener noreferrer"
       className="hover:underline"
@@ -185,17 +184,14 @@ const AppCard = ({ app }: AppCardProps) => {
     titleText
   );
 
-  const nonProductionStatuses = Array.isArray(app.statuses)
-    ? app.statuses.filter(s => s !== "Production")
-    : app.status && app.status !== "Production"
+  const statuses = Array.isArray(app.statuses)
+    ? app.statuses
+    : app.status
       ? [app.status]
       : [];
 
-  const productionStatuses = Array.isArray(app.statuses)
-    ? app.statuses.filter(s => s === "Production")
-    : app.status === "Production"
-      ? [app.status]
-      : [];
+  const nonProductionStatuses = statuses.filter(s => s !== "Production");
+  const productionStatuses = statuses.filter(s => s === "Production");
 
   const imageClassName = [
     "mb-4 rounded border border-theme-border bg-white object-contain p-3",
@@ -206,39 +202,46 @@ const AppCard = ({ app }: AppCardProps) => {
     isExpanded ? "max-h-[2000px]" : "max-h-0"
   }`;
 
-  return (
-    <Card className="group flex flex-col h-full">
-      {app.imageSrcs && app.imageSrcs.length > 0 ? (
+  const imageContent = (() => {
+    if (app.imageSrcs && app.imageSrcs.length > 0) {
+      return (
         <SwitchableImages
           sources={app.imageSrcs}
           alt={app.imageAlt || `${app.title} image`}
+          linkTarget={linkTarget}
         />
-      ) : app.imageSrc ? (
-        app.href && app.linkImage !== false ? (
-          <a
-            href={app.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Open ${app.title}`}
-          >
-            <Image
-              src={app.imageSrc}
-              alt={app.imageAlt || `${app.title} logo`}
-              width={300}
-              height={200}
-              className={imageClassName}
-            />
-          </a>
-        ) : (
-          <Image
-            src={app.imageSrc}
-            alt={app.imageAlt || `${app.title} logo`}
-            width={300}
-            height={200}
-            className={imageClassName}
-          />
-        )
-      ) : null}
+      );
+    }
+
+    if (!app.imageSrc) return null;
+
+    const image = (
+      <Image
+        src={app.imageSrc}
+        alt={app.imageAlt || `${app.title} logo`}
+        width={300}
+        height={200}
+        className={imageClassName}
+      />
+    );
+
+    return linkTarget ? (
+      <a
+        href={linkTarget}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${app.title}`}
+      >
+        {image}
+      </a>
+    ) : (
+      image
+    );
+  })();
+
+  return (
+    <Card className="group flex flex-col self-start">
+      {imageContent}
 
       <div className="flex items-center justify-between mb-4">
         <div className="flex-1 min-w-0">
@@ -418,22 +421,38 @@ export default Apps;
 interface SwitchableImagesProps {
   sources: string[];
   alt: string;
+  linkTarget?: string;
 }
 
-function SwitchableImages({ sources, alt }: SwitchableImagesProps) {
+function SwitchableImages({ sources, alt, linkTarget }: SwitchableImagesProps) {
   const [active, setActive] = useState(0);
   const safeSources = sources.slice(0, 5);
+  const mainImage = (
+    <Image
+      src={safeSources[active]}
+      alt={alt}
+      width={400}
+      height={300}
+      className="w-full h-auto object-contain"
+    />
+  );
 
   return (
     <div className="mb-4">
       <div className="w-full h-auto max-h-56 md:max-h-72 rounded border border-theme-border overflow-hidden bg-white p-0">
-        <Image
-          src={safeSources[active]}
-          alt={alt}
-          width={400}
-          height={300}
-          className="w-full h-auto object-contain"
-        />
+        {linkTarget ? (
+          <a
+            href={linkTarget}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${alt}`}
+            className="block"
+          >
+            {mainImage}
+          </a>
+        ) : (
+          mainImage
+        )}
       </div>
       <div className="mt-2 flex gap-2">
         {safeSources.map((src, index) => (

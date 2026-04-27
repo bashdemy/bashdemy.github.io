@@ -197,6 +197,54 @@ const APPS_DATA: AppData[] = [
     },
   },
   {
+    id: 1,
+    title: "Yes Help Network",
+    description:
+      "Built a youth-led platform focused on early intervention for Domestic & Family Violence, creating a safe digital home for programs, mentorship, resources, and community support.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "MUI",
+      "Tailwind CSS",
+      "GitHub Actions",
+      "GitHub Pages",
+    ],
+    status: "Production",
+    statuses: ["Completed", "Production"],
+    isSubheading: true,
+    href: "https://yeshelpnetwork.github.io/",
+    imageSrc: "/yeshelp-brand-lockup.png",
+    imageAlt: "Yes Help Network brand lockup",
+    imageClassName: "w-full h-32 object-contain p-4",
+    extraLinks: [
+      {
+        label: "View site",
+        href: "https://yeshelpnetwork.github.io/",
+      },
+    ],
+    translations: {
+      ru: {
+        description:
+          "Разработала молодежную платформу раннего реагирования на домашнее и семейное насилие: безопасное цифровое пространство для программ, наставничества, ресурсов и поддержки сообщества.",
+        stack: [
+          "Next.js",
+          "TypeScript",
+          "MUI",
+          "Tailwind CSS",
+          "GitHub Actions",
+          "GitHub Pages",
+        ],
+        extraLinks: [
+          {
+            label: "Открыть сайт",
+            href: "https://yeshelpnetwork.github.io/",
+          },
+        ],
+        imageAlt: "Бренд Yes Help Network",
+      },
+    },
+  },
+  {
     id: 3,
     title: "Sydney Trains",
     description:

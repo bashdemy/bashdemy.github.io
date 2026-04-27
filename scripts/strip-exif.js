@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 
-import fs from 'fs/promises';
-import path from 'path';
-import { cwd, argv, exit } from 'node:process';
-import sharp from 'sharp';
+import fs from "fs/promises";
+import path from "path";
+import { cwd, argv, exit } from "node:process";
+import { fileURLToPath } from "url";
+import sharp from "sharp";
 
-const distDir = path.join(cwd(), 'out');
+const distDir = path.join(cwd(), "out");
+const isDirectRun = argv[1]
+  ? path.resolve(argv[1]) === fileURLToPath(import.meta.url)
+  : false;
 
 async function* walk(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
@@ -22,7 +26,7 @@ async function* walk(dir) {
 function isImageNeedingStrip(filePath) {
   const lower = filePath.toLowerCase();
   return (
-    lower.endsWith('.jpg') || lower.endsWith('.jpeg') || lower.endsWith('.png')
+    lower.endsWith(".jpg") || lower.endsWith(".jpeg") || lower.endsWith(".png")
   );
 }
 
@@ -39,7 +43,7 @@ async function stripExifInPlace(filePath) {
 
 async function run() {
   try {
-    console.log('🔧 Stripping EXIF metadata from images in dist...');
+    console.log("🔧 Stripping EXIF metadata from images in dist...");
     let processed = 0;
     for await (const filePath of walk(distDir)) {
       if (isImageNeedingStrip(filePath)) {
@@ -49,12 +53,12 @@ async function run() {
     }
     console.log(`✅ EXIF strip complete. Processed ${processed} image(s).`);
   } catch (err) {
-    console.error('❌ Failed to strip EXIF metadata:', err);
+    console.error("❌ Failed to strip EXIF metadata:", err);
     exit(1);
   }
 }
 
-if (import.meta.url === `file://${argv[1]}`) {
+if (isDirectRun) {
   run();
 }
 

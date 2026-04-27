@@ -8,6 +8,7 @@ import Contact from "../../components/Contact";
 import Footer from "../../components/Footer";
 import HumanTouch from "../../components/HumanTouch";
 import PersonalProjects from "../../components/PersonalProjects";
+import PetalBackground from "../../components/PetalBackground";
 import { LOCALE_OPTIONS, Locale } from "../../constants/locale";
 
 export default function HomePage() {
@@ -15,7 +16,9 @@ export default function HomePage() {
   const [locale, setLocale] = useState<Locale>(LOCALE_OPTIONS[0].value);
 
   return (
-    <div className="min-h-screen">
+    <div className="relative min-h-screen overflow-hidden">
+      <PetalBackground />
+
       <Navbar
         activeSection={activeSection}
         setActiveSection={setActiveSection}
@@ -23,7 +26,7 @@ export default function HomePage() {
         onLocaleChange={setLocale}
       />
 
-      <main className="pt-16">
+      <main className="relative z-10 pt-16">
         <About id="about" locale={locale} />
         <Apps id="apps" locale={locale} />
         <PersonalProjects id="personal-projects" locale={locale} />
@@ -31,7 +34,9 @@ export default function HomePage() {
         <HumanTouch id="human-touch" locale={locale} />
       </main>
 
-      <Footer locale={locale} />
+      <div className="relative z-10">
+        <Footer locale={locale} />
+      </div>
     </div>
   );
 }

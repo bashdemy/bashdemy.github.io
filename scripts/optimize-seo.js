@@ -2,9 +2,13 @@
 
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
 const publicDir = path.join(process.cwd(), "public");
 const distDir = path.join(process.cwd(), "out");
+const isDirectRun = process.argv[1]
+  ? path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
+  : false;
 
 function ensureSitemapAccessible() {
   const sitemapPath = path.join(publicDir, "sitemap.xml");
@@ -80,7 +84,7 @@ function optimizeSEO() {
   console.log("SEO optimization completed.");
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (isDirectRun) {
   optimizeSEO();
 }
 

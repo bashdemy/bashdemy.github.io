@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import { ElementType, ReactNode } from 'react';
+import { ElementType, ReactNode } from "react";
 
 interface CardProps {
   as?: ElementType;
@@ -8,8 +7,13 @@ interface CardProps {
   [key: string]: unknown;
 }
 
-function Card({ as: Component = 'div', className = '', children, ...rest }: CardProps) {
-  const classes = ['card', className].filter(Boolean).join(' ');
+function Card({
+  as: Component = "div",
+  className = "",
+  children,
+  ...rest
+}: CardProps) {
+  const classes = ["card", className].filter(Boolean).join(" ");
   return (
     <Component className={classes} {...rest}>
       {children}
@@ -17,12 +21,4 @@ function Card({ as: Component = 'div', className = '', children, ...rest }: Card
   );
 }
 
-Card.propTypes = {
-  as: PropTypes.elementType,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
-
 export default Card;
-
-

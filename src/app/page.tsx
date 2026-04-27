@@ -6,7 +6,6 @@ import About from "../../components/About";
 import Apps from "../../components/Apps";
 import Contact from "../../components/Contact";
 import Footer from "../../components/Footer";
-import FloatingFlowers from "../../components/FloatingFlowers";
 import HumanTouch from "../../components/HumanTouch";
 import PersonalProjects from "../../components/PersonalProjects";
 import { LOCALE_OPTIONS, Locale } from "../../constants/locale";
@@ -17,7 +16,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <FloatingFlowers />
       <Navbar
         activeSection={activeSection}
         setActiveSection={setActiveSection}

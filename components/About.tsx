@@ -170,25 +170,27 @@ const About = ({ id, locale }: AboutProps) => {
     <section id={id} className="section-padding">
       <div className="container-custom">
         <div className="mb-16">
-          <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-8">
-            <div className="flex-1 text-center lg:text-left">
-              <SectionIntro
-                title={copy.about.title}
-                subtitle={copy.about.subtitle}
-                align="left"
-                className="mb-6"
-                subtitleClassName="text-sm opacity-80"
-              />
-              <div className="space-y-2">
-                <p className="text-theme-accent font-semibold text-xl font-heading">
-                  {copy.about.role}
-                </p>
-                <p className="text-sm text-theme-secondary font-body opacity-80">
-                  {copy.about.location}
-                </p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="flex h-full items-center justify-center text-center">
+              <div className="w-full">
+                <SectionIntro
+                  title={copy.about.title}
+                  subtitle={copy.about.subtitle}
+                  align="center"
+                  className="mb-6"
+                  subtitleClassName="text-sm opacity-80"
+                />
+                <div className="space-y-2">
+                  <p className="text-theme-accent font-semibold text-xl font-heading">
+                    {copy.about.role}
+                  </p>
+                  <p className="text-sm text-theme-secondary font-body opacity-80">
+                    {copy.about.location}
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="flex-shrink-0">
+            <div className="flex h-full items-center justify-center">
               <ProfileImage />
             </div>
           </div>

@@ -49,8 +49,17 @@ const APPS_DATA: AppData[] = [
     id: 5,
     title: "Eucalyptus",
     description:
-      "Eucalyptus builds full-stack digital clinics like Juniper, Pilot, Kin, and Software so patients can get world-class care without waiting rooms.",
-    stack: ["TypeScript", "Node.js", "PostgreSQL", "Go", "Mobile Development"],
+      "Engineering work on digital healthcare products across web, backend, and mobile systems, with a focus on dependable patient and clinician experiences.",
+    stack: [
+      "TypeScript",
+      "Node.js",
+      "GraphQL",
+      "React Native",
+      "PostgreSQL",
+      "Go",
+      "Microservices",
+      "GCP",
+    ],
     status: "Production",
     statuses: ["Current Role", "Production"],
     href: "https://www.eucalyptus.vc/",
@@ -62,13 +71,16 @@ const APPS_DATA: AppData[] = [
     translations: {
       ru: {
         description:
-          "Eucalyptus строит полнофункциональные цифровые клиники — Juniper, Pilot, Kin и Software — чтобы пациенты получали качественную помощь без ожидания.",
+          "Инженерная работа над цифровыми медицинскими продуктами: веб, backend и мобильные системы с фокусом на надежный опыт для пациентов и клиницистов.",
         stack: [
           "TypeScript",
           "Node.js",
+          "GraphQL",
+          "React Native",
           "PostgreSQL",
           "Go",
-          "Мобильная разработка",
+          "Микросервисы",
+          "GCP",
         ],
         extraLinks: [
           {
@@ -84,7 +96,7 @@ const APPS_DATA: AppData[] = [
     id: 6,
     title: "UNSW",
     description:
-      "Currently pursuing Master of Information Technology (Artificial Intelligence) at UNSW. The Master of Information Technology program with a specialisation in Artificial Intelligence.",
+      "Currently completing a Master of Information Technology at UNSW, specialising in Artificial Intelligence.",
     stack: ["M.IT (Artificial Intelligence)"],
     chipsLabel: "Credentials",
     status: "Currently in Progress",
@@ -97,7 +109,7 @@ const APPS_DATA: AppData[] = [
     translations: {
       ru: {
         description:
-          "Учусь на программе Master of Information Technology (Artificial Intelligence) в UNSW — двухлетняя магистратура со специализацией в области ИИ.",
+          "Учусь на Master of Information Technology в UNSW со специализацией в области искусственного интеллекта.",
         stack: ["Магистр ИТ (Искусственный интеллект)"],
         extraLinks: [{ label: "UNSW", href: "https://www.unsw.edu.au/" }],
         imageAlt: "Логотип UNSW",
@@ -105,18 +117,48 @@ const APPS_DATA: AppData[] = [
     },
   },
   {
+    id: 7,
+    title: "Sonia Kania Photography",
+    description:
+      "Designed and built a photography portfolio and booking website for Sonia Kania, shaping the visual system, image-led gallery experience, service pages, and contact flow for a small creative business.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Responsive Design",
+      "Image Optimisation",
+      "SEO",
+      "Cloudflare",
+    ],
+    status: "In Development",
+    statuses: ["In Development"],
+    href: "https://soniakania.com",
+    imageSrc: "/sonia-kania/branding.jpg",
+    imageAlt: "Sonia Kania photography portfolio website",
+    imageClassName: "w-full h-56 object-cover p-0",
+    extraLinks: [{ label: "View site", href: "https://soniakania.com" }],
+    translations: {
+      ru: {
+        description:
+          "Дизайн и разработка портфолио и сайта для бронирования съемок Sonia Kania: визуальная система, галереи, страницы услуг и контактный сценарий для небольшого творческого бизнеса.",
+        stack: [
+          "Next.js",
+          "TypeScript",
+          "Адаптивный дизайн",
+          "Оптимизация изображений",
+          "SEO",
+          "Cloudflare",
+        ],
+        extraLinks: [{ label: "Открыть сайт", href: "https://soniakania.com" }],
+        imageAlt: "Фотопортфолио Sonia Kania",
+      },
+    },
+  },
+  {
     id: 2,
     title: "Workflow86 (YC W22)",
     description:
-      "Workflow86 helps teams automate and streamline complex business operations with AI-powered workflow automation, turning manual processes into reliable, scalable workflows.",
-    stack: [
-      "React",
-      "Java (Spring Boot)",
-      "AWS",
-      "OpenAI",
-      "LangChain",
-      "Microservices",
-    ],
+      "Built product features for a workflow automation platform used by operations teams to replace manual business processes with reliable, auditable workflows.",
+    stack: ["React", "Java (Spring Boot)", "AWS", "LangChain", "Microservices"],
     status: "Production",
     statuses: ["Completed", "Production"],
     yc: {
@@ -129,64 +171,28 @@ const APPS_DATA: AppData[] = [
     imageClassName: "w-24 h-24 mx-auto",
     extraLinks: [
       { label: "Learn more", href: "https://www.workflow86.com" },
-      { label: "Sign up 😉", href: "https://app.workflow86.com" },
+      { label: "Open app", href: "https://app.workflow86.com" },
     ],
     extraLinksStyle: "or",
     translations: {
       ru: {
         description:
-          "Workflow86 помогает командам автоматизировать и масштабировать сложные бизнес-процессы с помощью AI — превращая ручные операции в надежные рабочие процессы.",
+          "Разрабатывала продуктовые функции для платформы автоматизации рабочих процессов, которая помогает операционным командам заменять ручные процессы надежными workflow.",
         stack: [
           "React",
           "Java (Spring Boot)",
           "AWS",
-          "OpenAI",
           "LangChain",
           "Микросервисы",
         ],
         extraLinks: [
           { label: "Подробнее", href: "https://www.workflow86.com" },
           {
-            label: "Зарегистрироваться 😉",
+            label: "Открыть приложение",
             href: "https://app.workflow86.com",
           },
         ],
         imageAlt: "Логотип Workflow86",
-      },
-    },
-  },
-  {
-    id: 1,
-    title: "Yes Help Network",
-    description:
-      "A youth-led platform focused on early intervention for Domestic & Family Violence (DFV). Yes Help Network creates safe spaces and programs that equip young people with mentorship, skills, and community, so they can speak up, heal, and lead.",
-    stack: [
-      "Next.js (App Router)",
-      "TypeScript",
-      "MUI",
-      "Tailwind CSS",
-      "GitHub Actions",
-      "GitHub Pages",
-    ],
-    status: "Production",
-    statuses: ["Production", "Completed"],
-    isSubheading: true,
-    href: "https://yeshelpnetwork.github.io/",
-    imageSrc: "/yeshelp-brand-lockup.png",
-    imageAlt: "Yes Help Network brand lockup",
-    translations: {
-      ru: {
-        description:
-          "Молодежная платформа раннего реагирования на домашнее и семейное насилие. Yes Help Network создаёт безопасные пространства и программы наставничества, развития навыков и поддержки сообщества.",
-        stack: [
-          "Next.js (App Router)",
-          "TypeScript",
-          "MUI",
-          "Tailwind CSS",
-          "GitHub Actions",
-          "GitHub Pages",
-        ],
-        imageAlt: "Бренд Yes Help Network",
       },
     },
   },
@@ -239,7 +245,7 @@ const APPS_DATA: AppData[] = [
   },
   {
     id: 4,
-    title: "Education",
+    title: "UOW",
     description:
       "Bachelor of Computer Science (Software Engineering) at the University of Wollongong, and Certificate IV in Business (BSB40215) at Navitas Professional.",
     stack: [
@@ -259,6 +265,7 @@ const APPS_DATA: AppData[] = [
     ],
     translations: {
       ru: {
+        title: "UOW",
         description:
           "Бакалавр компьютерных наук (Software Engineering) в University of Wollongong и Certificate IV in Business (BSB40215) в Navitas Professional.",
         chipsLabel: "Образование",
@@ -370,7 +377,7 @@ const AppCard = ({ app, locale }: AppCardProps) => {
   })();
 
   return (
-    <Card className="group flex flex-col self-start">
+    <Card className="group mb-6 inline-block w-full break-inside-avoid">
       {imageContent}
 
       <div className="flex items-center justify-between mb-4">
@@ -529,7 +536,7 @@ const Apps = ({ id, locale }: AppsProps) => {
         />
 
         {hasApps ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+          <div className="columns-1 gap-6 md:columns-2 lg:columns-3">
             {localizedApps.map(app => (
               <AppCard key={app.id} app={app} locale={locale} />
             ))}
@@ -542,7 +549,8 @@ const Apps = ({ id, locale }: AppsProps) => {
               </p>
               <p className="text-sm text-theme-muted font-body">
                 I&apos;m working on showcasing my projects and experience in
-                software engineering, AI integration, and cloud infrastructure.
+                software engineering, platform delivery, and cloud
+                infrastructure.
               </p>
             </Card>
           </div>

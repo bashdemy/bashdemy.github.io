@@ -1,6 +1,5 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import Image from "next/image";
-import Card from "./ui/Card";
 import { LOCALE_COPY, Locale } from "../constants/locale";
 
 const IMAGE_ROTATE_INTERVAL_MS = 7000;
@@ -36,15 +35,12 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
   }, [goNext, isPaused]);
 
   return (
-    <section id={id} className="section-padding">
+    <section id={id} className="section-padding pt-8">
       <div className="container-custom">
-        <Card>
-          <h4 className="text-lg font-semibold text-theme-primary mb-3 font-heading">
-            {copy.title}
-          </h4>
-          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-2 items-stretch">
+        <div className="mx-auto max-w-4xl border-t border-theme-border/70 pt-10">
+          <div className="grid grid-cols-1 md:grid-cols-[13rem_1fr] gap-8 md:gap-10 items-center">
             <div
-              className="relative aspect-square w-56 sm:w-64 md:w-72 lg:w-80 mx-auto md:mx-0 rounded-xl overflow-hidden shadow-md bg-gray-200"
+              className="relative aspect-square w-44 sm:w-48 md:w-52 mx-auto md:mx-0 rounded-lg overflow-hidden shadow-sm bg-theme-background-alt"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
@@ -69,7 +65,7 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
                 type="button"
                 aria-label={copy.prev}
                 onClick={goPrev}
-                className="absolute left-3 top-1/2 -translate-y-1/2 bg-theme-background/70 hover:bg-theme-background/90 text-theme-primary rounded-full w-9 h-9 flex items-center justify-center shadow pointer-events-auto"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-theme-background/75 hover:bg-theme-background/95 text-theme-primary rounded-full w-8 h-8 flex items-center justify-center shadow pointer-events-auto"
               >
                 <span className="sr-only">{copy.prev}</span>‹
               </button>
@@ -77,7 +73,7 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
                 type="button"
                 aria-label={copy.next}
                 onClick={goNext}
-                className="absolute right-3 top-1/2 -translate-y-1/2 bg-theme-background/70 hover:bg-theme-background/90 text-theme-primary rounded-full w-9 h-9 flex items-center justify-center shadow pointer-events-auto"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-theme-background/75 hover:bg-theme-background/95 text-theme-primary rounded-full w-8 h-8 flex items-center justify-center shadow pointer-events-auto"
               >
                 <span className="sr-only">{copy.next}</span>›
               </button>
@@ -92,12 +88,15 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
               </div>
             </div>
 
-            <div className="flex items-center">
-              <div className="md:text-right">
+            <div>
+              <h4 className="text-lg font-semibold text-theme-primary mb-3 font-heading">
+                {copy.title}
+              </h4>
+              <div className="max-w-2xl">
                 {copy.body.map((text, idx) => (
                   <p
                     key={text}
-                    className={`text-theme-secondary italic font-body ${
+                    className={`text-theme-secondary font-body ${
                       idx > 0 ? "mt-3" : ""
                     }`}
                   >
@@ -107,7 +106,7 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
               </div>
             </div>
           </div>
-        </Card>
+        </div>
       </div>
     </section>
   );

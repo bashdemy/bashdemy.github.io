@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://bashdemy.com"),
   title: {
     default:
-      "Bazhena Dementyeva (Maria Demy) - Senior Software Engineer Sydney | AWS, React, Next.js, Java, TypeScript, Spring Boot",
+      "Bazhena Dementyeva (Maria Demy) - Senior Software Engineer Sydney | React, Node.js, GraphQL, React Native",
     template: "%s | Bazhena Dementyeva (Maria Demy) - Senior Software Engineer",
   },
   description:
-    "Bazhena Dementyeva (Maria Dementyeva, Maria Demy, bashdemy) - Senior Software Engineer in Sydney, Australia. Expert in AWS, React, Next.js, Java, TypeScript, and Spring Boot. Specializing in backend development, cloud architecture, and AI-powered solutions with focus on privacy-first engineering and scalable systems.",
+    "Bazhena Dementyeva (Maria Dementyeva, Maria Demy, bashdemy) is a senior software engineer in Sydney, Australia with experience across React, Next.js, Node.js, GraphQL, React Native, Java Spring Boot, AWS, microservices, and product delivery.",
   keywords: [
     "Bazhena Dementyeva",
     "Maria Dementyeva",
@@ -21,8 +21,6 @@ export const metadata: Metadata = {
     "software engineer",
     "backend developer",
     "cloud architect",
-    "AI engineer",
-    "machine learning engineer",
     "Java developer",
     "Java",
     "TypeScript",
@@ -30,6 +28,10 @@ export const metadata: Metadata = {
     "Python developer",
     "React developer",
     "React",
+    "React Native",
+    "React Native developer",
+    "GraphQL",
+    "GraphQL developer",
     "Next.js",
     "NextJS",
     "NextJS developer",
@@ -38,12 +40,13 @@ export const metadata: Metadata = {
     "AWS",
     "AWS developer",
     "AWS engineer",
+    "GCP",
+    "Google Cloud Platform",
     "Sydney software engineer",
     "microservices",
     "privacy-first engineering",
     "scalable systems",
     "workflow automation",
-    "AI integration",
     "cloud infrastructure",
     "women in tech",
     "full-stack developer",
@@ -64,9 +67,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title:
-      "Bazhena Dementyeva - Senior Software Engineer Sydney | AWS, React, Next.js, Java, TypeScript, Spring Boot",
+      "Bazhena Dementyeva - Senior Software Engineer Sydney | React, Node.js, GraphQL, React Native",
     description:
-      "Senior Software Engineer in Sydney, Australia. Expert in AWS, React, Next.js, Java, TypeScript, and Spring Boot. Specializing in backend development, cloud architecture, and AI-powered solutions.",
+      "Senior software engineer in Sydney, Australia with experience across React, Next.js, Node.js, GraphQL, React Native, Java Spring Boot, AWS, and microservices.",
     url: "/",
     siteName: "Bazhena Dementyeva Portfolio",
     locale: "en_US",
@@ -83,9 +86,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Bazhena Dementyeva - Senior Software Engineer Sydney | AWS, React, Next.js, Java, TypeScript, Spring Boot",
+      "Bazhena Dementyeva - Senior Software Engineer Sydney | React, Node.js, GraphQL, React Native",
     description:
-      "Senior Software Engineer in Sydney, Australia. Expert in AWS, React, Next.js, Java, TypeScript, and Spring Boot. Specializing in backend development, cloud architecture, and AI-powered solutions.",
+      "Senior software engineer in Sydney, Australia with experience across React, Next.js, Node.js, GraphQL, React Native, Java Spring Boot, AWS, and microservices.",
     creator: "@bashdemy",
     images: [
       {
@@ -143,7 +146,7 @@ const structuredData = {
   alternateName: ["Maria Dementyeva", "Maria Demy", "bashdemy"],
   jobTitle: "Senior Software Engineer",
   description:
-    "Senior Software Engineer specializing in backend development, cloud architecture, and AI-powered solutions.",
+    "Senior software engineer specializing in full-stack product delivery, backend systems, cloud infrastructure, and microservices.",
   url: "https://bashdemy.com",
   image: {
     "@type": "ImageObject",
@@ -156,7 +159,6 @@ const structuredData = {
     "Senior Software Engineering",
     "Backend Development",
     "Cloud Architecture",
-    "AI Integration",
     "Java Programming",
     "Java",
     "TypeScript",
@@ -164,11 +166,15 @@ const structuredData = {
     "Python Programming",
     "React Development",
     "React",
+    "React Native",
+    "GraphQL",
     "Next.js",
     "NextJS",
     "Spring Boot",
     "AWS",
     "Amazon Web Services",
+    "GCP",
+    "Google Cloud Platform",
     "Microservices",
     "DevOps",
     "API Development",
@@ -192,15 +198,17 @@ const structuredData = {
       "TypeScript",
       "Python",
       "React",
+      "React Native",
+      "GraphQL",
       "Next.js",
       "NextJS",
       "Spring Boot",
       "AWS",
+      "GCP",
       "Docker",
       "Microservices",
       "API Development",
       "Cloud Architecture",
-      "AI Integration",
       "Database Design",
       "DevOps",
       "CI/CD",
@@ -215,9 +223,15 @@ const structuredData = {
     {
       "@type": "SoftwareApplication",
       name: "Workflow86",
-      description: "AI-powered workflow automation platform",
+      description: "Workflow automation platform for business operations",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
+    },
+    {
+      "@type": "WebSite",
+      name: "Sonia Kania Photography",
+      description: "Photography portfolio and booking website",
+      url: "https://soniakania.com",
     },
     {
       "@type": "SoftwareApplication",

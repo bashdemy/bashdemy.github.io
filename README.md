@@ -27,17 +27,20 @@ A modern, high-performance personal portfolio website built with Next.js 15 and 
 ## 📦 Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/bashdemy/bashdemy.github.io.git
    cd bashdemy.github.io
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -67,7 +70,6 @@ src/
 │   └── page.tsx           # Home page
 components/
 ├── ui/                    # Reusable UI components
-│   ├── BlogPostCard.tsx
 │   ├── Card.tsx
 │   ├── ContactCard.tsx
 │   ├── ProfileImage.tsx
@@ -76,9 +78,7 @@ components/
 │   └── Tag.tsx
 ├── About.tsx              # About section
 ├── Apps.tsx               # Projects showcase with carousel
-├── Blog.tsx               # Blog section
 ├── Contact.tsx            # Contact information
-├── FloatingFlowers.tsx    # Animated background elements
 ├── Footer.tsx             # Footer component
 ├── HumanTouch.tsx         # Personal interests carousel
 └── Navbar.tsx             # Navigation bar
@@ -95,8 +95,8 @@ scripts/                   # Build automation
 
 ## 🎨 Design System
 
-- **Custom Theme**: Dusty pink color palette with CSS variables
-- **Typography**: Inter + JetBrains Mono font combination
+- **Custom Theme**: Soft rose and plum palette with CSS variables
+- **Typography**: Plus Jakarta Sans type system
 - **Responsive**: Mobile-first design with Tailwind breakpoints
 - **Accessibility**: High contrast ratios and semantic markup
 - **Performance**: Optimized images and minimal JavaScript
@@ -134,9 +134,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Bazhena Dementyeva (Maria Demy)**
 
-- Senior Software Engineer specializing in backend, cloud, and AI solutions
-- Expert in Java, Python, React, and modern web technologies
-- Passionate about privacy-first engineering and scalable systems
+- Senior software engineer working across full-stack product delivery, mobile, cloud, and microservices
+- Experience with TypeScript, React, React Native, Node.js, GraphQL, Java Spring Boot, AWS, and PostgreSQL
+- Active in women-in-tech community work
 - Based in Sydney, Australia
 
 ## 🔗 Links
@@ -147,4 +147,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
+Built with Next.js, TypeScript, and Tailwind CSS

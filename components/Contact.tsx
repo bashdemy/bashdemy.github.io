@@ -1,4 +1,4 @@
-import { Home, Code, Menu, Instagram, Star } from "lucide-react";
+import { Code, Instagram, Linkedin, Newspaper, Star } from "lucide-react";
 import ContactCard from "./ui/ContactCard";
 import SectionIntro from "./ui/SectionIntro";
 import { LOCALE_COPY, Locale } from "../constants/locale";
@@ -23,7 +23,7 @@ const Contact = ({ id, locale }: ContactProps) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ContactCard
-              icon={<Home className="w-6 h-6 text-theme-accent" />}
+              icon={<Linkedin className="w-6 h-6 text-theme-accent" />}
               title={cards.linkedin.title}
               subtitle={cards.linkedin.subtitle}
               href="https://linkedin.com/in/bazhena-dementyeva-0b7b17159"
@@ -41,7 +41,7 @@ const Contact = ({ id, locale }: ContactProps) => {
             />
 
             <ContactCard
-              icon={<Menu className="w-6 h-6 text-theme-accent" />}
+              icon={<Newspaper className="w-6 h-6 text-theme-accent" />}
               title={cards.substack.title}
               subtitle={cards.substack.subtitle}
               href="https://bashdemy.substack.com"

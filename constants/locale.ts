@@ -29,9 +29,8 @@ export const LOCALE_COPY = {
     },
     about: {
       title: "Bazhena Dementyeva",
-      subtitle:
-        '(think zh="g" as in "genre," for advanced users. Otherwise, "Maria" is perfectly acceptable.)',
-      role: "Software Engineer",
+      subtitle: 'Pronounced with "zh" as in "genre";\nMaria also works.',
+      role: "Senior Software Engineer",
       location: "Sydney, Australia • She/Her",
       professionalIdentity:
         "Professionally, I go by Bazhena Dementyeva. I also respond to Maria Dementyeva or Maria Demy, and online I'm bashdemy.",
@@ -41,16 +40,16 @@ export const LOCALE_COPY = {
       strengthsTitle: "Key Strengths",
       strengths: undefined,
       intro: [
-        "Engineer focused on automating routine tasks, building reliable software, and scaling systems that matter. I take a full-stack, generalist approach but am always ready to dive deep into problems when needed.",
-        "My experience includes Java (with Spring Boot) and JavaScript (with React and NextJS). I build resilient, user-focused applications, optimize cloud infrastructure (mostly AWS), and have a strong interest in practical AI and automation, including nocode and lowcode solutions. I'm committed to making tech more inclusive, with a focus on supporting women in the industry.",
-        "I also believe building software should be fun. The process should feel collaborative and creative, and the result should bring people joy while staying reliable and thoughtful.",
+        "Software engineer with full-stack experience across product teams, startup environments, and production systems. I like work that combines clear user problems with thoughtful engineering.",
+        "My recent work spans TypeScript, Node.js, GraphQL, React Native, Go, PostgreSQL, and microservices. I also bring experience in React, Next.js, Java Spring Boot, AWS, CI/CD, and workflow automation.",
+        "I care about reliable delivery, readable systems, and the kind of team culture where people can do good work without needing to perform confidence all day.",
       ],
     },
     apps: {
       section: {
         title: "Experience & Projects",
         subtitle:
-          "A collection of my work experience, technical projects, and contributions.",
+          "Selected roles, client work, education, and technical projects.",
       },
       statuses: {
         Production: "Production",
@@ -72,20 +71,26 @@ export const LOCALE_COPY = {
     },
     contact: {
       section: {
-        title: "Let's Connect",
+        title: "Contact",
         subtitle:
-          "I'm always interested in discussing technical challenges, AI integration, women in tech initiatives, and opportunities to build something amazing.",
+          "Open to engineering roles, technical collaborations, and women-in-tech community work.",
       },
       cards: {
-        linkedin: { title: "LinkedIn", subtitle: "for all things work" },
-        github: { title: "GitHub", subtitle: "for all the vibe code" },
+        linkedin: {
+          title: "LinkedIn",
+          subtitle: "work and professional updates",
+        },
+        github: {
+          title: "GitHub",
+          subtitle: "code, experiments, and projects",
+        },
         substack: {
           title: "Substack",
-          subtitle: "for walls of text i like to read",
+          subtitle: "essays and notes",
         },
         instagram: {
           title: "Instagram",
-          subtitle: "for more pictures of my face, bread, and all things jits",
+          subtitle: "photos, bread, and Brazilian jiu-jitsu",
         },
         herTechCircle: {
           title: "Her Tech Circle",
@@ -94,8 +99,8 @@ export const LOCALE_COPY = {
       },
     },
     footer: {
-      builtBy: "Built by bashdemy ❤️",
-      role: "Software Engineer • Sydney, Australia",
+      builtBy: "Built by bashdemy ♡",
+      role: "Senior Software Engineer • Sydney, Australia",
     },
     blog: {
       readMore: "Read more →",
@@ -103,10 +108,10 @@ export const LOCALE_COPY = {
       dateLocale: "en-US",
     },
     humanTouch: {
-      title: "The Human Touch",
+      title: "Outside Work",
       body: [
-        "When I'm not writing code, you'll find me on the mats doing jits🥋, baking bread🍞, or organizing women-led communities. Shoot me a text about any of those and we’ll go on for hours.",
-        "And I have a cat named Sushi 🐱, the unofficial supervisor of all the code I write.",
+        "Outside engineering, I train Brazilian jiu-jitsu, bake bread, and help organise women-led community events.",
+        "I also live with Sushi, a cat with strong opinions about desk space.",
       ],
       images: [
         { src: "/bread.jpg", alt: "Freshly baked bread" },
@@ -135,8 +140,8 @@ export const LOCALE_COPY = {
     },
     about: {
       title: "Бажена Дементьева",
-      subtitle: 'Для продвинутых: звук "ж" как в "жанр". Можно просто "Мария".',
-      role: "Инженер-программист",
+      subtitle: 'Звук "ж" как в "жанр".\nМожно просто Мария.',
+      role: "Старший инженер-программист",
       location: "Сидней, Австралия • she/her",
       professionalIdentity:
         "По работе я Бажена Дементьева. Отзываюсь на Марию Дементьеву и Maria Demy, а онлайн я — bashdemy.",
@@ -151,15 +156,15 @@ export const LOCALE_COPY = {
         "Веду инициативы по инклюзивности и поддержке женщин в ИТ.",
       ],
       intro: [
-        "Инженер, который автоматизирует рутину, строит надежные системы и умеет масштабировать то, что важно. Подход — фуллстек-генералист, но при необходимости ухожу вглубь деталей.",
-        "Опыт: Java (Spring Boot) и JavaScript (React, NextJS). Строю устойчивые продукты, оптимизирую облачную инфраструктуру (чаще AWS) и применяю практический AI, включая nocode/lowcode решения. Поддерживаю инклюзивность в индустрии и инициативы для женщин в тех.",
-        "Считаю, что разработка должна быть интересной: совместной, творческой и при этом надежной и продуманной.",
+        "Инженер-программист с full-stack опытом в продуктовых командах, стартапах и продакшн-системах. Мне интересны задачи, где понятная пользовательская проблема встречается с аккуратной инженерией.",
+        "Последний опыт включает TypeScript, Node.js, GraphQL, React Native, Go, PostgreSQL и микросервисы. Также работаю с React, Next.js, Java Spring Boot, AWS, CI/CD и автоматизацией процессов.",
+        "Ценю надежную поставку, читаемые системы и командную культуру, где людям не нужно постоянно изображать уверенность, чтобы хорошо работать.",
       ],
     },
     apps: {
       section: {
         title: "Опыт и проекты",
-        subtitle: "Подборка моего опыта, технических проектов и вкладов.",
+        subtitle: "Роли, клиентские проекты, образование и технические работы.",
       },
       statuses: {
         Production: "Продакшн",
@@ -186,7 +191,7 @@ export const LOCALE_COPY = {
       section: {
         title: "Связаться",
         subtitle:
-          "Открыта к обсуждению технических задач, интеграции AI, инициатив для женщин в ИТ и совместных проектов.",
+          "Открыта к инженерным ролям, техническим коллаборациям и инициативам для женщин в ИТ.",
       },
       cards: {
         linkedin: { title: "LinkedIn", subtitle: "по работе" },
@@ -203,8 +208,8 @@ export const LOCALE_COPY = {
       },
     },
     footer: {
-      builtBy: "Сделано bashdemy ❤️",
-      role: "Инженер-программист • Сидней, Австралия",
+      builtBy: "Сделано bashdemy ♡",
+      role: "Старший инженер-программист • Сидней, Австралия",
     },
     blog: {
       readMore: "Читать далее →",
@@ -212,15 +217,15 @@ export const LOCALE_COPY = {
       dateLocale: "ru-RU",
     },
     humanTouch: {
-      title: "Живая сторона",
+      title: "Вне работы",
       body: [
-        "Когда я не пишу код, я на ковре по бразильскому джиу-джитсу🥋, пеку хлеб🍞 или помогаю сообществам, которые ведут женщины. Напишите мне об этом — будем болтать часами.",
-        "А еще у меня есть кот Суши 🐱 — главный ревьюер всего, что я пишу.",
+        "Вне разработки я занимаюсь бразильским джиу-джитсу, пеку хлеб и помогаю организовывать женские комьюнити.",
+        "Еще со мной живет кошка Суши, у которой сильное мнение о том, кому принадлежит рабочий стол.",
       ],
       images: [
         { src: "/bread.jpg", alt: "Свежий домашний хлеб" },
         { src: "/jits.jpg", alt: "Тренировка по бразильскому джиу-джитсу" },
-        { src: "/cat-picture.jpg", alt: "Кот Суши" },
+        { src: "/cat-picture.jpg", alt: "Кошка Суши" },
       ],
       prev: "Предыдущее фото",
       next: "Следующее фото",

@@ -18,7 +18,7 @@ interface Project {
   domain: string;
   highlights: string[];
   tags: string[];
-  vibe: string;
+  eyebrow: string;
   translations?: Partial<
     Record<
       Locale,
@@ -29,7 +29,7 @@ interface Project {
         domain?: string;
         highlights?: string[];
         tags?: string[];
-        vibe?: string;
+        eyebrow?: string;
       }
     >
   >;
@@ -40,31 +40,31 @@ const PERSONAL_PROJECTS: Project[] = [
     id: "bookshelf",
     title: "Bookshelf",
     description:
-      "A living reading log that tracks the essays, books, and long-form rabbit holes I am currently exploring. It pairs metadata pulled from ISBN and RSS sources with my own micro-notes so friends can skim my queue and see what shaped my thinking recently while I prototype AI-native reading workflows.",
+      "A reading log for books, essays, and long-form research. It combines metadata, short notes, and lightweight publishing so my reading list is easier to revisit and share.",
     link: "https://bookshelf.bashdemy.com",
     linkLabel: "Visit Bookshelf",
     domain: "bookshelf.bashdemy.com",
     highlights: [
-      "Auto-curates covers, authors, and summaries so every entry feels like a tiny trading card.",
-      "Vision: eventually you can sign up and log what you are reading.",
-      "AI pairing takes a few keywords, guesses the item, and fills the details as a sketch of designing with AI in mind.",
-      "Lets me publish bite-sized reviews that double as personal knowledge base entries.",
+      "Pulls in covers, authors, and summaries to keep entries consistent.",
+      "Designed around quick capture first, with public sharing as a later layer.",
+      "Turns short notes into a useful personal knowledge base.",
+      "Gives me a small product surface to test search, metadata, and publishing ideas.",
     ],
-    tags: ["Reading log", "Metadata sync", "Micro-reviews", "Live project"],
-    vibe: "Built because my notes app deserved an upgrade.",
+    tags: ["Reading log", "Metadata", "Micro-reviews", "Live project"],
+    eyebrow: "Reading system",
     translations: {
       ru: {
         description:
-          "Живой читательский журнал с эссе, книгами и длинными статьями. Тянет метаданные из ISBN и RSS, добавляет мои мини-заметки, чтобы друзья видели, что влияет на меня, пока я строю AI-флоу для чтения.",
+          "Читательский журнал для книг, эссе и длинных материалов. Объединяет метаданные, короткие заметки и простую публикацию, чтобы список чтения было легче пересматривать и делиться им.",
         highlights: [
-          "Автоматически добавляет обложки, авторов и аннотации — каждое издание как карточка.",
-          "Идея: дать пользователям регистрироваться и вести свой список.",
-          "AI добирает детали по ключевым словам — упражнение в проектировании с AI.",
-          "Позволяет публиковать короткие заметки, которые становятся частью базы знаний.",
+          "Добавляет обложки, авторов и описания в едином формате.",
+          "Спроектирован для быстрого сохранения, с публичным шарингом как следующим слоем.",
+          "Превращает короткие заметки в личную базу знаний.",
+          "Дает небольшую продуктовую поверхность для экспериментов с поиском, метаданными и публикацией.",
         ],
-        tags: ["Читательский лог", "Синк метаданных", "Мини-рецензии", "Live"],
+        tags: ["Читательский лог", "Метаданные", "Мини-рецензии", "Live"],
         linkLabel: "Открыть Bookshelf",
-        vibe: "Сделала, потому что заметкам нужен апгрейд.",
+        eyebrow: "Система чтения",
       },
     },
   },
@@ -72,29 +72,29 @@ const PERSONAL_PROJECTS: Project[] = [
     id: "writing-thoughts",
     title: "Writing & Thoughts",
     description:
-      "Here are my attempts to write things. Essays, experiments, and sometimes I just dump thoughts about what I am reading so I can think in public more often.",
+      "Essays and notes on engineering, learning, community, and the ideas I keep returning to.",
     link: "https://bashdemy.substack.com",
     linkLabel: "Visit the Substack",
     domain: "bashdemy.substack.com",
     highlights: [
       "Long-form reflections on building, leading, and learning in public.",
       "Running notes from talks, interviews, and conversations that need a home.",
-      "A forcing function to ship drafts instead of letting them rot in Notes.",
+      "A public archive for drafts that are useful enough to share.",
     ],
     tags: ["Substack", "Essays", "In-progress ideas"],
-    vibe: "Because thoughts only count if they leave the doc.",
+    eyebrow: "Writing practice",
     translations: {
       ru: {
         description:
-          "Мои тексты и попытки писать. Эссе, эксперименты и публичные черновики о прочитанном.",
+          "Эссе и заметки о разработке, обучении, сообществах и идеях, к которым я возвращаюсь.",
         highlights: [
           "Лонгриды о разработке, лидерстве и обучении в открытую.",
           "Рабочие записи с выступлений, интервью и разговоров.",
-          "Пинок себе, чтобы публиковать, а не хранить в черновиках.",
+          "Публичный архив черновиков, которыми уже можно делиться.",
         ],
         tags: ["Substack", "Эссе", "Идеи в работе"],
         linkLabel: "Перейти в Substack",
-        vibe: "Мысли имеют вес, когда покидают заметки.",
+        eyebrow: "Практика письма",
       },
     },
   },
@@ -111,7 +111,7 @@ function localizeProject(project: Project, locale: Locale): Project {
     domain: translation.domain ?? project.domain,
     highlights: translation.highlights ?? project.highlights,
     tags: translation.tags ?? project.tags,
-    vibe: translation.vibe ?? project.vibe,
+    eyebrow: translation.eyebrow ?? project.eyebrow,
   };
 }
 
@@ -122,7 +122,7 @@ const PersonalProjects = ({ id, locale }: PersonalProjectsProps) => {
   );
 
   return (
-    <section id={id} className="section-padding bg-theme-surface/30">
+    <section id={id} className="section-padding bg-theme-background-alt">
       <div className="container-custom">
         <SectionIntro
           title={copy.personalProjects.section.title}
@@ -139,7 +139,7 @@ const PersonalProjects = ({ id, locale }: PersonalProjectsProps) => {
               <div className="flex flex-col gap-6 h-full">
                 <div>
                   <p className="text-sm uppercase tracking-wide text-theme-muted font-heading">
-                    {project.vibe}
+                    {project.eyebrow}
                   </p>
                   <h3 className="mt-2 text-2xl font-semibold text-theme-primary font-heading">
                     {project.title}
@@ -192,7 +192,7 @@ const PersonalProjects = ({ id, locale }: PersonalProjectsProps) => {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-theme-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-theme-accent-hover"
+                    className="inline-flex items-center justify-center gap-2 rounded-md bg-theme-primary px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
                     aria-label={project.linkLabel}
                   >
                     {project.linkLabel}

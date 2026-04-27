@@ -3,38 +3,31 @@
 
 @layer base {
   :root {
-    /* Modern Dusty Pink & Mauve Theme */
-    /* Primary (dusty pink) */
-    --color-primary: #e178a0;
-    --color-primary-light: #f0b7c8;
-    --color-primary-dark: #b65f83;
-    --color-primary-hover: #b65f83;
+    --color-primary: #b45f78;
+    --color-primary-light: #d8a0ae;
+    --color-primary-dark: #7f3f56;
+    --color-primary-hover: #8f4961;
     --color-primary-contrast: #ffffff;
 
-    /* Secondary (mauve-purple) */
-    --color-secondary: #7a5c9e;
-    --color-secondary-light: #a189c6;
-    --color-secondary-dark: #563f78;
+    --color-secondary: #5f5168;
+    --color-secondary-light: #9b8aa3;
+    --color-secondary-dark: #3b3140;
     --color-secondary-contrast: #ffffff;
 
-    /* Background */
-    --color-background: #fff7fa;
-    --color-background-alt: #fffafd;
-    --color-card-bg: #fffafd;
-    --color-card-border: #eed9e3;
+    --color-background: #fbf7f5;
+    --color-background-alt: #f4edeb;
+    --color-card-bg: #fffdfc;
+    --color-card-border: #e5d7d2;
 
-    /* Text */
-    --color-text-primary: #2a1e2a;
-    --color-text-secondary: #6e5a6e;
-    --color-text-muted: #6e5a6e;
+    --color-text-primary: #241b20;
+    --color-text-secondary: #5f5458;
+    --color-text-muted: #7b7073;
 
-    /* Accents */
-    --color-accent: #f5c1d0; /* Blush accent */
-    --color-accent-lavender: #c7b7e2;
-    --color-accent-plum: #5a3d69;
+    --color-accent: #c98fa0;
+    --color-accent-lavender: #b8a8bf;
+    --color-accent-plum: #4f394d;
 
-    /* Borders & Dividers */
-    --color-border: #eed9e3;
+    --color-border: #e5d7d2;
 
     /* Status Colors */
     --color-status-info: #6c7bd9;
@@ -64,6 +57,26 @@
     font-weight: 400;
     line-height: 1.6;
     background-color: var(--color-background);
+    color: var(--color-text-primary);
+    background-image:
+      radial-gradient(
+        circle at 12% 18%,
+        rgba(180, 95, 120, 0.08),
+        transparent 24rem
+      ),
+      radial-gradient(
+        circle at 88% 10%,
+        rgba(95, 81, 104, 0.07),
+        transparent 26rem
+      ),
+      linear-gradient(rgba(36, 27, 32, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36, 27, 32, 0.02) 1px, transparent 1px);
+    background-size:
+      auto,
+      auto,
+      44px 44px,
+      44px 44px;
+    background-attachment: fixed;
   }
 
   /* Primary Typeface Stack (Headings & Accents) */
@@ -103,7 +116,7 @@
   .card {
     background-color: var(--color-card-bg);
     backdrop-filter: blur(8px);
-    @apply rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300;
+    @apply rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow duration-300;
     border: 1px solid var(--color-card-border);
   }
 
@@ -129,7 +142,7 @@
   }
 
   .profile-picture {
-    @apply w-[28rem] h-[28rem] rounded-full object-cover border-4 border-white shadow-lg;
+    @apply w-[28rem] h-[28rem] rounded-lg object-cover border border-white shadow-lg;
     object-position: 70% 50%;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
@@ -169,48 +182,14 @@
   .bg-theme-primary {
     background-color: var(--color-primary);
   }
+  .bg-theme-primary-hover {
+    background-color: var(--color-primary-hover);
+  }
 
   .border-theme-border {
     border-color: var(--color-border);
   }
   .border-theme-primary {
     border-color: var(--color-primary);
-  }
-
-  /* Floating Flowers Animation */
-  .floating-flower {
-    animation: float linear infinite;
-    opacity: 0.4;
-    color: var(--color-accent);
-    transform: translate(-50%, -50%);
-    filter: blur(0.5px);
-  }
-
-  @keyframes float {
-    0% {
-      transform: translate(-50%, -50%) translateY(0vh) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.4;
-    }
-    90% {
-      opacity: 0.4;
-    }
-    100% {
-      transform: translate(-50%, -50%) translateY(-100vh) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  .floating-flowers-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
-    overflow: visible;
   }
 }

@@ -1,7 +1,7 @@
 interface SectionIntroProps {
   title: string;
   subtitle?: string;
-  align?: 'left' | 'center' | 'right';
+  align?: "left" | "center" | "right";
   className?: string;
   subtitleClassName?: string;
 }
@@ -9,26 +9,27 @@ interface SectionIntroProps {
 function SectionIntro({
   title,
   subtitle,
-  align = 'center',
-  className = '',
-  subtitleClassName = '',
+  align = "center",
+  className = "",
+  subtitleClassName = "",
 }: SectionIntroProps) {
   const alignment =
-    align === 'center'
-      ? 'text-center'
-      : align === 'left'
-        ? 'text-left'
-        : 'text-right';
+    align === "center"
+      ? "text-center"
+      : align === "left"
+        ? "text-left"
+        : "text-right";
   const subtitleClasses = [
-    'text-theme-secondary',
-    'max-w-3xl',
-    'mx-auto',
-    'font-body',
-    'description',
-    subtitleClassName || 'text-lg',
+    "text-theme-secondary",
+    "max-w-3xl",
+    "mx-auto",
+    "font-body",
+    "description",
+    "whitespace-pre-line",
+    subtitleClassName || "text-lg",
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
   return (
     <div className={`${alignment} mb-12 ${className}`}>
       <h2 className="text-4xl font-bold text-theme-primary mb-4 font-heading">

@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState } from "react";
+import Image from "next/image";
 
 function ProfileImage() {
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="relative mb-8">
+    <div className="relative">
       {!hasError ? (
         <Image
           src="/profile-picture.JPG"

@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
+import type { Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
+const siteUrl = "https://bashdemy.com";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin", "cyrillic-ext"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bashdemy.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default:
       "Bazhena Dementyeva (Maria Demy) - Senior Software Engineer Sydney | React, Node.js, GraphQL, React Native",
@@ -72,12 +82,12 @@ export const metadata: Metadata = {
       "Senior software engineer in Sydney, Australia with experience across React, Next.js, Node.js, GraphQL, React Native, Java Spring Boot, AWS, and microservices.",
     url: "/",
     siteName: "Bazhena Dementyeva Portfolio",
-    locale: "en_US",
+    locale: "en_AU",
     images: [
       {
-        url: "/profile-picture.JPG",
+        url: "/og-image.jpg",
         width: 1200,
-        height: 1200,
+        height: 630,
         alt: "Bazhena Dementyeva - Senior Software Engineer",
         type: "image/jpeg",
       },
@@ -92,7 +102,7 @@ export const metadata: Metadata = {
     creator: "@bashdemy",
     images: [
       {
-        url: "/profile-picture.JPG",
+        url: "/og-image.jpg",
         alt: "Bazhena Dementyeva - Senior Software Engineer",
       },
     ],
@@ -140,6 +150,13 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#fbf7f5",
+  colorScheme: "light",
+};
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -148,12 +165,12 @@ const structuredData = {
   jobTitle: "Senior Software Engineer",
   description:
     "Senior software engineer specializing in full-stack product delivery, backend systems, cloud infrastructure, and microservices.",
-  url: "https://bashdemy.com",
+  url: siteUrl,
   image: {
     "@type": "ImageObject",
-    url: "https://bashdemy.com/profile-picture.JPG",
+    url: `${siteUrl}/og-image.jpg`,
     width: 1200,
-    height: 1200,
+    height: 630,
   },
   knowsAbout: [
     "Software Engineering",
@@ -215,10 +232,18 @@ const structuredData = {
       "CI/CD",
     ],
   },
-  alumniOf: {
-    "@type": "EducationalOrganization",
-    name: "Educational Institution",
-  },
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "University of Wollongong",
+      url: "https://www.uow.edu.au/",
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      name: "UNSW Sydney",
+      url: "https://www.unsw.edu.au/",
+    },
+  ],
   gender: "Female",
   workExample: [
     {
@@ -243,7 +268,12 @@ const structuredData = {
       operatingSystem: "Web",
     },
   ],
-  sameAs: ["https://github.com/bashdemy", "https://linkedin.com/in/bashdemy"],
+  sameAs: [
+    "https://github.com/bashdemy",
+    "https://linkedin.com/in/bazhena-dementyeva-0b7b17159",
+    "https://bashdemy.substack.com",
+    "https://instagram.com/bashdemy",
+  ],
 };
 
 export default function RootLayout({
@@ -256,11 +286,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
         <script type={structuredDataScript} suppressHydrationWarning={true}>
           {JSON.stringify(structuredData)}
         </script>
       </head>
-      <body className="bg-theme-background">{children}</body>
+      <body className={`${plusJakartaSans.variable} bg-theme-background`}>
+        {children}
+      </body>
     </html>
   );
 }

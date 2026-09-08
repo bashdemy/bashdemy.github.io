@@ -176,6 +176,7 @@ const About = ({ id, locale }: AboutProps) => {
                 <SectionIntro
                   title={copy.about.title}
                   subtitle={copy.about.subtitle}
+                  headingLevel={1}
                   align="center"
                   className="mb-6"
                   subtitleClassName="text-sm opacity-80"
@@ -187,6 +188,20 @@ const About = ({ id, locale }: AboutProps) => {
                   <p className="text-sm text-theme-secondary font-body opacity-80">
                     {copy.about.location}
                   </p>
+                </div>
+                <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center justify-center rounded-md bg-theme-primary px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                  >
+                    {copy.about.ctaContact}
+                  </a>
+                  <a
+                    href="#apps"
+                    className="inline-flex items-center justify-center rounded-md border border-theme-primary px-5 py-3 text-sm font-semibold text-theme-primary transition hover:bg-theme-accent/10"
+                  >
+                    {copy.about.ctaExperience}
+                  </a>
                 </div>
               </div>
             </div>

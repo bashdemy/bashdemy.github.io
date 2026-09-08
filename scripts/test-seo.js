@@ -1,25 +1,25 @@
 #!/usr/bin/env node
 
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 const TARGET_SEARCH_TERMS = [
-  'Bazhena Dementyeva',
-  'Maria Dementyeva',
-  'Maria Demy',
-  'bashdemy',
+  "Bazhena Dementyeva",
+  "Maria Dementyeva",
+  "Maria Demy",
+  "bashdemy",
 ];
 
 const SEO_FILES = [
-  'index.html',
-  'public/manifest.json',
-  'public/sitemap.xml',
-  'src/components/About.jsx',
+  "src/app/layout.tsx",
+  "constants/locale.ts",
+  "public/manifest.json",
+  "public/sitemap.xml",
 ];
 
 function checkFileForTerms(filePath, terms) {
   try {
-    const content = fs.readFileSync(filePath, 'utf8');
+    const content = fs.readFileSync(filePath, "utf8");
     const foundTerms = [];
 
     terms.forEach(term => {
@@ -30,15 +30,15 @@ function checkFileForTerms(filePath, terms) {
 
     return foundTerms;
   } catch (error) {
-    console.log(`❌ Error reading ${filePath}: ${error.message}`);
+    console.log(`Error reading ${filePath}: ${error.message}`);
     return [];
   }
 }
 
 function testSEO() {
-  console.log('🔍 Testing SEO for target search terms...');
-  console.log('Target terms:', TARGET_SEARCH_TERMS.join(', '));
-  console.log('');
+  console.log("Testing SEO for target search terms...");
+  console.log("Target terms:", TARGET_SEARCH_TERMS.join(", "));
+  console.log("");
 
   let totalFound = 0;
   const results = {};
@@ -49,19 +49,19 @@ function testSEO() {
 
     if (foundTerms.length > 0) {
       console.log(
-        `✅ ${file}: Found ${foundTerms.length}/${TARGET_SEARCH_TERMS.length} terms`
+        `${file}: Found ${foundTerms.length}/${TARGET_SEARCH_TERMS.length} terms`
       );
-      console.log(`   Found: ${foundTerms.join(', ')}`);
+      console.log(`   Found: ${foundTerms.join(", ")}`);
       totalFound += foundTerms.length;
       results[file] = foundTerms;
     } else {
-      console.log(`❌ ${file}: No target terms found`);
+      console.log(`${file}: No target terms found`);
     }
   });
 
-  console.log('');
+  console.log("");
   console.log(
-    `📊 Summary: Found ${totalFound} instances of target terms across ${SEO_FILES.length} files`
+    `Summary: Found ${totalFound} instances of target terms across ${SEO_FILES.length} files`
   );
 
   const allFoundTerms = new Set();
@@ -74,9 +74,9 @@ function testSEO() {
   );
 
   if (missingTerms.length === 0) {
-    console.log('🎉 All target search terms are included in the SEO files!');
+    console.log("All target search terms are included in the SEO files.");
   } else {
-    console.log(`⚠️  Missing terms: ${missingTerms.join(', ')}`);
+    console.log(`Missing terms: ${missingTerms.join(", ")}`);
   }
 
   return {

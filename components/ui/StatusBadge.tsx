@@ -4,7 +4,7 @@ interface StatusBadgeProps {
 }
 
 const STATUS_TO_CLASSES = {
-  Production: "bg-green-500/20 text-green-600",
+  Production: "bg-green-500/20 text-green-800",
   Completed: "bg-blue-500/20 text-blue-600",
   "In Development": "bg-theme-accent/20 text-theme-accent",
   Planning: "bg-theme-secondary/20 text-theme-secondary",

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LOCALE_COPY, Locale } from "../constants/locale";
 
 interface FooterProps {
@@ -20,6 +21,29 @@ const Footer = ({ locale }: FooterProps) => {
               <p className="text-center text-theme-secondary font-body">
                 © {currentYear} Bazhena Dementyeva
               </p>
+              <nav
+                aria-label="Footer navigation"
+                className="mt-3 flex flex-wrap justify-center gap-4 text-sm md:justify-start"
+              >
+                <Link
+                  href="/"
+                  className="text-theme-muted transition hover:text-theme-accent"
+                >
+                  {copy.home}
+                </Link>
+                <Link
+                  href="/privacy/"
+                  className="text-theme-muted transition hover:text-theme-accent"
+                >
+                  {copy.privacy}
+                </Link>
+                <Link
+                  href="/terms/"
+                  className="text-theme-muted transition hover:text-theme-accent"
+                >
+                  {copy.terms}
+                </Link>
+              </nav>
             </div>
 
             <div className="text-center md:text-right">

@@ -73,9 +73,9 @@ const Navbar = ({
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-8">
-            <h1 className="text-sm font-semibold tracking-[0.28em] text-theme-accent font-heading">
+            <div className="text-sm font-semibold tracking-[0.28em] text-theme-accent font-heading">
               BD
-            </h1>
+            </div>
             <div className="hidden md:flex space-x-6" role="menubar">
               {navItems.map(item => (
                 <button

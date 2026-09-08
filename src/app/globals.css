@@ -1,12 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
 @layer base {
   :root {
-    --color-primary: #b45f78;
+    --color-primary: #9f4f67;
     --color-primary-light: #d8a0ae;
     --color-primary-dark: #7f3f56;
-    --color-primary-hover: #8f4961;
+    --color-primary-hover: #854159;
     --color-primary-contrast: #ffffff;
 
     --color-secondary: #5f5168;
@@ -21,9 +20,9 @@
 
     --color-text-primary: #241b20;
     --color-text-secondary: #5f5458;
-    --color-text-muted: #7b7073;
+    --color-text-muted: #74696d;
 
-    --color-accent: #c98fa0;
+    --color-accent: #985068;
     --color-accent-lavender: #b8a8bf;
     --color-accent-plum: #4f394d;
 
@@ -52,8 +51,8 @@
 
   body {
     font-family:
-      "Plus Jakarta Sans", Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-      sans-serif;
+      var(--font-plus-jakarta), Inter, "Segoe UI", Roboto, "Helvetica Neue",
+      Arial, sans-serif;
     font-weight: 400;
     line-height: 1.6;
     background-color: var(--color-background);
@@ -97,8 +96,8 @@
   .tech-label,
   .font-heading {
     font-family:
-      "Plus Jakarta Sans", Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-      sans-serif;
+      var(--font-plus-jakarta), Inter, "Segoe UI", Roboto, "Helvetica Neue",
+      Arial, sans-serif;
     font-weight: 600;
   }
 
@@ -107,8 +106,8 @@
   .description,
   .font-body {
     font-family:
-      "Plus Jakarta Sans", Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-      sans-serif;
+      var(--font-plus-jakarta), Inter, "Segoe UI", Roboto, "Helvetica Neue",
+      Arial, sans-serif;
     font-weight: 400;
     line-height: 1.6;
   }
@@ -152,7 +151,7 @@
   }
 
   .profile-picture {
-    @apply w-[28rem] h-[28rem] rounded-lg object-cover border border-white shadow-lg;
+    @apply w-full max-w-[22rem] sm:max-w-[28rem] aspect-square h-auto rounded-lg object-cover border border-white shadow-lg;
     object-position: 70% 50%;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;

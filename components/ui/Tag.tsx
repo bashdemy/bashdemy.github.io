@@ -17,7 +17,7 @@ function Tag({
     accent: "bg-theme-accent text-theme-background",
     primary: "bg-theme-primary text-theme-background",
     muted: "bg-theme-secondary text-theme-background",
-    success: "bg-green-600 text-white",
+    success: "bg-green-700 text-white",
     info: "bg-blue-600 text-white",
   };
 
@@ -27,7 +27,7 @@ function Tag({
       "bg-theme-background text-theme-primary border border-theme-primary",
     muted:
       "bg-theme-background text-theme-secondary border border-theme-secondary",
-    success: "bg-white text-green-700 border border-green-600",
+    success: "bg-white text-green-800 border border-green-700",
     info: "bg-white text-blue-700 border border-blue-600",
   };
 

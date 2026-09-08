@@ -38,6 +38,8 @@ export const LOCALE_COPY = {
       skillsTitle: "Skills & Technologies",
       professionalIdentityLabel: "Professional Identity",
       strengthsTitle: "Key Strengths",
+      ctaContact: "Contact me",
+      ctaExperience: "View experience",
       strengths: undefined,
       intro: [
         "Software engineer with full-stack experience across product teams, startup environments, and production systems. I like work that combines clear user problems with thoughtful engineering.",
@@ -101,6 +103,9 @@ export const LOCALE_COPY = {
     footer: {
       builtBy: "Built by bashdemy ♡",
       role: "Senior Software Engineer • Sydney, Australia",
+      home: "Home",
+      privacy: "Privacy",
+      terms: "Terms",
     },
     blog: {
       readMore: "Read more →",
@@ -149,6 +154,8 @@ export const LOCALE_COPY = {
       skillsTitle: "Навыки и технологии",
       professionalIdentityLabel: "Профессиональное имя",
       strengthsTitle: "Сильные стороны",
+      ctaContact: "Связаться",
+      ctaExperience: "Посмотреть опыт",
       strengths: [
         "Думаю системно и руками довожу архитектуру до простых решений.",
         "Люблю автоматизировать рутину и упрощать процессы для команд.",
@@ -210,6 +217,9 @@ export const LOCALE_COPY = {
     footer: {
       builtBy: "Сделано bashdemy ♡",
       role: "Старший инженер-программист • Сидней, Австралия",
+      home: "Главная",
+      privacy: "Приватность",
+      terms: "Условия",
     },
     blog: {
       readMore: "Читать далее →",

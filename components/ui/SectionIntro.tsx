@@ -2,6 +2,7 @@ interface SectionIntroProps {
   title: string;
   subtitle?: string;
   align?: "left" | "center" | "right";
+  headingLevel?: 1 | 2;
   className?: string;
   subtitleClassName?: string;
 }
@@ -10,9 +11,11 @@ function SectionIntro({
   title,
   subtitle,
   align = "center",
+  headingLevel = 2,
   className = "",
   subtitleClassName = "",
 }: SectionIntroProps) {
+  const Heading = headingLevel === 1 ? "h1" : "h2";
   const alignment =
     align === "center"
       ? "text-center"
@@ -32,9 +35,9 @@ function SectionIntro({
     .join(" ");
   return (
     <div className={`${alignment} mb-12 ${className}`}>
-      <h2 className="text-4xl font-bold text-theme-primary mb-4 font-heading">
+      <Heading className="text-4xl font-bold text-theme-primary mb-4 font-heading">
         {title}
-      </h2>
+      </Heading>
       {subtitle ? <p className={subtitleClasses}>{subtitle}</p> : null}
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 const CONSENT_KEY = "bashdemy-analytics-consent";
 
@@ -74,10 +74,6 @@ export function AnalyticsConsent({
 }: AnalyticsConsentProps) {
   const [consent, setConsent] = useState<ConsentState>("unknown");
   const isConfigured = Boolean(cloudflareWebAnalyticsToken || plausibleDomain);
-  const analyticsConfig = useMemo(
-    () => ({ cloudflareWebAnalyticsToken, plausibleDomain }),
-    [cloudflareWebAnalyticsToken, plausibleDomain]
-  );
 
   useEffect(() => {
     if (!isConfigured) {
@@ -97,8 +93,8 @@ export function AnalyticsConsent({
       return;
     }
 
-    loadAnalytics(analyticsConfig);
-  }, [analyticsConfig, consent, isConfigured]);
+    loadAnalytics({ cloudflareWebAnalyticsToken, plausibleDomain });
+  }, [cloudflareWebAnalyticsToken, consent, isConfigured, plausibleDomain]);
 
   if (!isConfigured || consent !== "unknown") {
     return null;

@@ -37,7 +37,7 @@ function describeLink(anchor: HTMLAnchorElement) {
   try {
     const url = new URL(rawHref, window.location.href);
     const host = normalizeHost(url.hostname);
-    const path = `${url.pathname}${url.hash}` || "/";
+    const path = `${url.pathname}${url.hash}`;
     const contactTarget = [...contactHosts.entries()].find(
       ([domain]) => host === domain || host.endsWith(`.${domain}`)
     );

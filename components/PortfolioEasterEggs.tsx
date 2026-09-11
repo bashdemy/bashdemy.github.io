@@ -49,11 +49,9 @@ export function PortfolioEasterEggs({ contactHref }: PortfolioEasterEggsProps) {
     const reveal = () => {
       window.clearTimeout(hideTimer);
       setMessage(messages[(messageSeed + typed.length) % messages.length]);
-      document.documentElement.dataset.portfolioEasterEgg = "open";
 
       hideTimer = window.setTimeout(() => {
         setMessage("");
-        delete document.documentElement.dataset.portfolioEasterEgg;
       }, 5200);
     };
 
@@ -84,7 +82,6 @@ export function PortfolioEasterEggs({ contactHref }: PortfolioEasterEggsProps) {
 
     return () => {
       window.clearTimeout(hideTimer);
-      delete document.documentElement.dataset.portfolioEasterEgg;
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [contactHref, messageSeed]);

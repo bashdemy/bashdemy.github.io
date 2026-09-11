@@ -572,7 +572,6 @@ interface AppsProps {
 const Apps = ({ id, locale }: AppsProps) => {
   const copy = LOCALE_COPY[locale];
   const appCopy = copy.apps;
-  const hasApps = Array.isArray(APPS_DATA) && APPS_DATA.length > 0;
   const localizedApps = APPS_DATA.map(app => localizeApp(app, locale));
 
   return (
@@ -583,26 +582,11 @@ const Apps = ({ id, locale }: AppsProps) => {
           subtitle={appCopy.section.subtitle}
         />
 
-        {hasApps ? (
-          <div className="grid gap-6 md:block md:columns-2 lg:columns-3">
-            {localizedApps.map(app => (
-              <AppCard key={app.id} app={app} locale={locale} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center">
-            <Card className="inline-block max-w-2xl">
-              <p className="text-theme-secondary mb-4 font-body">
-                Experience content coming soon...
-              </p>
-              <p className="text-sm text-theme-muted font-body">
-                I&apos;m working on showcasing my projects and experience in
-                software engineering, platform delivery, and cloud
-                infrastructure.
-              </p>
-            </Card>
-          </div>
-        )}
+        <div className="grid gap-6 md:block md:columns-2 lg:columns-3">
+          {localizedApps.map(app => (
+            <AppCard key={app.id} app={app} locale={locale} />
+          ))}
+        </div>
       </div>
     </section>
   );

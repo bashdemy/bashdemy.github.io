@@ -5,14 +5,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const publicDir = path.join(process.cwd(), "public");
-const distDir = path.join(process.cwd(), "out");
 const isDirectRun = process.argv[1]
   ? path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
   : false;
 
 function ensureSitemapAccessible() {
   const sitemapPath = path.join(publicDir, "sitemap.xml");
-  const distSitemapPath = path.join(distDir, "sitemap.xml");
 
   if (fs.existsSync(sitemapPath)) {
     console.log("✅ Sitemap found and will be copied to out");
@@ -64,9 +62,14 @@ function ensureManifestAccessible() {
       theme_color: "#ffffff",
       icons: [
         {
-          src: "/flower-icon.svg",
-          sizes: "any",
-          type: "image/svg+xml",
+          src: "/android-chrome-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "/android-chrome-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
         },
       ],
     };

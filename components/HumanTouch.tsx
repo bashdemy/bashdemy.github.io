@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { LOCALE_COPY, Locale } from "../constants/locale";
 
@@ -11,7 +11,7 @@ interface HumanTouchProps {
 
 const HumanTouch = ({ id, locale }: HumanTouchProps) => {
   const copy = LOCALE_COPY[locale].humanTouch;
-  const images = useMemo(() => copy.images, [copy.images]);
+  const images = copy.images;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);

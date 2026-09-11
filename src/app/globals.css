@@ -3,13 +3,11 @@
 @layer base {
   :root {
     --color-primary: #9f4f67;
-    --color-primary-light: #d8a0ae;
     --color-primary-dark: #7f3f56;
     --color-primary-hover: #854159;
     --color-primary-contrast: #ffffff;
 
     --color-secondary: #53445c;
-    --color-secondary-light: #9b8aa3;
     --color-secondary-dark: #3b3140;
     --color-secondary-contrast: #ffffff;
 
@@ -27,22 +25,6 @@
     --color-accent-plum: #4f394d;
 
     --color-border: #e5d7d2;
-
-    /* Status Colors */
-    --color-status-info: #6c7bd9;
-    --color-status-success: #2e7d6e;
-    --color-status-warning: #e0a24c;
-    --color-status-error: #d04a5a;
-    --color-status-development: #f5c1d0;
-    --color-status-planning: #7a5c9e;
-    --color-status-concept: #6e5a6e;
-
-    /* Typography Scale */
-    --fs-xl: 2.25rem; /* h1 */
-    --fs-lg: 1.5rem; /* h2 */
-    --fs-md: 1.25rem; /* h3 */
-    --fs-base: 1rem; /* body */
-    --fs-sm: 0.875rem; /* caption */
   }
 
   html {
@@ -88,12 +70,10 @@
     }
   }
 
-  /* Primary Typeface Stack (Headings & Accents) */
   h1,
   h2,
   h3,
   nav,
-  .tech-label,
   .font-heading {
     font-family:
       var(--font-plus-jakarta), Inter, "Segoe UI", Roboto, "Helvetica Neue",
@@ -101,7 +81,6 @@
     font-weight: 600;
   }
 
-  /* Secondary Typeface Stack (Body Text & Paragraphs) */
   p,
   .description,
   .font-body {
@@ -129,27 +108,6 @@
     border: 1px solid var(--color-card-border);
   }
 
-  .btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-primary-contrast);
-    @apply font-medium py-2 px-4 rounded-md transition-colors duration-200;
-  }
-
-  .btn-primary:hover {
-    background-color: var(--color-primary-hover);
-  }
-
-  .btn-secondary {
-    background-color: var(--color-accent);
-    color: var(--color-text-primary);
-    @apply font-medium py-2 px-4 rounded-md transition-colors duration-200;
-  }
-
-  .btn-secondary:hover {
-    background-color: var(--color-primary);
-    color: var(--color-primary-contrast);
-  }
-
   .profile-picture {
     @apply w-full max-w-[20rem] sm:max-w-[28rem] aspect-square h-auto rounded-lg object-cover border border-white shadow-lg;
     object-position: 70% 50%;
@@ -162,7 +120,6 @@
     -webkit-transform: translateZ(0);
   }
 
-  /* Theme utility classes */
   .text-theme-primary {
     color: var(--color-text-primary);
   }
@@ -199,8 +156,8 @@
   .bg-theme-primary {
     background-color: var(--color-primary);
   }
-  .bg-theme-primary-hover {
-    background-color: var(--color-primary-hover);
+  .bg-theme-border {
+    background-color: var(--color-border);
   }
 
   .border-theme-border {
@@ -208,11 +165,6 @@
   }
   .border-theme-primary {
     border-color: var(--color-primary);
-  }
-
-  .touch-target {
-    min-height: 44px;
-    min-width: 44px;
   }
 
   .brand-heart-pop {

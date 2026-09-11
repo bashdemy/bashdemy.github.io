@@ -1,8 +1,11 @@
-import { useEffect, useCallback, useState, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const DEFAULT_OFFSET = 100;
 
-export function useScrollSpy(sectionIds, offset = DEFAULT_OFFSET) {
+export function useScrollSpy(
+  sectionIds: string[],
+  offset = DEFAULT_OFFSET
+): string | null {
   const [activeId, setActiveId] = useState(sectionIds[0] || null);
   const isTickingRef = useRef(false);
 
@@ -34,10 +37,9 @@ export function useScrollSpy(sectionIds, offset = DEFAULT_OFFSET) {
   }, [handleScroll]);
 
   useEffect(() => {
-    window.addEventListener('scroll', onScroll, { passive: true });
-    // Run once to set initial state
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, [onScroll]);
 
   return activeId;

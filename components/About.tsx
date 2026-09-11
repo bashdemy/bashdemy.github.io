@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Card from "./ui/Card";
 import Tag from "./ui/Tag";
 import ProfileImage from "./ui/ProfileImage";
@@ -112,10 +112,7 @@ const AboutContent = ({ locale }: { locale: Locale }) => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
   const copy = LOCALE_COPY[locale];
   const paragraphs = copy.about.intro;
-  const strengths = useMemo(
-    () => copy.about.strengths || STRENGTHS_DATA,
-    [copy.about.strengths]
-  );
+  const strengths = copy.about.strengths || STRENGTHS_DATA;
   const contentClassName = `${TRANSITION_CLASSES} ${
     isAboutExpanded ? EXPANDED_MAX_HEIGHT : COLLAPSED_MAX_HEIGHT
   } opacity-100`;

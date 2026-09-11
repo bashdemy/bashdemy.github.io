@@ -5,11 +5,6 @@ export const LOCALE_OPTIONS: Array<{ value: Locale; label: string }> = [
   { value: "ru", label: "RU" },
 ];
 
-type SectionCopy = {
-  title: string;
-  subtitle?: string;
-};
-
 export const LOCALE_COPY = {
   en: {
     nav: {
@@ -64,12 +59,6 @@ export const LOCALE_COPY = {
     },
     personalProjects: {
       section: { title: "Personal Projects", subtitle: "Just for fun." },
-      projectCopy: {
-        bookshelf: {
-          highlightsLabel: "Highlights",
-          flavorTagsLabel: "Flavor Tags",
-        },
-      },
     },
     contact: {
       section: {
@@ -106,11 +95,6 @@ export const LOCALE_COPY = {
       home: "Home",
       privacy: "Privacy",
       terms: "Terms",
-    },
-    blog: {
-      readMore: "Read more →",
-      readExternal: "Read on Substack →",
-      dateLocale: "en-US",
     },
     humanTouch: {
       title: "Outside Work",
@@ -187,12 +171,6 @@ export const LOCALE_COPY = {
         title: "Личные проекты",
         subtitle: "Для души.",
       },
-      projectCopy: {
-        bookshelf: {
-          highlightsLabel: "Главное",
-          flavorTagsLabel: "Теги",
-        },
-      },
     },
     contact: {
       section: {
@@ -221,11 +199,6 @@ export const LOCALE_COPY = {
       privacy: "Приватность",
       terms: "Условия",
     },
-    blog: {
-      readMore: "Читать далее →",
-      readExternal: "Читать в Substack →",
-      dateLocale: "ru-RU",
-    },
     humanTouch: {
       title: "Вне работы",
       body: [
@@ -242,5 +215,3 @@ export const LOCALE_COPY = {
     },
   },
 };
-
-export type LocaleKey = keyof typeof LOCALE_COPY;

@@ -34,9 +34,7 @@ function Tag({
   const base =
     "inline-flex items-center justify-center px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wide font-heading transition-colors duration-200";
   const toneClass =
-    variant === "solid"
-      ? solidToneClasses[tone] || solidToneClasses.accent
-      : softToneClasses[tone] || softToneClasses.accent;
+    variant === "solid" ? solidToneClasses[tone] : softToneClasses[tone];
 
   const classes = [base, toneClass, className].filter(Boolean).join(" ");
 

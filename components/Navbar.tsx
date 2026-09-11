@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Menu } from "lucide-react";
 import { useScrollSpy } from "../hooks/useScrollSpy";
 import { LOCALE_COPY, LOCALE_OPTIONS, Locale } from "../constants/locale";
@@ -27,7 +27,6 @@ const Navbar = ({
   const [brandHeart, setBrandHeart] = useState(0);
   const heartIdRef = useRef(0);
   const heartTimerRef = useRef<number | undefined>(undefined);
-  const menuRef = useRef(null);
   const navItems: NavItem[] = useMemo(
     () => [
       { id: "about", label: LOCALE_COPY[locale].nav.about },
@@ -55,7 +54,7 @@ const Navbar = ({
     return () => window.clearTimeout(heartTimerRef.current);
   }, []);
 
-  const scrollToSection = sectionId => {
+  const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -74,7 +73,7 @@ const Navbar = ({
     }, 900);
   };
 
-  const getNavItemClassName = itemId => {
+  const getNavItemClassName = (itemId: string) => {
     const baseClasses =
       "min-h-11 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 font-heading";
     return activeSection === itemId
@@ -160,7 +159,6 @@ const Navbar = ({
         {/* Mobile menu */}
         <div
           id="mobile-menu"
-          ref={menuRef}
           className={`${
             isMobileOpen ? "block" : "hidden"
           } md:hidden py-3 border-t border-theme-border`}

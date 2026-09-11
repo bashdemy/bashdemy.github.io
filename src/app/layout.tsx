@@ -1,5 +1,4 @@
-import type { Metadata } from "next";
-import type { Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { AnalyticsEvents } from "../../components/AnalyticsEvents";
 import { AnalyticsConsent } from "../../components/AnalyticsConsent";
@@ -130,9 +129,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  // verification: {
-  //   google: 'add-google-site-verification-when-ready',
-  // },
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -293,8 +289,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const structuredDataScript = `application/ld+json`;
-
   return (
     <html lang="en">
       <head>
@@ -302,7 +296,7 @@ export default function RootLayout({
           httpEquiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
         />
-        <script type={structuredDataScript} suppressHydrationWarning={true}>
+        <script type="application/ld+json" suppressHydrationWarning={true}>
           {JSON.stringify(structuredData)}
         </script>
         <link

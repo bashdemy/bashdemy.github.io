@@ -1,9 +1,11 @@
 "use client";
 
+import type { CSSProperties } from "react";
+
 type Motif = {
   type: "sprig" | "tulip" | "bloom" | "petal";
   className: string;
-  style: React.CSSProperties;
+  style: CSSProperties;
 };
 
 const botanicalForms: Motif[] = [

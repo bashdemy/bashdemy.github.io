@@ -8,12 +8,12 @@ import SectionIntro from "./ui/SectionIntro";
 import { SKILLS_DATA, STRENGTHS_DATA } from "../constants/about";
 import { LOCALE_COPY, Locale } from "../constants/locale";
 
-const COLLAPSED_MAX_HEIGHT = "max-h-[400px]";
+const COLLAPSED_MAX_HEIGHT = "max-h-none md:max-h-[400px]";
 const EXPANDED_MAX_HEIGHT = "max-h-none";
 const TRANSITION_CLASSES =
   "flex-1 overflow-hidden transition-all duration-500 ease-in-out";
 const TAG_BUTTON_CLASSES =
-  "px-3 py-1 rounded-full text-sm shadow-sm hover:opacity-80 transition-opacity";
+  "min-h-11 px-4 py-2 rounded-full text-xs shadow-sm hover:opacity-80 transition-opacity";
 
 interface ToggleButtonProps {
   isExpanded: boolean;
@@ -29,10 +29,10 @@ const ToggleButton = ({
   labelCollapse,
 }: ToggleButtonProps) => {
   return (
-    <div className="mt-6 flex justify-center">
+    <div className="mt-6 hidden justify-center md:flex">
       <button
         onClick={onToggle}
-        className="cursor-pointer"
+        className="min-h-11 cursor-pointer"
         aria-label={isExpanded ? labelCollapse : labelExpand}
       >
         <Tag tone="accent" variant="solid" className={TAG_BUTTON_CLASSES}>
@@ -169,8 +169,8 @@ const About = ({ id, locale }: AboutProps) => {
   return (
     <section id={id} className="section-padding">
       <div className="container-custom">
-        <div className="mb-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="mb-12 sm:mb-16">
+          <div className="grid gap-8 items-center lg:grid-cols-2 lg:gap-12">
             <div className="flex h-full items-center justify-center text-center">
               <div className="w-full">
                 <SectionIntro
@@ -192,13 +192,13 @@ const About = ({ id, locale }: AboutProps) => {
                 <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                   <a
                     href="#contact"
-                    className="inline-flex items-center justify-center rounded-md bg-theme-primary px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                    className="inline-flex min-h-11 items-center justify-center rounded-md bg-theme-primary px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
                   >
                     {copy.about.ctaContact}
                   </a>
                   <a
                     href="#apps"
-                    className="inline-flex items-center justify-center rounded-md border border-theme-primary px-5 py-3 text-sm font-semibold text-theme-primary transition hover:bg-theme-accent/10"
+                    className="inline-flex min-h-11 items-center justify-center rounded-md border border-theme-primary px-5 py-3 text-sm font-semibold text-theme-primary transition hover:bg-theme-accent/10"
                   >
                     {copy.about.ctaExperience}
                   </a>
@@ -211,7 +211,7 @@ const About = ({ id, locale }: AboutProps) => {
           </div>
         </div>
 
-        <div className="space-y-12">
+        <div className="space-y-10 sm:space-y-12">
           <div className="grid lg:grid-cols-2 gap-12 items-stretch">
             <div>
               <AboutContent locale={locale} />

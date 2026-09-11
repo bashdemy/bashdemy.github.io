@@ -26,7 +26,7 @@ function ContactCard({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={ariaLabel}
-        className="flex items-start space-x-4 p-6 rounded-xl border border-theme-border/50 hover:border-theme-accent/30 hover:bg-theme-accent/5 transition-all duration-300 h-full"
+        className="flex min-h-28 items-start space-x-4 rounded-xl border border-theme-border/50 p-5 transition-all duration-300 hover:border-theme-primary hover:bg-theme-background-alt sm:p-6 h-full"
       >
         <div className="flex-shrink-0">
           <div className="w-12 h-12 bg-theme-accent/10 rounded-lg flex items-center justify-center group-hover:bg-theme-accent/20 transition-colors">
@@ -38,7 +38,7 @@ function ContactCard({
             {title}
           </h3>
           <p className="text-sm text-theme-muted mb-2 font-body">{subtitle}</p>
-          <span className="text-theme-accent group-hover:text-theme-accent-hover font-medium transition-colors text-sm">
+          <span className="break-words text-sm font-medium text-theme-accent transition-colors group-hover:text-theme-accent-hover">
             {label}
           </span>
         </div>

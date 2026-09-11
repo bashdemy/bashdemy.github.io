@@ -360,7 +360,7 @@ const AppCard = ({ app, locale }: AppCardProps) => {
       href={linkTarget}
       target="_blank"
       rel="noopener noreferrer"
-      className="hover:underline"
+      className="inline-flex min-h-11 min-w-11 items-center hover:underline"
     >
       {titleText}
     </a>
@@ -384,7 +384,7 @@ const AppCard = ({ app, locale }: AppCardProps) => {
   ].join(" ");
 
   const contentClassName = `overflow-hidden transition-all duration-500 ease-in-out ${
-    isExpanded ? "max-h-[2000px]" : "max-h-0"
+    isExpanded ? "max-h-[2000px]" : "max-h-none md:max-h-0"
   }`;
 
   const imageContent = (() => {
@@ -428,7 +428,7 @@ const AppCard = ({ app, locale }: AppCardProps) => {
     <Card className="group mb-6 inline-block w-full break-inside-avoid">
       {imageContent}
 
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-start justify-between gap-3 mb-4">
         <div className="flex-1 min-w-0">
           {app.isSubheading ? (
             <h4 className="text-lg font-semibold text-theme-primary group-hover:text-theme-accent transition-colors font-heading">
@@ -447,7 +447,7 @@ const AppCard = ({ app, locale }: AppCardProps) => {
                     key={s}
                     tone="accent"
                     variant="solid"
-                    className="px-3 py-1 rounded-full text-sm shadow-sm"
+                    className="px-3 py-1.5 rounded-full text-xs shadow-sm"
                   >
                     {statusLabel(s)}
                   </Tag>
@@ -460,7 +460,7 @@ const AppCard = ({ app, locale }: AppCardProps) => {
                   href={app.yc.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-2 py-1 rounded text-xs bg-[#f0652f] text-white hover:opacity-90"
+                  className="inline-flex min-h-11 min-w-11 items-center justify-center rounded px-2 py-1 text-xs bg-[#b83f18] text-white hover:opacity-90"
                 >
                   {app.yc.label}
                 </a>
@@ -480,7 +480,7 @@ const AppCard = ({ app, locale }: AppCardProps) => {
       <div className="mb-4">
         <p
           className={`text-theme-secondary font-body description ${
-            isExpanded ? "" : "line-clamp-3"
+            isExpanded ? "" : "md:line-clamp-3"
           }`}
         >
           {app.description}
@@ -497,7 +497,7 @@ const AppCard = ({ app, locale }: AppCardProps) => {
                     href={app.extraLinks[0].href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-theme-accent hover:text-theme-accent-hover text-sm underline"
+                    className="inline-flex min-h-11 min-w-11 items-center text-theme-accent hover:text-theme-accent-hover text-sm underline"
                   >
                     {app.extraLinks[0].label}
                   </a>
@@ -508,7 +508,7 @@ const AppCard = ({ app, locale }: AppCardProps) => {
                     href={app.extraLinks[1].href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-theme-accent hover:text-theme-accent-hover text-sm underline"
+                    className="inline-flex min-h-11 min-w-11 items-center text-theme-accent hover:text-theme-accent-hover text-sm underline"
                   >
                     {app.extraLinks[1].label}
                   </a>
@@ -520,7 +520,7 @@ const AppCard = ({ app, locale }: AppCardProps) => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-theme-accent hover:text-theme-accent-hover text-sm underline"
+                    className="inline-flex min-h-11 min-w-11 items-center text-theme-accent hover:text-theme-accent-hover text-sm underline"
                   >
                     {link.label}
                   </a>
@@ -549,13 +549,13 @@ const AppCard = ({ app, locale }: AppCardProps) => {
         </div>
       </div>
 
-      <div className="mt-auto flex justify-center">
+      <div className="mt-auto hidden justify-center md:flex">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="cursor-pointer"
+          className="min-h-11 cursor-pointer"
           aria-label={isExpanded ? commonCopy.collapse : commonCopy.expand}
         >
-          <Tag tone="accent" variant="solid">
+          <Tag tone="accent" variant="solid" className="min-h-11 px-4 py-2">
             {isExpanded ? commonCopy.collapse : commonCopy.expand}
           </Tag>
         </button>
@@ -584,7 +584,7 @@ const Apps = ({ id, locale }: AppsProps) => {
         />
 
         {hasApps ? (
-          <div className="columns-1 gap-6 md:columns-2 lg:columns-3">
+          <div className="grid gap-6 md:block md:columns-2 lg:columns-3">
             {localizedApps.map(app => (
               <AppCard key={app.id} app={app} locale={locale} />
             ))}
@@ -638,7 +638,7 @@ function SwitchableImages({ sources, alt, linkTarget }: SwitchableImagesProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Open ${alt}`}
-            className="block"
+            className="block min-h-11"
           >
             {mainImage}
           </a>
@@ -652,8 +652,9 @@ function SwitchableImages({ sources, alt, linkTarget }: SwitchableImagesProps) {
             key={src}
             type="button"
             onClick={() => setActive(index)}
+            aria-label={`Show ${alt} thumbnail ${index + 1}`}
             className={[
-              "h-10 w-14 md:w-16 rounded border transition-colors",
+              "h-11 w-14 md:w-16 rounded border transition-colors",
               index === active
                 ? "border-theme-accent ring-1 ring-theme-accent"
                 : "border-theme-border hover:border-theme-accent/60",

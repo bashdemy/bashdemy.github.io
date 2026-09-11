@@ -14,9 +14,9 @@ function Tag({
   className = "",
 }: TagProps) {
   const softToneClasses = {
-    accent: "bg-theme-accent text-theme-background",
-    primary: "bg-theme-primary text-theme-background",
-    muted: "bg-theme-secondary text-theme-background",
+    accent: "bg-theme-accent text-white",
+    primary: "bg-theme-primary text-white",
+    muted: "bg-theme-secondary text-white",
     success: "bg-green-700 text-white",
     info: "bg-blue-600 text-white",
   };

@@ -27,19 +27,19 @@ const Footer = ({ locale }: FooterProps) => {
               >
                 <Link
                   href="/"
-                  className="text-theme-muted transition hover:text-theme-accent"
+                  className="inline-flex min-h-11 min-w-11 items-center text-theme-muted transition hover:text-theme-accent"
                 >
                   {copy.home}
                 </Link>
                 <Link
                   href="/privacy/"
-                  className="text-theme-muted transition hover:text-theme-accent"
+                  className="inline-flex min-h-11 min-w-11 items-center text-theme-muted transition hover:text-theme-accent"
                 >
                   {copy.privacy}
                 </Link>
                 <Link
                   href="/terms/"
-                  className="text-theme-muted transition hover:text-theme-accent"
+                  className="inline-flex min-h-11 min-w-11 items-center text-theme-muted transition hover:text-theme-accent"
                 >
                   {copy.terms}
                 </Link>

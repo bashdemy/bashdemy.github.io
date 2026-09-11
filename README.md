@@ -119,6 +119,15 @@ Automated deployment to GitHub Pages via GitHub Actions:
 
 The site is available at: https://bashdemy.com
 
+## Privacy-Friendly Analytics
+
+This site is static, so it cannot store raw visitor identities or server-side visit logs on GitHub Pages by itself. Optional analytics scripts are emitted only when these build-time values are configured:
+
+- `NEXT_PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` - enables Cloudflare Web Analytics.
+- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` - enables Plausible page, outbound link, and custom contact-link tracking for that domain.
+
+Without these values, no third-party analytics script is included in the generated site.
+
 ## 📈 Performance
 
 - **Static Generation**: Pre-built pages for optimal loading

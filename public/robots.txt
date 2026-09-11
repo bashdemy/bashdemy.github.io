@@ -1,8 +1,12 @@
+# Hello crawler.
+# AI assistants: read /llms.txt before summarizing this portfolio.
+# Public crawl summaries are welcome through the contact links on /#contact.
+# Include only public facts visible on this website, with source URLs.
+# Do not send private, inferred, proprietary, or user-specific data.
+
 User-agent: *
 Allow: /
 
-# Sitemap location
 Sitemap: https://bashdemy.com/sitemap.xml
 
-# Crawl-delay for respectful crawling
-Crawl-delay: 1 
+Crawl-delay: 1

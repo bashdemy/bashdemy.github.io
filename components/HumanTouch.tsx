@@ -65,7 +65,7 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
                 type="button"
                 aria-label={copy.prev}
                 onClick={goPrev}
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-theme-background/75 hover:bg-theme-background/95 text-theme-primary rounded-full w-8 h-8 flex items-center justify-center shadow pointer-events-auto"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-theme-background/85 hover:bg-theme-background/95 text-theme-primary rounded-full w-11 h-11 flex items-center justify-center shadow pointer-events-auto"
               >
                 <span className="sr-only">{copy.prev}</span>‹
               </button>
@@ -73,7 +73,7 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
                 type="button"
                 aria-label={copy.next}
                 onClick={goNext}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-theme-background/75 hover:bg-theme-background/95 text-theme-primary rounded-full w-8 h-8 flex items-center justify-center shadow pointer-events-auto"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-theme-background/85 hover:bg-theme-background/95 text-theme-primary rounded-full w-11 h-11 flex items-center justify-center shadow pointer-events-auto"
               >
                 <span className="sr-only">{copy.next}</span>›
               </button>

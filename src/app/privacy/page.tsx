@@ -15,7 +15,8 @@ const sections = [
   {
     title: "What This Site Collects",
     body: [
-      "This portfolio is a static website. It does not include a contact form, account login, checkout, comments, or tracking analytics.",
+      "This portfolio is a static website. It does not include a contact form, account login, checkout, or comments.",
+      "The site may use privacy-friendly analytics configured at deployment time to understand broad traffic patterns such as page views, referrers, device type, browser type, country or region, and clicks on public contact links.",
       "If you contact me through LinkedIn, GitHub, Substack, Instagram, or another linked service, any information you share is handled by that service and by the normal conversation we have there.",
     ],
   },
@@ -23,6 +24,7 @@ const sections = [
     title: "Cookies And Analytics",
     body: [
       "This site does not set its own analytics cookies.",
+      "Analytics, when enabled, is intended for aggregate insight rather than identifying individual visitors by name. It is not used to collect hidden contact details, profile matches, or social identities.",
       "GitHub Pages, browsers, CDNs, and linked third-party platforms may process basic technical information such as IP address, browser details, referrer, and request logs for security, delivery, and abuse prevention.",
     ],
   },
@@ -61,7 +63,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mt-4 text-theme-secondary">
-            Last updated 7 September 2026.
+            Last updated 10 September 2026.
           </p>
         </div>
 

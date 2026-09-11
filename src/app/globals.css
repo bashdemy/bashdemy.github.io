@@ -8,7 +8,7 @@
     --color-primary-hover: #854159;
     --color-primary-contrast: #ffffff;
 
-    --color-secondary: #5f5168;
+    --color-secondary: #53445c;
     --color-secondary-light: #9b8aa3;
     --color-secondary-dark: #3b3140;
     --color-secondary-contrast: #ffffff;
@@ -20,10 +20,10 @@
 
     --color-text-primary: #241b20;
     --color-text-secondary: #5f5458;
-    --color-text-muted: #74696d;
+    --color-text-muted: #675d61;
 
     --color-accent: #985068;
-    --color-accent-lavender: #b8a8bf;
+    --color-accent-lavender: #897293;
     --color-accent-plum: #4f394d;
 
     --color-border: #e5d7d2;
@@ -115,17 +115,17 @@
 
 @layer components {
   .section-padding {
-    @apply py-16 px-4 sm:px-6 lg:px-8;
+    @apply px-4 py-12 sm:px-6 sm:py-16 lg:px-8;
   }
 
   .container-custom {
-    @apply max-w-6xl mx-auto;
+    @apply mx-auto max-w-6xl;
   }
 
   .card {
     background-color: var(--color-card-bg);
     backdrop-filter: blur(8px);
-    @apply rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow duration-300;
+    @apply rounded-lg p-5 shadow-sm transition-shadow duration-300 hover:shadow-md sm:p-6;
     border: 1px solid var(--color-card-border);
   }
 
@@ -151,7 +151,7 @@
   }
 
   .profile-picture {
-    @apply w-full max-w-[22rem] sm:max-w-[28rem] aspect-square h-auto rounded-lg object-cover border border-white shadow-lg;
+    @apply w-full max-w-[20rem] sm:max-w-[28rem] aspect-square h-auto rounded-lg object-cover border border-white shadow-lg;
     object-position: 70% 50%;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
@@ -208,6 +208,25 @@
   }
   .border-theme-primary {
     border-color: var(--color-primary);
+  }
+
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .brand-heart-pop {
+    animation: brand-heart-pop 900ms cubic-bezier(0.2, 0.9, 0.24, 1) forwards;
+    color: var(--color-primary);
+    font-size: 1rem;
+    left: 50%;
+    line-height: 1;
+    pointer-events: none;
+    position: absolute;
+    text-shadow: 0 8px 16px rgba(127, 63, 86, 0.18);
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.45);
+    will-change: opacity, transform;
   }
 
   .petal-background {
@@ -360,5 +379,21 @@
 
   68% {
     transform: translate3d(24px, -36px, 0) rotate(14deg);
+  }
+}
+
+@keyframes brand-heart-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30%) scale(0.45) rotate(-10deg);
+  }
+
+  22% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0, -42px) scale(1.18) rotate(12deg);
   }
 }

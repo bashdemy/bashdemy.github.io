@@ -24,6 +24,9 @@ const Navbar = ({
   onLocaleChange,
 }: NavbarProps) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [brandHeart, setBrandHeart] = useState(0);
+  const heartIdRef = useRef(0);
+  const heartTimerRef = useRef<number | undefined>(undefined);
   const menuRef = useRef(null);
   const navItems: NavItem[] = useMemo(
     () => [
@@ -48,6 +51,10 @@ const Navbar = ({
     }
   }, [observedActive, activeSection, setActiveSection]);
 
+  useEffect(() => {
+    return () => window.clearTimeout(heartTimerRef.current);
+  }, []);
+
   const scrollToSection = sectionId => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -56,9 +63,20 @@ const Navbar = ({
     setIsMobileOpen(false);
   };
 
+  const showBrandHeart = () => {
+    const nextHeart = heartIdRef.current + 1;
+    heartIdRef.current = nextHeart;
+    window.clearTimeout(heartTimerRef.current);
+    setBrandHeart(nextHeart);
+
+    heartTimerRef.current = window.setTimeout(() => {
+      setBrandHeart(0);
+    }, 900);
+  };
+
   const getNavItemClassName = itemId => {
     const baseClasses =
-      "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 font-heading";
+      "min-h-11 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 font-heading";
     return activeSection === itemId
       ? `${baseClasses} text-theme-accent bg-theme-accent/20`
       : `${baseClasses} text-theme-secondary hover:text-theme-accent hover:bg-theme-accent/10`;
@@ -71,11 +89,25 @@ const Navbar = ({
       aria-label="Main navigation"
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 px-1 sm:px-0">
           <div className="flex items-center space-x-8">
-            <div className="text-sm font-semibold tracking-[0.28em] text-theme-accent font-heading">
-              BD
-            </div>
+            <button
+              type="button"
+              onClick={showBrandHeart}
+              className="group relative inline-flex h-11 min-w-14 cursor-pointer items-center justify-center overflow-visible rounded-lg border border-theme-primary/25 bg-white/75 px-3 text-[0.8rem] font-bold tracking-[0.18em] text-theme-accent shadow-sm transition hover:border-theme-primary/40 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/40 font-heading"
+              aria-label="Bashdemy easter egg"
+            >
+              <span aria-hidden="true">BD</span>
+              {brandHeart > 0 && (
+                <span
+                  key={brandHeart}
+                  className="brand-heart-pop"
+                  aria-hidden="true"
+                >
+                  ♥
+                </span>
+              )}
+            </button>
             <div className="hidden md:flex space-x-6" role="menubar">
               {navItems.map(item => (
                 <button
@@ -98,7 +130,7 @@ const Navbar = ({
                   key={option.value}
                   type="button"
                   onClick={() => onLocaleChange(option.value)}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
+                  className={`min-h-10 min-w-11 px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
                     option.value === locale
                       ? "bg-theme-primary text-white"
                       : "text-theme-primary hover:bg-theme-accent/60"
@@ -113,7 +145,7 @@ const Navbar = ({
 
           <div className="md:hidden">
             <button
-              className="text-theme-secondary hover:text-theme-accent"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-md text-theme-secondary hover:text-theme-accent"
               aria-label={
                 isMobileOpen ? "Close mobile menu" : "Open mobile menu"
               }
@@ -131,7 +163,7 @@ const Navbar = ({
           ref={menuRef}
           className={`${
             isMobileOpen ? "block" : "hidden"
-          } md:hidden py-2 border-t border-theme-border`}
+          } md:hidden py-3 border-t border-theme-border`}
           role="menubar"
         >
           <div className="flex justify-end pb-2">
@@ -141,7 +173,7 @@ const Navbar = ({
                   key={option.value}
                   type="button"
                   onClick={() => onLocaleChange(option.value)}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
+                  className={`min-h-10 min-w-11 px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
                     option.value === locale
                       ? "bg-theme-primary text-white"
                       : "text-theme-primary hover:bg-theme-accent/60"

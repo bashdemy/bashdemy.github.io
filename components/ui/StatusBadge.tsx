@@ -4,20 +4,20 @@ interface StatusBadgeProps {
 }
 
 const STATUS_TO_CLASSES = {
-  Production: "bg-green-500/20 text-green-800",
-  Completed: "bg-blue-500/20 text-blue-600",
-  "In Development": "bg-theme-accent/20 text-theme-accent",
-  Planning: "bg-theme-secondary/20 text-theme-secondary",
-  "Current Role": "bg-blue-500/20 text-blue-600",
+  Production: "bg-green-700 text-white",
+  Completed: "bg-blue-700 text-white",
+  "In Development": "bg-theme-primary text-white",
+  Planning: "bg-theme-secondary text-white",
+  "Current Role": "bg-blue-700 text-white",
 };
 
 function StatusBadge({ status, label }: StatusBadgeProps) {
   const classNameForStatus =
-    STATUS_TO_CLASSES[status] || "bg-theme-muted/20 text-theme-muted";
+    STATUS_TO_CLASSES[status] || "bg-theme-secondary text-white";
 
   return (
     <span
-      className={`px-2 py-1 rounded-full text-xs font-medium font-heading ${classNameForStatus}`}
+      className={`inline-flex min-h-7 items-center rounded-full px-2.5 py-1 text-xs font-medium font-heading ${classNameForStatus}`}
     >
       {label || status}
     </span>

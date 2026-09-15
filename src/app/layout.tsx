@@ -268,6 +268,13 @@ const structuredData = {
       url: "https://soniakania.com",
     },
     {
+      "@type": "WebSite",
+      name: "Elm & Stone Consulting",
+      description:
+        "Technical R&D consulting website for validation planning, evidence support, protocol review, and technical documentation",
+      url: "https://elmandstone.com.au/",
+    },
+    {
       "@type": "SoftwareApplication",
       name: "Yes Help Network",
       description:

@@ -129,8 +129,8 @@ const APPS_DATA: AppData[] = [
       "SEO",
       "Cloudflare",
     ],
-    status: "In Development",
-    statuses: ["In Development"],
+    status: "Production",
+    statuses: ["Completed", "Production"],
     href: "https://soniakania.com",
     imageSrc: "/sonia-kania/branding.jpg",
     imageAlt: "Sonia Kania photography portfolio website",
@@ -150,6 +150,47 @@ const APPS_DATA: AppData[] = [
         ],
         extraLinks: [{ label: "Открыть сайт", href: "https://soniakania.com" }],
         imageAlt: "Фотопортфолио Sonia Kania",
+      },
+    },
+  },
+  {
+    id: 8,
+    title: "Elm & Stone Consulting",
+    description:
+      "Designing and building a website for Elm & Stone Consulting, a technical R&D consultancy supporting validation planning, R&D Tax Incentive evidence, protocol review, and technical documentation for science-driven businesses.",
+    stack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Cloudflare Pages",
+      "Cloudflare Functions",
+      "SEO",
+    ],
+    status: "In Development",
+    statuses: ["In Development"],
+    href: "https://elmandstone.com.au/",
+    imageSrc: "/elm-and-stone-og-image.png",
+    imageAlt: "Elm & Stone Consulting website preview",
+    imageClassName: "w-full h-40 object-cover p-0",
+    extraLinks: [{ label: "View site", href: "https://elmandstone.com.au/" }],
+    translations: {
+      ru: {
+        description:
+          "Дизайн и разработка сайта для Elm & Stone Consulting, технической R&D-консалтинговой компании в области validation planning, R&D Tax Incentive evidence, protocol review и технической документации для science-driven бизнеса.",
+        stack: [
+          "React",
+          "TypeScript",
+          "Vite",
+          "Tailwind CSS",
+          "Cloudflare Pages",
+          "Cloudflare Functions",
+          "SEO",
+        ],
+        extraLinks: [
+          { label: "Открыть сайт", href: "https://elmandstone.com.au/" },
+        ],
+        imageAlt: "Превью сайта Elm & Stone Consulting",
       },
     },
   },
@@ -441,26 +482,15 @@ const AppCard = ({ app, locale }: AppCardProps) => {
           )}
           {(nonProductionStatuses.length > 0 || app.yc) && (
             <div className="mt-1 flex flex-wrap items-center gap-2">
-              {nonProductionStatuses.map(s =>
-                s === "Currently in Progress" ? (
-                  <Tag
-                    key={s}
-                    tone="accent"
-                    variant="solid"
-                    className="px-3 py-1.5 rounded-full text-xs shadow-sm"
-                  >
-                    {statusLabel(s)}
-                  </Tag>
-                ) : (
-                  <StatusBadge key={s} status={s} label={statusLabel(s)} />
-                )
-              )}
+              {nonProductionStatuses.map(s => (
+                <StatusBadge key={s} status={s} label={statusLabel(s)} />
+              ))}
               {app.yc && (
                 <a
                   href={app.yc.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-11 min-w-11 items-center justify-center rounded px-2 py-1 text-xs bg-[#b83f18] text-white hover:opacity-90"
+                  className="inline-flex min-h-7 shrink-0 items-center justify-center rounded-full border border-theme-border bg-theme-background-alt px-2.5 py-1 text-xs font-medium font-heading text-theme-primary transition hover:border-theme-primary hover:text-theme-accent"
                 >
                   {app.yc.label}
                 </a>

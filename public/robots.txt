@@ -1,4 +1,5 @@
 # Hello crawler.
+# Professional profile and source links: https://bashdemy.com/llms.txt
 # AI assistants: read /llms.txt before summarizing this portfolio.
 # Public crawl summaries are welcome through the contact links on /#contact.
 # Include only public facts visible on this website, with source URLs.

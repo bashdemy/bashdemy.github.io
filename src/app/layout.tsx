@@ -7,6 +7,8 @@ import "./globals.css";
 
 const siteUrl = "https://bashdemy.com";
 const contactHref = "/#contact";
+const professionalSummary =
+  "Bazhena Dementyeva is a senior software engineer in Sydney building web, backend and mobile products with TypeScript, React, Node.js and cloud infrastructure.";
 const cloudflareWebAnalyticsToken =
   process.env.NEXT_PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN;
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
@@ -23,8 +25,7 @@ export const metadata: Metadata = {
     default: "Bazhena Dementyeva - Senior Software Engineer in Sydney",
     template: "%s | Bashdemy",
   },
-  description:
-    "Bazhena Dementyeva (Maria Dementyeva, Maria Demy, bashdemy) is a senior software engineer in Sydney, Australia with experience across React, Next.js, Node.js, GraphQL, React Native, Java Spring Boot, AWS, microservices, and product delivery.",
+  description: professionalSummary,
   keywords: [
     "Bazhena Dementyeva",
     "Maria Dementyeva",
@@ -83,8 +84,7 @@ export const metadata: Metadata = {
     type: "website",
     title:
       "Bazhena Dementyeva - Senior Software Engineer Sydney | React, Node.js, GraphQL, React Native",
-    description:
-      "Senior software engineer in Sydney, Australia with experience across React, Next.js, Node.js, GraphQL, React Native, Java Spring Boot, AWS, and microservices.",
+    description: professionalSummary,
     url: "/",
     siteName: "Bazhena Dementyeva Portfolio",
     locale: "en_AU",
@@ -102,8 +102,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title:
       "Bazhena Dementyeva - Senior Software Engineer Sydney | React, Node.js, GraphQL, React Native",
-    description:
-      "Senior software engineer in Sydney, Australia with experience across React, Next.js, Node.js, GraphQL, React Native, Java Spring Boot, AWS, and microservices.",
+    description: professionalSummary,
     creator: "@bashdemy",
     images: [
       {
@@ -171,8 +170,7 @@ const structuredData = {
   name: "Bazhena Dementyeva",
   alternateName: ["Maria Dementyeva", "Maria Demy", "bashdemy"],
   jobTitle: "Senior Software Engineer",
-  description:
-    "Senior software engineer specializing in full-stack product delivery, backend systems, cloud infrastructure, and microservices.",
+  description: professionalSummary,
   url: siteUrl,
   image: {
     "@type": "ImageObject",

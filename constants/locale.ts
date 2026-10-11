@@ -37,7 +37,7 @@ export const LOCALE_COPY = {
       ctaExperience: "View experience",
       strengths: undefined,
       intro: [
-        "Software engineer with full-stack experience across product teams, startup environments, and production systems. I like work that combines clear user problems with thoughtful engineering.",
+        "I’m Bazhena Dementyeva, a senior software engineer in Sydney building web, backend and mobile products. I bring full-stack experience across product teams, startup environments and production systems, taking user problems from discovery to shipped implementation.",
         "My recent work spans TypeScript, Node.js, GraphQL, React Native, Go, PostgreSQL, and microservices. I also bring experience in React, Next.js, Java Spring Boot, AWS, CI/CD, and workflow automation.",
         "I care about reliable delivery, readable systems, and the kind of team culture where people can do good work without needing to perform confidence all day.",
       ],

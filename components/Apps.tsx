@@ -450,13 +450,17 @@ const AppCard = ({ app, locale, selectedTech, onSelectTech }: AppCardProps) => {
         width={400}
         height={250}
         className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${
-          isLogo ? "object-contain p-4" : "object-cover"
+          isLogo ? "object-contain" : "object-cover"
         }`}
       />
     );
 
     const inner = (
-      <div className="relative w-full h-44 rounded-lg overflow-hidden border border-theme-border/60 bg-white mb-4 flex items-center justify-center group/media">
+      <div
+        className={`relative w-full h-44 rounded-lg overflow-hidden mb-4 flex items-center justify-center ${
+          isLogo ? "bg-theme-background-alt/30 p-4" : ""
+        }`}
+      >
         {image}
       </div>
     );
@@ -773,7 +777,7 @@ function SwitchableImages({ sources, alt, linkTarget }: SwitchableImagesProps) {
   );
 
   return (
-    <div className="relative w-full h-44 rounded-lg overflow-hidden border border-theme-border/60 bg-white mb-4 group/media">
+    <div className="relative w-full h-44 rounded-lg overflow-hidden mb-4 bg-theme-background-alt/30">
       {linkTarget ? (
         <a
           href={linkTarget}
@@ -787,32 +791,24 @@ function SwitchableImages({ sources, alt, linkTarget }: SwitchableImagesProps) {
       ) : (
         mainImage
       )}
-      <div className="absolute bottom-2 right-2 flex gap-1 z-10 bg-black/60 backdrop-blur-xs p-1 rounded-md">
-        {safeSources.map((src, index) => (
+      <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 z-10 bg-black/50 backdrop-blur-xs px-2.5 py-1 rounded-full pointer-events-auto">
+        {safeSources.map((_, index) => (
           <button
-            key={src}
+            key={index}
             type="button"
             onClick={e => {
               e.preventDefault();
               e.stopPropagation();
               setActive(index);
             }}
-            aria-label={`Show ${alt} thumbnail ${index + 1}`}
+            aria-label={`Show ${alt} photo ${index + 1}`}
             aria-pressed={index === active}
-            className={`w-6 h-4 rounded-xs overflow-hidden border transition-all cursor-pointer ${
+            className={`h-2 rounded-full transition-all cursor-pointer ${
               index === active
-                ? "border-white ring-1 ring-white"
-                : "border-white/40 opacity-70 hover:opacity-100"
+                ? "w-4 bg-white"
+                : "w-2 bg-white/50 hover:bg-white/80"
             }`}
-          >
-            <Image
-              src={src}
-              alt=""
-              width={24}
-              height={16}
-              className="h-full w-full object-cover"
-            />
-          </button>
+          />
         ))}
       </div>
     </div>

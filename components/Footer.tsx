@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LOCALE_COPY, Locale } from "../constants/locale";
+import { LOCALE_COPY, Locale } from "@/constants/locale";
 
 interface FooterProps {
   locale: Locale;
@@ -18,7 +18,7 @@ const Footer = ({ locale }: FooterProps) => {
         <div className="py-8">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
-              <p className="text-center text-theme-secondary font-body">
+              <p className="text-theme-secondary font-body">
                 © {currentYear} Bazhena Dementyeva
               </p>
               <nav
@@ -27,19 +27,19 @@ const Footer = ({ locale }: FooterProps) => {
               >
                 <Link
                   href="/"
-                  className="inline-flex min-h-11 min-w-11 items-center text-theme-muted transition hover:text-theme-accent"
+                  className="inline-flex min-h-9 items-center text-theme-muted transition hover:text-theme-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/40 rounded-sm"
                 >
                   {copy.home}
                 </Link>
                 <Link
                   href="/privacy/"
-                  className="inline-flex min-h-11 min-w-11 items-center text-theme-muted transition hover:text-theme-accent"
+                  className="inline-flex min-h-9 items-center text-theme-muted transition hover:text-theme-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/40 rounded-sm"
                 >
                   {copy.privacy}
                 </Link>
                 <Link
                   href="/terms/"
-                  className="inline-flex min-h-11 min-w-11 items-center text-theme-muted transition hover:text-theme-accent"
+                  className="inline-flex min-h-9 items-center text-theme-muted transition hover:text-theme-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/40 rounded-sm"
                 >
                   {copy.terms}
                 </Link>

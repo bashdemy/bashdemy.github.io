@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { LOCALE_COPY, Locale } from "../constants/locale";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { LOCALE_COPY, Locale } from "@/constants/locale";
 
 const IMAGE_ROTATE_INTERVAL_MS = 7000;
 
@@ -43,6 +44,9 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
               className="relative aspect-square w-44 sm:w-48 md:w-52 mx-auto md:mx-0 rounded-lg overflow-hidden shadow-sm bg-theme-background-alt"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
+              onTouchStart={() => setIsPaused(true)}
+              onTouchEnd={() => setIsPaused(false)}
+              aria-label="Image gallery"
             >
               {images.map((image, index) => (
                 <Image
@@ -51,7 +55,9 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
                   alt={image.alt}
                   width={320}
                   height={320}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${index === activeIndex ? "opacity-100" : "opacity-0"}`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                    index === activeIndex ? "opacity-100" : "opacity-0"
+                  }`}
                   onError={e => {
                     e.currentTarget.onerror = null;
                     e.currentTarget.src = "/profile-picture.JPG";
@@ -59,30 +65,38 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
                   draggable="false"
                 />
               ))}
-              <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/10 to-transparent" />
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
               <button
                 type="button"
                 aria-label={copy.prev}
                 onClick={goPrev}
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-theme-background/85 hover:bg-theme-background/95 text-theme-primary rounded-full w-11 h-11 flex items-center justify-center shadow pointer-events-auto"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-theme-background/85 hover:bg-theme-background/95 text-theme-primary rounded-full w-9 h-9 flex items-center justify-center shadow-md transition-transform active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary cursor-pointer"
               >
-                <span className="sr-only">{copy.prev}</span>‹
+                <ChevronLeft className="w-5 h-5" aria-hidden="true" />
               </button>
               <button
                 type="button"
                 aria-label={copy.next}
                 onClick={goNext}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-theme-background/85 hover:bg-theme-background/95 text-theme-primary rounded-full w-11 h-11 flex items-center justify-center shadow pointer-events-auto"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-theme-background/85 hover:bg-theme-background/95 text-theme-primary rounded-full w-9 h-9 flex items-center justify-center shadow-md transition-transform active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary cursor-pointer"
               >
-                <span className="sr-only">{copy.next}</span>›
+                <ChevronRight className="w-5 h-5" aria-hidden="true" />
               </button>
 
-              <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-2 pointer-events-none">
-                {images.map((_, index) => (
-                  <span
-                    key={index}
-                    className={`h-2 w-2 rounded-full transition-colors ${index === activeIndex ? "bg-theme-accent" : "bg-theme-border"}`}
+              <div className="absolute bottom-2.5 left-0 right-0 flex items-center justify-center gap-1.5 z-10">
+                {images.map((img, index) => (
+                  <button
+                    key={img.src}
+                    type="button"
+                    onClick={() => goTo(index)}
+                    aria-label={`View ${img.alt}`}
+                    aria-pressed={index === activeIndex}
+                    className={`h-2.5 rounded-full transition-all cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-theme-primary ${
+                      index === activeIndex
+                        ? "w-5 bg-theme-accent"
+                        : "w-2.5 bg-white/70 hover:bg-white"
+                    }`}
                   />
                 ))}
               </div>
@@ -96,7 +110,7 @@ const HumanTouch = ({ id, locale }: HumanTouchProps) => {
                 {copy.body.map((text, idx) => (
                   <p
                     key={text}
-                    className={`text-theme-secondary font-body ${
+                    className={`text-theme-secondary font-body leading-relaxed ${
                       idx > 0 ? "mt-3" : ""
                     }`}
                   >

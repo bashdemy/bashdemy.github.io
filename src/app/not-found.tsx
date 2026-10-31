@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Card from "../../components/ui/Card";
+import Card from "@/components/ui/Card";
 
 export default function NotFound() {
   return (

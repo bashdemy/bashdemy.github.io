@@ -1,8 +1,8 @@
 import { ArrowUpRight } from "lucide-react";
-import Card from "./ui/Card";
-import SectionIntro from "./ui/SectionIntro";
-import Tag from "./ui/Tag";
-import { LOCALE_COPY, Locale } from "../constants/locale";
+import Card from "@/components/ui/Card";
+import SectionIntro from "@/components/ui/SectionIntro";
+import Tag from "@/components/ui/Tag";
+import { LOCALE_COPY, Locale } from "@/constants/locale";
 
 interface PersonalProjectsProps {
   id: string;
@@ -192,7 +192,7 @@ const PersonalProjects = ({ id, locale }: PersonalProjectsProps) => {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-md bg-theme-primary px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                    className="inline-flex items-center justify-center gap-2 rounded-md bg-theme-primary px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/50"
                     aria-label={project.linkLabel}
                   >
                     {project.linkLabel}

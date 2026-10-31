@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Menu } from "lucide-react";
-import { useScrollSpy } from "../hooks/useScrollSpy";
-import { LOCALE_COPY, LOCALE_OPTIONS, Locale } from "../constants/locale";
+import { Menu, X } from "lucide-react";
+import { useScrollSpy } from "@/hooks/useScrollSpy";
+import { LOCALE_COPY, LOCALE_OPTIONS, Locale } from "@/constants/locale";
 
 const SCROLL_OFFSET = 100;
 
@@ -27,6 +27,8 @@ const Navbar = ({
   const [brandHeart, setBrandHeart] = useState(0);
   const heartIdRef = useRef(0);
   const heartTimerRef = useRef<number | undefined>(undefined);
+  const navContainerRef = useRef<HTMLElement>(null);
+
   const navItems: NavItem[] = useMemo(
     () => [
       { id: "about", label: LOCALE_COPY[locale].nav.about },
@@ -40,10 +42,9 @@ const Navbar = ({
     [locale]
   );
 
-  const observedActive = useScrollSpy(
-    navItems.map(i => i.id),
-    SCROLL_OFFSET
-  );
+  const sectionIds = useMemo(() => navItems.map(i => i.id), [navItems]);
+  const observedActive = useScrollSpy(sectionIds, SCROLL_OFFSET);
+
   useEffect(() => {
     if (observedActive && observedActive !== activeSection) {
       setActiveSection(observedActive);
@@ -54,15 +55,48 @@ const Navbar = ({
     return () => window.clearTimeout(heartTimerRef.current);
   }, []);
 
+  // Handle escape key to close mobile menu
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isMobileOpen) {
+        setIsMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileOpen]);
+
+  // Handle click outside to close mobile menu
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        isMobileOpen &&
+        navContainerRef.current &&
+        !navContainerRef.current.contains(e.target as Node)
+      ) {
+        setIsMobileOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isMobileOpen]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      if (typeof window !== "undefined" && window.history?.replaceState) {
+        window.history.replaceState(null, "", `#${sectionId}`);
+      }
     }
     setIsMobileOpen(false);
   };
 
-  const showBrandHeart = () => {
+  const handleLogoClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (typeof window !== "undefined" && window.history?.replaceState) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
     const nextHeart = heartIdRef.current + 1;
     heartIdRef.current = nextHeart;
     window.clearTimeout(heartTimerRef.current);
@@ -75,7 +109,7 @@ const Navbar = ({
 
   const getNavItemClassName = (itemId: string) => {
     const baseClasses =
-      "min-h-11 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 font-heading";
+      "inline-flex items-center min-h-11 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 font-heading focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/50";
     return activeSection === itemId
       ? `${baseClasses} text-theme-accent bg-theme-accent/20`
       : `${baseClasses} text-theme-secondary hover:text-theme-accent hover:bg-theme-accent/10`;
@@ -83,8 +117,8 @@ const Navbar = ({
 
   return (
     <nav
+      ref={navContainerRef}
       className="fixed top-0 left-0 right-0 z-50 bg-theme-background/90 backdrop-blur-sm border-b border-theme-border"
-      role="navigation"
       aria-label="Main navigation"
     >
       <div className="container-custom">
@@ -92,9 +126,10 @@ const Navbar = ({
           <div className="flex items-center space-x-8">
             <button
               type="button"
-              onClick={showBrandHeart}
+              onClick={handleLogoClick}
               className="group relative inline-flex h-11 min-w-14 cursor-pointer items-center justify-center overflow-visible rounded-lg border border-theme-primary/25 bg-white/75 px-3 text-[0.8rem] font-bold tracking-[0.18em] text-theme-accent shadow-sm transition hover:border-theme-primary/40 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/40 font-heading"
-              aria-label="Bashdemy easter egg"
+              aria-label="Return to top of page and show BD easter egg"
+              title="Return to top"
             >
               <span aria-hidden="true">BD</span>
               {brandHeart > 0 && (
@@ -107,32 +142,36 @@ const Navbar = ({
                 </span>
               )}
             </button>
-            <div className="hidden md:flex space-x-6" role="menubar">
+
+            <div className="hidden md:flex space-x-4">
               {navItems.map(item => (
-                <button
+                <a
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  href={`#${item.id}`}
+                  onClick={e => {
+                    e.preventDefault();
+                    scrollToSection(item.id);
+                  }}
                   className={getNavItemClassName(item.id)}
                   aria-current={activeSection === item.id ? "page" : undefined}
-                  role="menuitem"
                 >
                   {item.label}
-                </button>
+                </a>
               ))}
             </div>
           </div>
 
           <div className="hidden md:flex items-center gap-2">
-            <div className="inline-flex rounded-full border border-theme-border bg-white/70 shadow-sm">
+            <div className="inline-flex rounded-full border border-theme-border bg-white/70 shadow-sm p-0.5">
               {LOCALE_OPTIONS.map(option => (
                 <button
                   key={option.value}
                   type="button"
                   onClick={() => onLocaleChange(option.value)}
-                  className={`min-h-10 min-w-11 px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
+                  className={`min-h-9 min-w-10 px-3 py-1 text-xs font-medium rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary ${
                     option.value === locale
-                      ? "bg-theme-primary text-white"
-                      : "text-theme-primary hover:bg-theme-accent/60"
+                      ? "bg-theme-primary text-white shadow-xs"
+                      : "text-theme-primary hover:bg-theme-accent/20"
                   }`}
                   aria-pressed={option.value === locale}
                 >
@@ -144,7 +183,7 @@ const Navbar = ({
 
           <div className="md:hidden">
             <button
-              className="flex min-h-11 min-w-11 items-center justify-center rounded-md text-theme-secondary hover:text-theme-accent"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-md text-theme-secondary hover:text-theme-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/40"
               aria-label={
                 isMobileOpen ? "Close mobile menu" : "Open mobile menu"
               }
@@ -152,29 +191,39 @@ const Navbar = ({
               aria-controls="mobile-menu"
               onClick={() => setIsMobileOpen(open => !open)}
             >
-              <Menu className="w-6 h-6" />
+              {isMobileOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
+
         {/* Mobile menu */}
         <div
           id="mobile-menu"
           className={`${
             isMobileOpen ? "block" : "hidden"
-          } md:hidden py-3 border-t border-theme-border`}
-          role="menubar"
+          } md:hidden py-3 border-t border-theme-border animate-in fade-in slide-in-from-top-2 duration-200`}
         >
-          <div className="flex justify-end pb-2">
-            <div className="inline-flex rounded-full border border-theme-border bg-white/70 shadow-sm">
+          <div className="flex justify-between items-center pb-3 px-2">
+            <span className="text-xs uppercase tracking-wider text-theme-muted font-heading">
+              Language
+            </span>
+            <div className="inline-flex rounded-full border border-theme-border bg-white/70 shadow-sm p-0.5">
               {LOCALE_OPTIONS.map(option => (
                 <button
                   key={option.value}
                   type="button"
-                  onClick={() => onLocaleChange(option.value)}
-                  className={`min-h-10 min-w-11 px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
+                  onClick={() => {
+                    onLocaleChange(option.value);
+                    setIsMobileOpen(false);
+                  }}
+                  className={`min-h-9 min-w-10 px-3 py-1 text-xs font-medium rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary ${
                     option.value === locale
-                      ? "bg-theme-primary text-white"
-                      : "text-theme-primary hover:bg-theme-accent/60"
+                      ? "bg-theme-primary text-white shadow-xs"
+                      : "text-theme-primary hover:bg-theme-accent/20"
                   }`}
                   aria-pressed={option.value === locale}
                 >
@@ -185,15 +234,18 @@ const Navbar = ({
           </div>
           <div className="flex flex-col space-y-1">
             {navItems.map(item => (
-              <button
+              <a
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                href={`#${item.id}`}
+                onClick={e => {
+                  e.preventDefault();
+                  scrollToSection(item.id);
+                }}
                 className={getNavItemClassName(item.id)}
                 aria-current={activeSection === item.id ? "page" : undefined}
-                role="menuitem"
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </div>
         </div>

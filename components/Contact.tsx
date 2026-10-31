@@ -1,7 +1,7 @@
 import { Code, Instagram, Linkedin, Newspaper, Star } from "lucide-react";
-import ContactCard from "./ui/ContactCard";
-import SectionIntro from "./ui/SectionIntro";
-import { LOCALE_COPY, Locale } from "../constants/locale";
+import ContactCard from "@/components/ui/ContactCard";
+import SectionIntro from "@/components/ui/SectionIntro";
+import { LOCALE_COPY, Locale } from "@/constants/locale";
 
 interface ContactProps {
   id: string;

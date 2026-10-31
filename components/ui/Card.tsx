@@ -1,18 +1,18 @@
-import { ElementType, ReactNode } from "react";
+import { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
-interface CardProps {
-  as?: ElementType;
+type CardProps<T extends ElementType = "div"> = {
+  as?: T;
   className?: string;
-  children: ReactNode;
-  [key: string]: unknown;
-}
+  children?: ReactNode;
+} & ComponentPropsWithoutRef<T>;
 
-function Card({
-  as: Component = "div",
+function Card<T extends ElementType = "div">({
+  as,
   className = "",
   children,
   ...rest
-}: CardProps) {
+}: CardProps<T>) {
+  const Component = as || "div";
   const classes = ["card", className].filter(Boolean).join(" ");
   return (
     <Component className={classes} {...rest}>

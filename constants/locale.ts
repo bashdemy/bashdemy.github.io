@@ -48,6 +48,16 @@ export const LOCALE_COPY = {
         subtitle:
           "Selected roles, client work, education, and technical projects.",
       },
+      categories: {
+        all: "All",
+        work: "Engineering Roles",
+        client: "Client Work",
+        education: "Education & Capstone",
+      },
+      filterBy: "Filtered by",
+      clearFilter: "Clear",
+      noResults: "No projects match the selected filter.",
+      resetFilters: "Show all projects",
       statuses: {
         Production: "Production",
         Completed: "Completed",
@@ -157,6 +167,16 @@ export const LOCALE_COPY = {
         title: "Опыт и проекты",
         subtitle: "Роли, клиентские проекты, образование и технические работы.",
       },
+      categories: {
+        all: "Все",
+        work: "Инженерия и роли",
+        client: "Клиентские проекты",
+        education: "Образование",
+      },
+      filterBy: "Фильтр по",
+      clearFilter: "Сбросить",
+      noResults: "Нет проектов по выбранному фильтру.",
+      resetFilters: "Показать все",
       statuses: {
         Production: "Продакшн",
         Completed: "Завершено",

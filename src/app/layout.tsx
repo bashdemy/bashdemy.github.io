@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import { AnalyticsEvents } from "../../components/AnalyticsEvents";
-import { AnalyticsConsent } from "../../components/AnalyticsConsent";
-import { PortfolioEasterEggs } from "../../components/PortfolioEasterEggs";
+import { AnalyticsEvents } from "@/components/AnalyticsEvents";
+import { AnalyticsConsent } from "@/components/AnalyticsConsent";
+import { PortfolioEasterEggs } from "@/components/PortfolioEasterEggs";
 import "./globals.css";
 
 const siteUrl = "https://bashdemy.com";

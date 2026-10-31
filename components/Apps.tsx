@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
+import { ArrowUpRight, X } from "lucide-react";
 import Card from "./ui/Card";
 import StatusBadge from "./ui/StatusBadge";
 import Tag from "./ui/Tag";
 import SectionIntro from "./ui/SectionIntro";
-import { LOCALE_COPY, Locale } from "../constants/locale";
+import { LOCALE_COPY, Locale } from "@/constants/locale";
 
 interface LocalizedFields {
   title?: string;
@@ -25,6 +26,7 @@ interface AppData {
   stack: string[];
   status: string;
   statuses?: string[];
+  category: "work" | "client" | "education";
   isSubheading?: boolean;
   href?: string;
   imageSrc?: string;
@@ -62,6 +64,7 @@ const APPS_DATA: AppData[] = [
     ],
     status: "Production",
     statuses: ["Current Role", "Production"],
+    category: "work",
     href: "https://www.eucalyptus.vc/",
     imageSrc: "/euc.jpg",
     imageAlt: "Eucalyptus logo",
@@ -101,6 +104,7 @@ const APPS_DATA: AppData[] = [
     chipsLabel: "Credentials",
     status: "Currently in Progress",
     statuses: ["Currently in Progress"],
+    category: "education",
     isSubheading: true,
     href: "https://www.unsw.edu.au/",
     imageSrc: "/unsw_0.png",
@@ -131,10 +135,10 @@ const APPS_DATA: AppData[] = [
     ],
     status: "Production",
     statuses: ["Completed", "Production"],
+    category: "client",
     href: "https://soniakania.com",
     imageSrc: "/sonia-kania/branding.jpg",
     imageAlt: "Sonia Kania photography portfolio website",
-    imageClassName: "w-full h-56 object-cover p-0",
     extraLinks: [{ label: "View site", href: "https://soniakania.com" }],
     translations: {
       ru: {
@@ -169,10 +173,10 @@ const APPS_DATA: AppData[] = [
     ],
     status: "In Development",
     statuses: ["In Development"],
+    category: "client",
     href: "https://elmandstone.com.au/",
     imageSrc: "/elm-and-stone-og-image.png",
     imageAlt: "Elm & Stone Consulting website preview",
-    imageClassName: "w-full h-40 object-cover p-0",
     extraLinks: [{ label: "View site", href: "https://elmandstone.com.au/" }],
     translations: {
       ru: {
@@ -202,6 +206,7 @@ const APPS_DATA: AppData[] = [
     stack: ["React", "Java (Spring Boot)", "AWS", "LangChain", "Microservices"],
     status: "Production",
     statuses: ["Completed", "Production"],
+    category: "work",
     yc: {
       label: "YC W22",
       href: "https://www.ycombinator.com/companies/workflow86",
@@ -209,12 +214,10 @@ const APPS_DATA: AppData[] = [
     href: "https://www.workflow86.com",
     imageSrc: "/workflow86-icon.png",
     imageAlt: "Workflow86 logo",
-    imageClassName: "w-24 h-24 mx-auto",
     extraLinks: [
-      { label: "Learn more", href: "https://www.workflow86.com" },
       { label: "Open app", href: "https://app.workflow86.com" },
+      { label: "Learn more", href: "https://www.workflow86.com" },
     ],
-    extraLinksStyle: "or",
     translations: {
       ru: {
         description:
@@ -227,11 +230,11 @@ const APPS_DATA: AppData[] = [
           "Микросервисы",
         ],
         extraLinks: [
-          { label: "Подробнее", href: "https://www.workflow86.com" },
           {
             label: "Открыть приложение",
             href: "https://app.workflow86.com",
           },
+          { label: "Подробнее", href: "https://www.workflow86.com" },
         ],
         imageAlt: "Логотип Workflow86",
       },
@@ -252,11 +255,11 @@ const APPS_DATA: AppData[] = [
     ],
     status: "Production",
     statuses: ["Completed", "Production"],
+    category: "work",
     isSubheading: true,
     href: "https://yeshelpnetwork.github.io/",
     imageSrc: "/yeshelp-brand-lockup.png",
     imageAlt: "Yes Help Network brand lockup",
-    imageClassName: "w-full h-32 object-contain p-4",
     extraLinks: [
       {
         label: "View site",
@@ -300,6 +303,7 @@ const APPS_DATA: AppData[] = [
       "Data Viz",
     ],
     status: "Completed",
+    category: "education",
     href: "https://transportnsw.info/",
     imageSrcs: ["/group.JPG", "/runner-up-project.jpg"],
     imageAlt: "Sydney Trains data visualisation project",
@@ -343,11 +347,11 @@ const APPS_DATA: AppData[] = [
     ],
     chipsLabel: "Credentials",
     status: "Completed",
+    category: "education",
     isSubheading: true,
     href: "https://www.uow.edu.au/",
     imageSrc: "/grad.jpg",
     imageAlt: "Graduation photo",
-    imageClassName: "w-full h-auto max-h-56 md:max-h-72 object-contain p-0",
     extraLinks: [
       { label: "UOW", href: "https://www.uow.edu.au/" },
       { label: "Navitas", href: "https://www.navitas.com/" },
@@ -370,7 +374,6 @@ const APPS_DATA: AppData[] = [
 
 function localizeApp(app: AppData, locale: Locale): AppData {
   const translation = app.translations?.[locale];
-
   if (!translation) return app;
 
   return {
@@ -387,21 +390,23 @@ function localizeApp(app: AppData, locale: Locale): AppData {
 interface AppCardProps {
   app: AppData;
   locale: Locale;
+  selectedTech: string | null;
+  onSelectTech: (tech: string) => void;
 }
 
-const AppCard = ({ app, locale }: AppCardProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const AppCard = ({ app, locale, selectedTech, onSelectTech }: AppCardProps) => {
   const copy = LOCALE_COPY[locale];
   const appCopy = copy.apps;
   const commonCopy = copy.common;
   const titleText = app.title.replace("(YC W22)", "").trim();
   const linkTarget = app.href || app.extraLinks?.[0]?.href;
+
   const titleContent = linkTarget ? (
     <a
       href={linkTarget}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex min-h-11 min-w-11 items-center hover:underline"
+      className="inline-flex min-h-8 items-center hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/40 rounded-xs"
     >
       {titleText}
     </a>
@@ -419,15 +424,6 @@ const AppCard = ({ app, locale }: AppCardProps) => {
   const productionStatuses = statuses.filter(s => s === "Production");
   const statusLabel = (status: string) => appCopy.statuses[status] || status;
 
-  const imageClassName = [
-    "mb-4 rounded border border-theme-border bg-white object-contain p-3",
-    app.imageClassName || "w-full",
-  ].join(" ");
-
-  const contentClassName = `overflow-hidden transition-all duration-500 ease-in-out ${
-    isExpanded ? "max-h-[2000px]" : "max-h-none md:max-h-0"
-  }`;
-
   const imageContent = (() => {
     if (app.imageSrcs && app.imageSrcs.length > 0) {
       return (
@@ -441,14 +437,28 @@ const AppCard = ({ app, locale }: AppCardProps) => {
 
     if (!app.imageSrc) return null;
 
+    const isLogo =
+      app.imageSrc.includes("unsw") ||
+      app.imageSrc.includes("workflow86") ||
+      app.imageSrc.includes("yeshelp") ||
+      app.imageSrc.includes("euc");
+
     const image = (
       <Image
         src={app.imageSrc}
-        alt={app.imageAlt || `${app.title} logo`}
-        width={300}
-        height={200}
-        className={imageClassName}
+        alt={app.imageAlt || `${app.title} preview`}
+        width={400}
+        height={250}
+        className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${
+          isLogo ? "object-contain p-4" : "object-cover"
+        }`}
       />
+    );
+
+    const inner = (
+      <div className="relative w-full h-44 rounded-lg overflow-hidden border border-theme-border/60 bg-white mb-4 flex items-center justify-center group/media">
+        {image}
+      </div>
     );
 
     return linkTarget ? (
@@ -457,138 +467,124 @@ const AppCard = ({ app, locale }: AppCardProps) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Open ${app.title}`}
+        className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/40 rounded-lg"
       >
-        {image}
+        {inner}
       </a>
     ) : (
-      image
+      inner
     );
   })();
 
   return (
-    <Card className="group mb-6 inline-block w-full break-inside-avoid">
-      {imageContent}
+    <Card className="group h-full flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-theme-primary/50">
+      <div>
+        {imageContent}
 
-      <div className="flex items-start justify-between gap-3 mb-4">
-        <div className="flex-1 min-w-0">
-          {app.isSubheading ? (
-            <h4 className="text-lg font-semibold text-theme-primary group-hover:text-theme-accent transition-colors font-heading">
-              {titleContent}
-            </h4>
-          ) : (
-            <h3 className="text-xl font-semibold text-theme-primary group-hover:text-theme-accent transition-colors font-heading">
-              {titleContent}
-            </h3>
-          )}
-          {(nonProductionStatuses.length > 0 || app.yc) && (
-            <div className="mt-1 flex flex-wrap items-center gap-2">
-              {nonProductionStatuses.map(s => (
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div className="flex-1 min-w-0">
+            {app.isSubheading ? (
+              <h4 className="text-lg font-semibold text-theme-primary group-hover:text-theme-accent transition-colors font-heading">
+                {titleContent}
+              </h4>
+            ) : (
+              <h3 className="text-xl font-semibold text-theme-primary group-hover:text-theme-accent transition-colors font-heading">
+                {titleContent}
+              </h3>
+            )}
+            {(nonProductionStatuses.length > 0 || app.yc) && (
+              <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                {nonProductionStatuses.map(s => (
+                  <StatusBadge key={s} status={s} label={statusLabel(s)} />
+                ))}
+                {app.yc && (
+                  <a
+                    href={app.yc.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-6 shrink-0 items-center justify-center rounded-full border border-theme-border bg-theme-background-alt px-2.5 py-0.5 text-xs font-medium font-heading text-theme-primary transition hover:border-theme-primary hover:text-theme-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/40"
+                  >
+                    {app.yc.label}
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+          {productionStatuses.length > 0 && (
+            <div className="flex items-center gap-1.5 shrink-0">
+              {productionStatuses.map(s => (
                 <StatusBadge key={s} status={s} label={statusLabel(s)} />
               ))}
-              {app.yc && (
-                <a
-                  href={app.yc.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-7 shrink-0 items-center justify-center rounded-full border border-theme-border bg-theme-background-alt px-2.5 py-1 text-xs font-medium font-heading text-theme-primary transition hover:border-theme-primary hover:text-theme-accent"
-                >
-                  {app.yc.label}
-                </a>
-              )}
             </div>
           )}
         </div>
-        {productionStatuses.length > 0 && (
-          <div className="flex items-center gap-2">
-            {productionStatuses.map(s => (
-              <StatusBadge key={s} status={s} label={statusLabel(s)} />
+
+        <div className="mb-4">
+          <p className="text-theme-secondary font-body description text-sm leading-relaxed">
+            {app.description}
+          </p>
+        </div>
+      </div>
+
+      <div className="pt-3 mt-auto border-t border-theme-border/40">
+        {/* Action links */}
+        {app.extraLinks && app.extraLinks.length > 0 && (
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            {app.extraLinks.map((link, idx) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/40 ${
+                  idx === 0
+                    ? "bg-theme-primary text-white hover:opacity-90 shadow-2xs"
+                    : "border border-theme-border bg-white text-theme-primary hover:bg-theme-accent/15"
+                }`}
+              >
+                <span>{link.label}</span>
+                <ArrowUpRight
+                  className="w-3.5 h-3.5 opacity-80"
+                  aria-hidden="true"
+                />
+              </a>
             ))}
           </div>
         )}
-      </div>
 
-      <div className="mb-4">
-        <p
-          className={`text-theme-secondary font-body description ${
-            isExpanded ? "" : "md:line-clamp-3"
-          }`}
-        >
-          {app.description}
-        </p>
-      </div>
-
-      <div className={contentClassName}>
-        <div className="pt-0">
-          {app.extraLinks && app.extraLinks.length > 0 && (
-            <div className="mb-4 flex flex-wrap items-center gap-2">
-              {app.extraLinksStyle === "or" && app.extraLinks.length >= 2 ? (
-                <>
-                  <a
-                    href={app.extraLinks[0].href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 min-w-11 items-center text-theme-accent hover:text-theme-accent-hover text-sm underline"
-                  >
-                    {app.extraLinks[0].label}
-                  </a>
-                  <span className="text-theme-muted text-sm">
-                    {commonCopy.or}
-                  </span>
-                  <a
-                    href={app.extraLinks[1].href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 min-w-11 items-center text-theme-accent hover:text-theme-accent-hover text-sm underline"
-                  >
-                    {app.extraLinks[1].label}
-                  </a>
-                </>
-              ) : (
-                app.extraLinks.map(link => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 min-w-11 items-center text-theme-accent hover:text-theme-accent-hover text-sm underline"
-                  >
-                    {link.label}
-                  </a>
-                ))
-              )}
-            </div>
-          )}
-
-          <div className="space-y-2 mb-4">
-            <h4 className="text-sm font-medium text-theme-primary font-heading">
-              {app.chipsLabel || commonCopy.techStack}
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {app.stack.map(tech => (
-                <Tag
+        {/* Tech stack chips */}
+        <div className="space-y-1.5">
+          <h4 className="text-[11px] font-semibold uppercase tracking-wider text-theme-muted font-heading">
+            {app.chipsLabel || commonCopy.techStack}
+          </h4>
+          <div className="flex flex-wrap gap-1.5">
+            {app.stack.map(tech => {
+              const isSelected =
+                selectedTech?.toLowerCase() === tech.toLowerCase();
+              return (
+                <button
                   key={tech}
-                  tone="accent"
-                  variant="solid"
-                  className="px-3 py-1 rounded-full text-sm shadow-sm"
+                  type="button"
+                  onClick={() => onSelectTech(tech)}
+                  title={`Filter by ${tech}`}
+                  className="cursor-pointer transition-transform active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary/50 rounded-full"
                 >
-                  {tech}
-                </Tag>
-              ))}
-            </div>
+                  <Tag
+                    tone={isSelected ? "primary" : "accent"}
+                    variant="solid"
+                    className={`px-2.5 py-0.5 rounded-full text-xs shadow-2xs transition-all ${
+                      isSelected
+                        ? "ring-2 ring-theme-primary ring-offset-1 font-bold"
+                        : "hover:opacity-85"
+                    }`}
+                  >
+                    {tech}
+                  </Tag>
+                </button>
+              );
+            })}
           </div>
         </div>
-      </div>
-
-      <div className="mt-auto hidden justify-center md:flex">
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="min-h-11 cursor-pointer"
-          aria-label={isExpanded ? commonCopy.collapse : commonCopy.expand}
-        >
-          <Tag tone="accent" variant="solid" className="min-h-11 px-4 py-2">
-            {isExpanded ? commonCopy.collapse : commonCopy.expand}
-          </Tag>
-        </button>
       </div>
     </Card>
   );
@@ -600,9 +596,69 @@ interface AppsProps {
 }
 
 const Apps = ({ id, locale }: AppsProps) => {
+  const [selectedCategory, setSelectedCategory] = useState<
+    "all" | "work" | "client" | "education"
+  >("all");
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
+
   const copy = LOCALE_COPY[locale];
   const appCopy = copy.apps;
-  const localizedApps = APPS_DATA.map(app => localizeApp(app, locale));
+
+  const localizedApps = useMemo(
+    () => APPS_DATA.map(app => localizeApp(app, locale)),
+    [locale]
+  );
+
+  const categoryCounts = useMemo(() => {
+    return {
+      all: localizedApps.length,
+      work: localizedApps.filter(a => a.category === "work").length,
+      client: localizedApps.filter(a => a.category === "client").length,
+      education: localizedApps.filter(a => a.category === "education").length,
+    };
+  }, [localizedApps]);
+
+  const filteredApps = useMemo(() => {
+    return localizedApps.filter(app => {
+      const matchesCategory =
+        selectedCategory === "all" || app.category === selectedCategory;
+      const matchesTech =
+        !selectedTech ||
+        app.stack.some(t => t.toLowerCase() === selectedTech.toLowerCase());
+      return matchesCategory && matchesTech;
+    });
+  }, [localizedApps, selectedCategory, selectedTech]);
+
+  const categories = [
+    {
+      id: "all" as const,
+      label: appCopy.categories.all,
+      count: categoryCounts.all,
+    },
+    {
+      id: "work" as const,
+      label: appCopy.categories.work,
+      count: categoryCounts.work,
+    },
+    {
+      id: "client" as const,
+      label: appCopy.categories.client,
+      count: categoryCounts.client,
+    },
+    {
+      id: "education" as const,
+      label: appCopy.categories.education,
+      count: categoryCounts.education,
+    },
+  ];
+
+  const handleSelectTech = (tech: string) => {
+    if (selectedTech?.toLowerCase() === tech.toLowerCase()) {
+      setSelectedTech(null);
+    } else {
+      setSelectedTech(tech);
+    }
+  };
 
   return (
     <section id={id} className="section-padding">
@@ -612,11 +668,84 @@ const Apps = ({ id, locale }: AppsProps) => {
           subtitle={appCopy.section.subtitle}
         />
 
-        <div className="grid gap-6 md:block md:columns-2 lg:columns-3">
-          {localizedApps.map(app => (
-            <AppCard key={app.id} app={app} locale={locale} />
-          ))}
+        {/* Filter controls */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
+          {/* Category Tabs */}
+          <div className="inline-flex flex-wrap rounded-xl border border-theme-border bg-white/70 p-1 shadow-xs">
+            {categories.map(cat => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-primary cursor-pointer font-heading ${
+                  selectedCategory === cat.id
+                    ? "bg-theme-primary text-white shadow-xs"
+                    : "text-theme-secondary hover:text-theme-primary hover:bg-theme-accent/10"
+                }`}
+              >
+                <span>{cat.label}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                    selectedCategory === cat.id
+                      ? "bg-white/25 text-white"
+                      : "bg-theme-border/60 text-theme-muted"
+                  }`}
+                >
+                  {cat.count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Active Tech Tag Filter Badge */}
+          {selectedTech && (
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-theme-accent/15 border border-theme-accent/30 text-xs font-medium text-theme-primary animate-in fade-in duration-200">
+              <span>
+                {appCopy.filterBy}: <strong>{selectedTech}</strong> (
+                {filteredApps.length})
+              </span>
+              <button
+                type="button"
+                onClick={() => setSelectedTech(null)}
+                className="inline-flex items-center justify-center p-0.5 rounded-full hover:bg-theme-accent/20 text-theme-accent hover:text-theme-primary cursor-pointer"
+                aria-label={appCopy.clearFilter}
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
         </div>
+
+        {/* Projects Grid */}
+        {filteredApps.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            {filteredApps.map(app => (
+              <AppCard
+                key={app.id}
+                app={app}
+                locale={locale}
+                selectedTech={selectedTech}
+                onSelectTech={handleSelectTech}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16 px-4 rounded-xl border border-dashed border-theme-border bg-theme-background-alt/60">
+            <p className="text-theme-secondary mb-4 font-body">
+              {appCopy.noResults}
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedCategory("all");
+                setSelectedTech(null);
+              }}
+              className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-theme-primary text-white text-xs font-semibold hover:opacity-90 transition-opacity cursor-pointer"
+            >
+              {appCopy.resetFilters}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -639,46 +768,48 @@ function SwitchableImages({ sources, alt, linkTarget }: SwitchableImagesProps) {
       alt={alt}
       width={400}
       height={300}
-      className="w-full h-auto object-contain"
+      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
     />
   );
 
   return (
-    <div className="mb-4">
-      <div className="w-full h-auto max-h-56 md:max-h-72 rounded border border-theme-border overflow-hidden bg-white p-0">
-        {linkTarget ? (
-          <a
-            href={linkTarget}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Open ${alt}`}
-            className="block min-h-11"
-          >
-            {mainImage}
-          </a>
-        ) : (
-          mainImage
-        )}
-      </div>
-      <div className="mt-2 flex gap-2">
+    <div className="relative w-full h-44 rounded-lg overflow-hidden border border-theme-border/60 bg-white mb-4 group/media">
+      {linkTarget ? (
+        <a
+          href={linkTarget}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${alt}`}
+          className="block w-full h-full"
+        >
+          {mainImage}
+        </a>
+      ) : (
+        mainImage
+      )}
+      <div className="absolute bottom-2 right-2 flex gap-1 z-10 bg-black/60 backdrop-blur-xs p-1 rounded-md">
         {safeSources.map((src, index) => (
           <button
             key={src}
             type="button"
-            onClick={() => setActive(index)}
+            onClick={e => {
+              e.preventDefault();
+              e.stopPropagation();
+              setActive(index);
+            }}
             aria-label={`Show ${alt} thumbnail ${index + 1}`}
-            className={[
-              "h-11 w-14 md:w-16 rounded border transition-colors",
+            aria-pressed={index === active}
+            className={`w-6 h-4 rounded-xs overflow-hidden border transition-all cursor-pointer ${
               index === active
-                ? "border-theme-accent ring-1 ring-theme-accent"
-                : "border-theme-border hover:border-theme-accent/60",
-            ].join(" ")}
+                ? "border-white ring-1 ring-white"
+                : "border-white/40 opacity-70 hover:opacity-100"
+            }`}
           >
             <Image
               src={src}
-              alt={`${alt} thumbnail ${index + 1}`}
-              width={60}
-              height={40}
+              alt=""
+              width={24}
+              height={16}
               className="h-full w-full object-cover"
             />
           </button>

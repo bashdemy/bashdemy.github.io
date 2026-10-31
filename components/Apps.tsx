@@ -26,7 +26,8 @@ interface AppData {
   stack: string[];
   status: string;
   statuses?: string[];
-  category: "work" | "client" | "education";
+  category?: "work" | "client" | "education";
+  categories?: ("work" | "client" | "education")[];
   isSubheading?: boolean;
   href?: string;
   imageSrc?: string;
@@ -255,7 +256,7 @@ const APPS_DATA: AppData[] = [
     ],
     status: "Production",
     statuses: ["Completed", "Production"],
-    category: "work",
+    categories: ["work", "client"],
     isSubheading: true,
     href: "https://yeshelpnetwork.github.io/",
     imageSrc: "/yeshelp-brand-lockup.png",
@@ -371,6 +372,12 @@ const APPS_DATA: AppData[] = [
     },
   },
 ];
+
+function getAppCategories(app: AppData): ("work" | "client" | "education")[] {
+  if (app.categories && app.categories.length > 0) return app.categories;
+  if (app.category) return [app.category];
+  return ["work"];
+}
 
 function localizeApp(app: AppData, locale: Locale): AppData {
   const translation = app.translations?.[locale];
@@ -616,16 +623,21 @@ const Apps = ({ id, locale }: AppsProps) => {
   const categoryCounts = useMemo(() => {
     return {
       all: localizedApps.length,
-      work: localizedApps.filter(a => a.category === "work").length,
-      client: localizedApps.filter(a => a.category === "client").length,
-      education: localizedApps.filter(a => a.category === "education").length,
+      work: localizedApps.filter(a => getAppCategories(a).includes("work"))
+        .length,
+      client: localizedApps.filter(a => getAppCategories(a).includes("client"))
+        .length,
+      education: localizedApps.filter(a =>
+        getAppCategories(a).includes("education")
+      ).length,
     };
   }, [localizedApps]);
 
   const filteredApps = useMemo(() => {
     return localizedApps.filter(app => {
+      const appCats = getAppCategories(app);
       const matchesCategory =
-        selectedCategory === "all" || app.category === selectedCategory;
+        selectedCategory === "all" || appCats.includes(selectedCategory);
       const matchesTech =
         !selectedTech ||
         app.stack.some(t => t.toLowerCase() === selectedTech.toLowerCase());
